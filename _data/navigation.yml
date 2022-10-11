@@ -1,0 +1,10 @@
+- title: Home
+  url: /home/
+  - title: Papers
+  url: /papers/
+- title: Blog
+  sublinks:
+    - title: Summaries
+      url: /summaries/
+    - title: Photography
+      url: /photography/
