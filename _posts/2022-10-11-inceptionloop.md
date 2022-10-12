@@ -37,6 +37,7 @@ To managethis high-dim space, there are these solutions:
 
  <li>Deep learning-based models</li>
     They set new standards in predicting of the cortical responses to natural images.
+ </ol>
 </p>
 
 <p>This article worked on the third solution meaning Deep learning-based models, with end-to-end training to synthesize and search
