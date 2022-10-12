@@ -19,18 +19,20 @@ exp: In classical conditioning, a <b>neutral stimulus</b> is something that does
 
 <p>Since the high-dimensional space of possible images seems out of control, it'd be difficult to identify optimal sensory input
 for neurons with nonlinear sensitivity.</p>
-To managethis high-dim space, there are these solutions: 
-1. The active learning approach
+To managethis high-dim space, there are these solutions:
+<ol> 
+ <li>The active learning approach</li>
 <p>
   Negative point: 
   <ol>
-    <li>1. Experimental constraints limit the number of responses that we expect to measure from a single cell,</li>
-    <li>2. The dimensionality of the stimilus space would be restricted.</li>
+    <li>Experimental constraints limit the number of responses that we expect to measure from a single cell,</li>
+    <li>The dimensionality of the stimilus space would be restricted.</li>
+  </ol>
 </p>
-2. The model-driven stimulus optimization
+ <li> The model-driven stimulus optimization</li>
     which requires functional models predicting the responses of the neurons to arbitrary stimuli, including natural images.
     Doing so, neither of the two negative points of the first suggestion happens.
-3. Deep learning-based models
+ <li>Deep learning-based models</li>
     They set new standards in predicting of the cortical responses to natural images.
 
 <p>This article worked on the third solution meaning Deep learning-based models, with end-to-end training to synthesize and search
@@ -46,6 +48,13 @@ exp: Types of experiments:
 <p>Method:
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
+   <img src="img/a1.jpg">
+   The inception loop experiment was held in two days:
+   on day 1:
+   Recorded the neural responses of large neuronal population to 1000s of natural images.
+   Trained a CNN (Convolutional Neural Network) to predict these responses based on the presented images.
+   Optimized images to maximize the model responses of selected model neurons.
+
 <p></p>
 <p></p>
 <p></p>
