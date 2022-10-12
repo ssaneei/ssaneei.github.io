@@ -6,7 +6,6 @@
       {%- assign avatar = site.avatar | relative_url -%}
     {%- endif -%}
     <img src="_img/pic.jpg" class="author-avatar u-photo align-center" alt="{{ site.author }}">
-    <img src="{{ avatar }}" class="author-avatar u-photo align-center" alt="{{ site.author }}">
     
   </div>
 {%- endif %}
@@ -23,6 +22,7 @@
       <li>
         <i class="sidebar-icon fas fa-envelope"></i>
         <a class="contact-info u-email" href="mailto:{{ site.mail }}">{{ site.email }}</a>
+        <img src="{{ avatar }}" class="author-avatar u-photo align-center" alt="{{ site.author }}">
       </li>
     {%- endif %}
     {% if site.location -%}
