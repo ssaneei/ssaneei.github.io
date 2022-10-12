@@ -21,7 +21,7 @@ exp: In classical conditioning, a <b>neutral stimulus</b> is something that does
 for neurons with nonlinear sensitivity.</p>
 To managethis high-dim space, there are these solutions: 
 1. The active learning approach
-  Negative point: 
+<p>  Negative point: </p>
     1. Experimental constraints limit the number of responses that we expect to measure from a single cell,
     2. The dimensionality of the stimilus space would be restricted.
 2. The model-driven stimulus optimization
@@ -30,7 +30,15 @@ To managethis high-dim space, there are these solutions:
 3. Deep learning-based models
     They set new standards in predicting of the cortical responses to natural images.
 
-<p></p>
+<p>This article worked on the third solution meaning Deep learning-based models, with end-to-end training to synthesize and search
+for optimal stimuli in silico that verified back in the brain</p>
+exp: Types of experiments:
+<ul>
+  <li>In silico: (in silicon) Using/in the computers</li>
+  <li>In vitro: (in glass) Outside living organism (in a petri dish)</li>
+  <li>Ex vivo: outside of a living body (in an artificial environment outside the organism)</li>
+  <li>In vivo: (not in vitro) inside whole living organism</li>
+</ul>
 <p></p>
 <p></p>
 <p></p>
