@@ -13,8 +13,9 @@ Linear Nonlinear (LN) Models with center-surround filters have high predictive p
 what is center-surround filter?
 <img src="https://www.mdpi.com/jimaging/jimaging-08-00076/article_deploy/html/images/jimaging-08-00076-g004.png">
 <p>BUT the thing is the response selectivity of lots of cortical neurons is inherently nonlinear </p>
-And even in V1, the predictive power of LNthe responses to natural stimuli 
-In classical conditioning, a neutral stimulus is something that does not elicit a response.
+And even in V1, the predictive power of LNthe responses to natural stimuli.
+In classical conditioning, a <b>neutral stimulus</b> is something that does not elicit a response.
+
 
 <!-- Source:
 
