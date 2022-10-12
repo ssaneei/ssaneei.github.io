@@ -46,6 +46,7 @@ exp: Types of experiments:
   <li>In vivo:    (not in vitro) inside whole living organism</li>
 </ul>
 <p>Method:
+<br>
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
    <img src="img/a1.jpg">
