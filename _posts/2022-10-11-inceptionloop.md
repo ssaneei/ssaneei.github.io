@@ -55,7 +55,7 @@ exp: Types of experiments:
 
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
-  <img src="./_img/a1.jpg">
+  <img src="_img/a1.jpg">
   <p>
    The inception loop experiment was held in days:
    on day 1:
