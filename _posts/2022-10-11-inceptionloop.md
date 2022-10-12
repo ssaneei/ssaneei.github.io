@@ -14,8 +14,10 @@ exp: what is center-surround filter?
 You can see it here:
 <img src="https://www.mdpi.com/jimaging/jimaging-08-00076/article_deploy/html/images/jimaging-08-00076-g004.png">
 <p>BUT the thing is the response selectivity of lots of cortical neurons is inherently nonlinear 
-And even in V1, the predictive power of LN or energy models is low, specially for the responses to natural stimuli.
-exp: In classical conditioning, a <b>neutral stimulus</b> is something that does not elicit a response.</p>
+And even in V1, the predictive power of LN or energy models is low, specially for the responses to natural stimuli.</p>
+<p>exp: V1 means Primary Visual Cortex. The primary visual cortex is the last “generalized” processing region of the visual pathway and thus the most downstream area that is considered for implantation with visual prostheses.
+(Prostheses for the Brain, 2021)</p>
+<p>exp: In classical conditioning, a <b>neutral stimulus</b> is something that does not elicit a response.</p>
 
 <p>Since the high-dimensional space of possible images seems out of control, it'd be difficult to identify optimal sensory input
 for neurons with nonlinear sensitivity.</p>
@@ -52,15 +54,25 @@ exp: Types of experiments:
 
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
-   <img src="./_img/a1.jpg">
-
-   The inception loop experiment was held in two days:
+  <img src="./_img/a1.jpg">
+  <p>
+   The inception loop experiment was held in days:
    on day 1:
    <ul>
      <li>Recorded the neural responses of large neuronal population to 1000s of natural images.</li>
      <li>Trained a CNN (Convolutional Neural Network) to predict these responses based on the presented images.</li>
      <li>Optimized images to maximize the model responses of selected model neurons.</li>
    </ul>
+
+   over subsequent days
+    <ul>
+     <li>Presented the tailored images to corresponding neurons in the brain to test whether they indeed produced the
+     strongest responses among all control stimuli.</li>
+     They recorded the responses to natural images of over 2000 excitory neurons in layer 2/3 of the V1 (V1 L2/3)
+     <li>Trained a CNN (Convolutional Neural Network) to predict these responses based on the presented images.</li>
+     <li>Optimized images to maximize the model responses of selected model neurons.</li>
+   </ul>
+   </p>
 
 <p></p>
 <p></p>
