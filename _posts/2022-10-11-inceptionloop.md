@@ -11,7 +11,7 @@ As I'm not that expert in the Neuroscience field, the explanations could be some
 <p>In linear systems, linear filters elicit responses optimally. 
 Linear Nonlinear (LN) Models with center-surround filters have high predictive power in the retina and drive its activity.</p>
 what is center-surround filter?
-<a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mdpi.com%2F2313-433X%2F8%2F3%2F76%2Fhtm&psig=AOvVaw1Bo6Rx4vtRe2jcxPiiXxj9&ust=1665588237415000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIi62Ou92PoCFQAAAAAdAAAAABBE"></a>
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mdpi.com%2F2313-433X%2F8%2F3%2F76%2Fhtm&psig=AOvVaw1Bo6Rx4vtRe2jcxPiiXxj9&ust=1665588237415000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIi62Ou92PoCFQAAAAAdAAAAABBE">
 <p>BUT the thing is the response selectivity of lots of cortical neurons is inherently nonlinear </p>
 And even in V1, the predictive power of LNthe responses to natural stimuli 
 In classical conditioning, a neutral stimulus is something that does not elicit a response.
