@@ -35,12 +35,14 @@ for optimal stimuli in silico that verified back in the brain</p>
 exp: Types of experiments:
 
 <ul>
-  <li>In silico: (in silicon) Using/in the computers</li>
-  <li>In vitro: (in glass) Outside living organism (in a petri dish)</li>
-  <li>Ex vivo: outside of a living body (in an artificial environment outside the organism)</li>
-  <li>In vivo: (not in vitro) inside whole living organism</li>
+  <li>In silico:  (in silicon) Using/in the computers</li>
+  <li>In vitro:   (in glass) Outside living organism (in a petri dish)</li>
+  <li>Ex vivo:    outside of a living body </li>
+  <li>In vivo:    (not in vitro) inside whole living organism</li>
 </ul>
-<p></p>
+<p>Method:
+   They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
+   with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
 <p></p>
 <p></p>
 <p></p>
