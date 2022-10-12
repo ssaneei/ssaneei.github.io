@@ -50,12 +50,14 @@ exp: Types of experiments:
 <br>
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
-   <img src="_img/a1.jpg">
+   <img src="/_img/a1.jpg">
    The inception loop experiment was held in two days:
    on day 1:
-   Recorded the neural responses of large neuronal population to 1000s of natural images.
-   Trained a CNN (Convolutional Neural Network) to predict these responses based on the presented images.
-   Optimized images to maximize the model responses of selected model neurons.
+   <ul>
+     <li>Recorded the neural responses of large neuronal population to 1000s of natural images.</li>
+     <li>Trained a CNN (Convolutional Neural Network) to predict these responses based on the presented images.</li>
+     <li>Optimized images to maximize the model responses of selected model neurons.</li>
+   </ul>
 
 <p></p>
 <p></p>
