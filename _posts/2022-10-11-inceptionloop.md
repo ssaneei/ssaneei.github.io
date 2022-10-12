@@ -32,6 +32,7 @@ To managethis high-dim space, there are these solutions:
  <li> The model-driven stimulus optimization</li>
     which requires functional models predicting the responses of the neurons to arbitrary stimuli, including natural images.
     Doing so, neither of the two negative points of the first suggestion happens.
+
  <li>Deep learning-based models</li>
     They set new standards in predicting of the cortical responses to natural images.
 </p>
@@ -46,11 +47,13 @@ exp: Types of experiments:
   <li>Ex vivo:    outside of a living body </li>
   <li>In vivo:    (not in vitro) inside whole living organism</li>
 </ul>
+
 <p>Method:
-<br>
+
    They designed a closed-loop experimental paradigm which they call an inception loop. This loop combines in vivo recordings
    with in silico modeling to synthesize stimuli that evoke a desired response. (that they confirm in vivo)</p>
-   <img src="/_img/a1.jpg">
+   <img src="./_img/a1.jpg">
+
    The inception loop experiment was held in two days:
    on day 1:
    <ul>
