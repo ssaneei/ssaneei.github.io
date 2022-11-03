@@ -1,7 +1,7 @@
 ---
 layout: archive-taxonomies
-type: photography
-title: Photography
+type: Quotes
+title: Quotes
 permalink: /quotes/
 ---
 <ul>
