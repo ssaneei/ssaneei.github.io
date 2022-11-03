@@ -1,5 +1,5 @@
 ---
-layout: archive-taxonomies
+layout: page
 type: Quotes
 title: Quotes
 permalink: /quotes/
