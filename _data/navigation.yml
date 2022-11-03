@@ -1,6 +1,6 @@
-- title: Home
-  url: /home/
-- title: Papers
+- title: Quotes
+  url: /quotes/
+  - title: Papers
   url: /papers/
 - title: Blog
   sublinks:
