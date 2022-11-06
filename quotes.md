@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: quotes
 title: Quotes
 permalink: /quotes/
 ---
