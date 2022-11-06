@@ -1,6 +1,5 @@
 ---
 layout: page
-type: Quotes
 title: Quotes
 permalink: /quotes/
 ---
