@@ -6,7 +6,7 @@ permalink: /publication/
 
 <h2>WordPars: A tool for orthographic and phonological neighborhood and other psycholinguistic statistics in PersianWordPars: A tool for orthographic and phonological neighborhood and other psycholinguistic statistics in Persian </h2>
 
-<p>Behaviour Research Methods · Nov 9, 2021</p>
+<p>Behaviour Research Methods · 2022</p>
 <p><a href="https://link.springer.com/article/10.3758/s13428-021-01712-4">Show publication</a></p>
 
 <p>This paper presents a Windows program providing statistics on word and non-word stimuli in Persian, including word frequency, orthographic and phonological length, orthographic and phonological neighbors, and transposed-letter neighbors. It also generates possible non-words that are orthographic neighbors of the target word. Persian is an under-represented Indo-European language that has historically been influenced by Arabic and adopted certain characteristics in its writing, e.g., the omission of short vowels. This tool aims to help researchers in psycholinguistics, specifically with regard to isolated word recognition in Persian. This downloadable program computes the aforementioned indices free of charge. This tool uses two corpora, i.e., Zaya corpus and WorldLex, for reporting and computing statistics and is a user-friendly program provided in English that is also easy to work with for non-Persian researchers. It can be accessed from <a href="https://github.com/ssaneei/Wordpars">here</a>.</p>
