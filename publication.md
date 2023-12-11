@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Papers
-permalink: /papers/
+permalink: /publication/
 ---
 
 <h2>WordPars: A tool for orthographic and phonological neighborhood and other psycholinguistic statistics in PersianWordPars: A tool for orthographic and phonological neighborhood and other psycholinguistic statistics in Persian </h2>
