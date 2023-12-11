@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: New MIT course in Matrix Calculus!
 tags: [Summaries]
 permalink: /summaries/
