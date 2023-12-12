@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Summaries on Inception Loop article
 tags: [Summaries]
 permalink: /summaries/
