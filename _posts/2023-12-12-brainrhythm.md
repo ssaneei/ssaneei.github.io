@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Summaries on Rhythm of the Brain
 tags: [Summaries]
 permalink: /summaries/
