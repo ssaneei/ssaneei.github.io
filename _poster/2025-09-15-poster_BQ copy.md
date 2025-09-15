@@ -1,8 +1,11 @@
 ---
 layout: page
 title: "🎙️ Where Does Meaning Live? Four Theories, One Brain"
+summary: >
+  One of the most interesting challenges in neuroscience is where meaning locates in the brain. Here we share 4 different results based 4 lines of studies.
 description: "Landing page for the poster QR — summary, audio, and credits."
-# ⬇️ Replace these with your actual files (or leave blank to hide)
+
+
 hero_image: /assets/photos/meaning.png
 hero_alt: "Four theories, one brain"
 audio_src: /assets/audios/meaning-episode.mp4
