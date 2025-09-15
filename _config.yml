@@ -1,2 +1,7 @@
 theme: minima
 remote_theme: sunrise
+
+collections:
+  poster:
+    output: true
+    permalink: /poster/:path/
