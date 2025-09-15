@@ -2,7 +2,7 @@
 layout: post
 title: Summaries on Rhythm of the Brain
 tags: [Summaries]
-permalink: /summaries/
+#permalink: /summaries/
 ---
 
 <p>Hey there! 

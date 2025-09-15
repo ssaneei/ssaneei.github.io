@@ -2,7 +2,7 @@
 layout: page
 title: Summaries on Inception Loop article
 tags: [Summaries]
-permalink: /summaries/
+#permalink: /summaries/
 ---
 
 <p>Hey there! Today I want to write about the article I want to work on these days. The name is "Inception loops discover what excites neurons most using deep predictive models".

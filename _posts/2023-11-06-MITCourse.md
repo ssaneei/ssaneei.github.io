@@ -2,7 +2,7 @@
 layout: page
 title: New MIT course in Matrix Calculus!
 tags: [Summaries]
-permalink: /summaries/
+# permalink: /summaries/
 ---
 
 <p>Hey there! Today I got to know about this new course in Matrix Calculus! It's definitely not to miss!</p>
