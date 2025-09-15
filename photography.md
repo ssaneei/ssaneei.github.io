@@ -4,7 +4,7 @@ type: photography
 title: Photography
 permalink: /photography/
 ---
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
