@@ -204,88 +204,88 @@ permalink: /photography/
         id: "pic5",
         thumb: "{{ '/assets/photos/thumbs/pic5.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic5.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "A white and a black swan",
+        caption: "BW Swans in London",
         width: 1600, height: 1067
       },
             {
         id: "pic6",
         thumb: "{{ '/assets/photos/thumbs/pic6.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic6.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Green roads in Gruyère in front of a mountain",
+        caption: "Spring in Gruyère",
         width: 1600, height: 1067
       },
             {
         id: "pic7",
         thumb: "{{ '/assets/photos/thumbs/pic7.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic7.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Sunset and the lake while some kids playing in the lake.",
+        caption: "Shades in Hermance's sunsest.",
         width: 1600, height: 1067
       },
             {
         id: "pic8",
         thumb: "{{ '/assets/photos/thumbs/pic8.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic8.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "A black swan by a lake",
+        caption: "The black majesty, London.",
         width: 1600, height: 1067
       },
             {
         id: "pic9",
         thumb: "{{ '/assets/photos/thumbs/pic9.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic9.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Eiffel tower during the night",
+        caption: "Nights in Paris",
         width: 1600, height: 1067
       },
             {
         id: "pic10",
         thumb: "{{ '/assets/photos/thumbs/pic10.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic10.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "A sea shore and people swimming.",
+        caption: "Cala by the beach",
         width: 1600, height: 1067
       },
             {
         id: "pic11",
         thumb: "{{ '/assets/photos/thumbs/pic11.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic11.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "A view from a rooftop in Geneva",
+        caption: "Geneva from MET",
         width: 1600, height: 1067
       },
             {
         id: "pic12",
         thumb: "{{ '/assets/photos/thumbs/pic12.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic12.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "The gradient of blue in Mallorca",
+        caption: "Shades of blue in Cala.",
         width: 1600, height: 1067
       },
             {
         id: "pic13",
         thumb: "{{ '/assets/photos/thumbs/pic13.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic13.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "On top of houses in Naples",
+        caption: "Naples, Italy",
         width: 1600, height: 1067
       },
             {
         id: "pic14",
         thumb: "{{ '/assets/photos/thumbs/pic14.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic14.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "A boat on the sea.",
+        caption: "Cala, Mallorca",
         width: 1600, height: 1067
       },
             {
         id: "pic15",
         thumb: "{{ '/assets/photos/thumbs/pic15.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic15.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Boats on the sea",
+        caption: "The beautiful Capri, Italy",
         width: 1600, height: 1067
       }
       // Add more here...
