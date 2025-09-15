@@ -178,112 +178,112 @@ permalink: /photography/
       },
       {
         id: "pic2",
-        thumb: "assets/photos/thumbs/pic2.jpg",
-        full:  "assets/photos/full/pic2.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic2.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic2.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic3",
-        thumb: "assets/photos/thumbs/pic3.jpg",
-        full:  "assets/photos/full/pic3.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic3.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic3.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic4",
-        thumb: "assets/photos/thumbs/pic4.jpg",
-        full:  "assets/photos/full/pic4.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic4.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic4.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic5",
-        thumb: "assets/photos/thumbs/pic5.jpg",
-        full:  "assets/photos/full/pic5.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic5.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic5.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic6",
-        thumb: "assets/photos/thumbs/pic6.jpg",
-        full:  "assets/photos/full/pic6.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic6.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic6.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic7",
-        thumb: "assets/photos/thumbs/pic7.jpg",
-        full:  "assets/photos/full/pic7.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic7.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic7.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic8",
-        thumb: "assets/photos/thumbs/pic8.jpg",
-        full:  "assets/photos/full/pic8.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic8.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic8.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic9",
-        thumb: "assets/photos/thumbs/pic9.jpg",
-        full:  "assets/photos/full/pic9.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic9.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic9.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic10",
-        thumb: "assets/photos/thumbs/pic10.jpg",
-        full:  "assets/photos/full/pic10.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic10.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic10.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic11",
-        thumb: "assets/photos/thumbs/pic11.jpg",
-        full:  "assets/photos/full/pic11.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic11.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic11.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic12",
-        thumb: "assets/photos/thumbs/pic12.jpg",
-        full:  "assets/photos/full/pic12.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic12.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic12.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic13",
-        thumb: "assets/photos/thumbs/pic13.jpg",
-        full:  "assets/photos/full/pic13.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic13.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic13.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic14",
-        thumb: "assets/photos/thumbs/pic14.jpg",
-        full:  "assets/photos/full/pic14.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic14.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic14.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic15",
-        thumb: "assets/photos/thumbs/pic15.jpg",
-        full:  "assets/photos/full/pic15.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic15.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic15.jpeg' | relative_url }}",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
