@@ -1,7 +1,6 @@
 ---
 layout: page
 title: "🎙️ Where Does Meaning Live? Four Theories, One Brain"
-permalink: /poster/
 description: "Landing page for the poster QR — summary, audio, and credits."
 # ⬇️ Replace these with your actual files (or leave blank to hide)
 hero_image: /assets/photos/meaning.png
