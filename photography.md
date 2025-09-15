@@ -170,8 +170,8 @@ permalink: /photography/
     const PHOTOS = [
       {
         id: "pic1",
-        thumb: "assets/photos/thumbs/pic1.jpg",
-        full:  "assets/photos/full/pic1.jpeg",
+        thumb: "{{ '/assets/photos/thumbs/pic1.jpg' | relative_url }}",
+        full:  "{{ '/assets/photos/full/pic1.jpeg' | relative_url }}",
         alt: "Sunrise over a calm alpine lake with pink clouds reflected on the water",
         caption: "Sunrise, Val Trupchun",
         width: 1600, height: 1200
