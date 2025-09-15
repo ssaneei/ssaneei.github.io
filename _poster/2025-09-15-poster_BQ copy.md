@@ -38,7 +38,7 @@ notebooklm_url: https://notebooklm.google.com/notebook/f163972d-b36f-4fdf-af4e-f
   {% if page.hero_image %}
   <header class="hero">
     <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | default: 'Episode cover image' }}">
-    <p class="credit">Image: <i>brought to you by illustrea</i></p>
+    <p class="credit">Image: <i>brought to you by illustrae</i></p>
   </header>
   {% endif %}
 
