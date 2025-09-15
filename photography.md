@@ -172,32 +172,32 @@ permalink: /photography/
         id: "pic1",
         thumb: "{{ '/assets/photos/thumbs/pic1.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic1.jpeg' | relative_url }}",
-        alt: "Sunrise over a calm alpine lake with pink clouds reflected on the water",
-        caption: "Sunrise, Val Trupchun",
+        alt: "A sunny day in Geneva",
+        caption: "A sunny day in Geneva",
         width: 1600, height: 1200
       },
       {
         id: "pic2",
         thumb: "{{ '/assets/photos/thumbs/pic2.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic2.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Sunset in Evian-les-Bains",
+        caption: "Sunset in Evian-les-Bains",
         width: 1600, height: 1067
       },
             {
         id: "pic3",
         thumb: "{{ '/assets/photos/thumbs/pic3.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic3.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "It's all about shadows.",
+        caption: "It's all about shadows.",
         width: 1600, height: 1067
       },
             {
         id: "pic4",
         thumb: "{{ '/assets/photos/thumbs/pic4.jpg' | relative_url }}",
         full:  "{{ '/assets/photos/full/pic4.jpeg' | relative_url }}",
-        alt: "Rainy city street with reflections and a lone cyclist crossing",
-        caption: "Blue hour in the rain",
+        alt: "Bubbles and sunny Geneva facing Jet-d'eau.",
+        caption: "Bubbly Jet d'eau in Geneva",
         width: 1600, height: 1067
       },
             {
