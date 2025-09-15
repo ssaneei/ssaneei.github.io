@@ -22,6 +22,9 @@ permalink: /poster/
 
     <h2>Links & Resources</h2>
     <ul>
+    
+      <li><a href="/_layouts/meaning.html" target="_blank"> The Big Question: Where does meaning live? </a></li>
+
       <li><a href="xxx.html" target="_blank">What are the Lancaster norms? </a></li>
       <li><a href="xxx.html">The realtime brain signals from Day1</a></li>
       <li><a href="poster.pdf" target="_blank">Download the Poster (PDF)</a></li>
