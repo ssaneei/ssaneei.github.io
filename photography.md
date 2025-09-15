@@ -182,120 +182,120 @@ I'm into photography, as well. :)
     const PHOTOS = [
       {
         id: "pic1",
-        thumb: "assets/photos/thumbs/pic1.jpg",
-        full:  "assets/photos/full/pic1.jpg",
+        thumb: "assets/photos/thumbs/pic1.jpeg",
+        full:  "assets/photos/full/pic1.jpeg",
         alt: "Sunrise over a calm alpine lake with pink clouds reflected on the water",
         caption: "Sunrise, Val Trupchun",
         width: 1600, height: 1200
       },
       {
         id: "pic2",
-        thumb: "assets/photos/thumbs/pic2.jpg",
-        full:  "assets/photos/full/pic2.jpg",
+        thumb: "assets/photos/thumbs/pic2.jpeg",
+        full:  "assets/photos/full/pic2.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic3",
-        thumb: "assets/photos/thumbs/pic3.jpg",
-        full:  "assets/photos/full/pic3.jpg",
+        thumb: "assets/photos/thumbs/pic3.jpeg",
+        full:  "assets/photos/full/pic3.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic4",
-        thumb: "assets/photos/thumbs/pic4.jpg",
-        full:  "assets/photos/full/pic4.jpg",
+        thumb: "assets/photos/thumbs/pic4.jpeg",
+        full:  "assets/photos/full/pic4.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic5",
-        thumb: "assets/photos/thumbs/pic5.jpg",
-        full:  "assets/photos/full/pic5.jpg",
+        thumb: "assets/photos/thumbs/pic5.jpeg",
+        full:  "assets/photos/full/pic5.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic6",
-        thumb: "assets/photos/thumbs/pic6.jpg",
-        full:  "assets/photos/full/pic6.jpg",
+        thumb: "assets/photos/thumbs/pic6.jpeg",
+        full:  "assets/photos/full/pic6.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic7",
-        thumb: "assets/photos/thumbs/pic7.jpg",
-        full:  "assets/photos/full/pic7.jpg",
+        thumb: "assets/photos/thumbs/pic7.jpeg",
+        full:  "assets/photos/full/pic7.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic8",
-        thumb: "assets/photos/thumbs/pic8.jpg",
-        full:  "assets/photos/full/pic8.jpg",
+        thumb: "assets/photos/thumbs/pic8.jpeg",
+        full:  "assets/photos/full/pic8.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic9",
-        thumb: "assets/photos/thumbs/pic9.jpg",
-        full:  "assets/photos/full/pic9.jpg",
+        thumb: "assets/photos/thumbs/pic9.jpeg",
+        full:  "assets/photos/full/pic9.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic10",
-        thumb: "assets/photos/thumbs/pic10.jpg",
-        full:  "assets/photos/full/pic10.jpg",
+        thumb: "assets/photos/thumbs/pic10.jpeg",
+        full:  "assets/photos/full/pic10.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic11",
-        thumb: "assets/photos/thumbs/pic11.jpg",
-        full:  "assets/photos/full/pic11.jpg",
+        thumb: "assets/photos/thumbs/pic11.jpeg",
+        full:  "assets/photos/full/pic11.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic12",
-        thumb: "assets/photos/thumbs/pic12.jpg",
-        full:  "assets/photos/full/pic12.jpg",
+        thumb: "assets/photos/thumbs/pic12.jpeg",
+        full:  "assets/photos/full/pic12.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic13",
-        thumb: "assets/photos/thumbs/pic13.jpg",
-        full:  "assets/photos/full/pic13.jpg",
+        thumb: "assets/photos/thumbs/pic13.jpeg",
+        full:  "assets/photos/full/pic13.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic14",
-        thumb: "assets/photos/thumbs/pic14.jpg",
-        full:  "assets/photos/full/pic14.jpg",
+        thumb: "assets/photos/thumbs/pic14.jpeg",
+        full:  "assets/photos/full/pic14.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
       },
             {
         id: "pic15",
-        thumb: "assets/photos/thumbs/pic15.jpg",
-        full:  "assets/photos/full/pic15.jpg",
+        thumb: "assets/photos/thumbs/pic15.jpeg",
+        full:  "assets/photos/full/pic15.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
         width: 1600, height: 1067
@@ -321,7 +321,7 @@ I'm into photography, as well. :)
         img.height = photo.height;
       }
       // Optional responsive srcset: add your own sizes if you export multiple thumbs
-      // img.srcset = `${photo.thumb.replace('.jpg','-800.jpg')} 800w, ${photo.thumb} 1200w`;
+      // img.srcset = `${photo.thumb.replace('.jpeg','-800.jpeg')} 800w, ${photo.thumb} 1200w`;
       img.src = photo.thumb;
 
       const cap = document.createElement('figcaption');
