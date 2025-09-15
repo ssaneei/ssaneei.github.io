@@ -166,20 +166,11 @@ permalink: /photography/
   </div>
 
   <script>
-    /* ---------------------------------------------------
-       1) Add your photos here. Each item is:
-          { id, thumb, full, alt, caption, width, height }
-          - id: a short unique string
-          - thumb: relative path in /assets/photos/thumbs
-          - full:  relative path in /assets/photos/full
-          - alt:   meaningful alt text for accessibility/SEO
-          - caption: short caption shown on card and in lightbox
-          - width/height: optional; helps browsers reserve space
-       --------------------------------------------------- */
+
     const PHOTOS = [
       {
         id: "pic1",
-        thumb: "assets/photos/thumbs/pic1.jpeg",
+        thumb: "assets/photos/thumbs/pic1.jpg",
         full:  "assets/photos/full/pic1.jpeg",
         alt: "Sunrise over a calm alpine lake with pink clouds reflected on the water",
         caption: "Sunrise, Val Trupchun",
@@ -187,7 +178,7 @@ permalink: /photography/
       },
       {
         id: "pic2",
-        thumb: "assets/photos/thumbs/pic2.jpeg",
+        thumb: "assets/photos/thumbs/pic2.jpg",
         full:  "assets/photos/full/pic2.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -195,7 +186,7 @@ permalink: /photography/
       },
             {
         id: "pic3",
-        thumb: "assets/photos/thumbs/pic3.jpeg",
+        thumb: "assets/photos/thumbs/pic3.jpg",
         full:  "assets/photos/full/pic3.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -203,7 +194,7 @@ permalink: /photography/
       },
             {
         id: "pic4",
-        thumb: "assets/photos/thumbs/pic4.jpeg",
+        thumb: "assets/photos/thumbs/pic4.jpg",
         full:  "assets/photos/full/pic4.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -211,7 +202,7 @@ permalink: /photography/
       },
             {
         id: "pic5",
-        thumb: "assets/photos/thumbs/pic5.jpeg",
+        thumb: "assets/photos/thumbs/pic5.jpg",
         full:  "assets/photos/full/pic5.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -219,7 +210,7 @@ permalink: /photography/
       },
             {
         id: "pic6",
-        thumb: "assets/photos/thumbs/pic6.jpeg",
+        thumb: "assets/photos/thumbs/pic6.jpg",
         full:  "assets/photos/full/pic6.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -227,7 +218,7 @@ permalink: /photography/
       },
             {
         id: "pic7",
-        thumb: "assets/photos/thumbs/pic7.jpeg",
+        thumb: "assets/photos/thumbs/pic7.jpg",
         full:  "assets/photos/full/pic7.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -235,7 +226,7 @@ permalink: /photography/
       },
             {
         id: "pic8",
-        thumb: "assets/photos/thumbs/pic8.jpeg",
+        thumb: "assets/photos/thumbs/pic8.jpg",
         full:  "assets/photos/full/pic8.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -243,7 +234,7 @@ permalink: /photography/
       },
             {
         id: "pic9",
-        thumb: "assets/photos/thumbs/pic9.jpeg",
+        thumb: "assets/photos/thumbs/pic9.jpg",
         full:  "assets/photos/full/pic9.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -251,7 +242,7 @@ permalink: /photography/
       },
             {
         id: "pic10",
-        thumb: "assets/photos/thumbs/pic10.jpeg",
+        thumb: "assets/photos/thumbs/pic10.jpg",
         full:  "assets/photos/full/pic10.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -259,7 +250,7 @@ permalink: /photography/
       },
             {
         id: "pic11",
-        thumb: "assets/photos/thumbs/pic11.jpeg",
+        thumb: "assets/photos/thumbs/pic11.jpg",
         full:  "assets/photos/full/pic11.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -267,7 +258,7 @@ permalink: /photography/
       },
             {
         id: "pic12",
-        thumb: "assets/photos/thumbs/pic12.jpeg",
+        thumb: "assets/photos/thumbs/pic12.jpg",
         full:  "assets/photos/full/pic12.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -275,7 +266,7 @@ permalink: /photography/
       },
             {
         id: "pic13",
-        thumb: "assets/photos/thumbs/pic13.jpeg",
+        thumb: "assets/photos/thumbs/pic13.jpg",
         full:  "assets/photos/full/pic13.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -283,7 +274,7 @@ permalink: /photography/
       },
             {
         id: "pic14",
-        thumb: "assets/photos/thumbs/pic14.jpeg",
+        thumb: "assets/photos/thumbs/pic14.jpg",
         full:  "assets/photos/full/pic14.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
@@ -291,7 +282,7 @@ permalink: /photography/
       },
             {
         id: "pic15",
-        thumb: "assets/photos/thumbs/pic15.jpeg",
+        thumb: "assets/photos/thumbs/pic15.jpg",
         full:  "assets/photos/full/pic15.jpeg",
         alt: "Rainy city street with reflections and a lone cyclist crossing",
         caption: "Blue hour in the rain",
