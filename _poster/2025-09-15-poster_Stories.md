@@ -1,12 +1,12 @@
 ---
 layout: page
-title: "Data Collection"
+title: "Stories_Example"
 summary: >
-  The first day of data collection.
+  Some examples of the stories played on Day2 of the experiment.
 description: "Landing page for the poster QR about data collection — summary."
 
-hero_image: /assets/photos/Data_collection_1.png
-hero_alt: "Data Collection, Day1"
+hero_image: /assets/photos/short_stories.jpeg
+hero_alt: "Stories_Example"
 ---
 
 <style>
