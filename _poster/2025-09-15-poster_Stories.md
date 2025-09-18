@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Stories_Example"
+title: "Examples of Day2 Stories"
 summary: >
   Some examples of the stories played on Day2 of the experiment.
 description: "Landing page for the poster QR about data collection — summary."
