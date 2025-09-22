@@ -110,7 +110,6 @@ hero_alt: "Stories_Example"
             <a href="/assets/audio/day2/story1-fr.mp3" download>Download FR</a>
           </div>
         </div>
-      </div>
 
       <details>
         <summary>Read story (FR)</summary>
@@ -150,7 +149,6 @@ hero_alt: "Stories_Example"
             <a href="/assets/audio/day2/story2-fr.mp3" download>Download FR</a>
           </div>
         </div>
-      </div>
 
       <details>
         <summary>Read story (FR)</summary>
