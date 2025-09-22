@@ -25,7 +25,6 @@ hero_alt: "Stories_Example"
   .hero img{width:100%;height:auto;border-radius:16px;border:1px solid var(--card-bd)}
   .credit{font-style:italic;color:var(--muted)}
 
-  /* Cute modern cards */
   .story-card{
     background:var(--card-bg);
     border:1px solid var(--card-bd);
@@ -91,8 +90,8 @@ hero_alt: "Stories_Example"
   <!-- ===== Story 1 ===== -->
   <article class="story-card">
     <figure class="story-media">
-      <!-- replace with your image path -->
-      <img src="/assets/stories/story1.jpg" alt="Twilight festival by a fountain in a Mediterranean village with lanterns and art on the walls.">
+      
+      <img src="/assets/photos/story_1.png" alt="Twilight festival by a fountain in a Mediterranean village with lanterns and art on the walls.">
     </figure>
 
     <div class="story-body">
@@ -104,8 +103,7 @@ hero_alt: "Stories_Example"
       <div class="audio-group">
         <div class="audio-row">
           <span class="lang-badge"><span class="dot"></span> French audio</span>
-          <!-- replace src with your FR file -->
-          <audio controls preload="metadata" src="/assets/audio/day2/story1-fr.mp3">
+          <audio controls preload="metadata" src="/assets/audios/story_1_6684_story_9.wav">
             Your browser does not support the audio element.
           </audio>
           <div class="mini-links">
@@ -131,8 +129,7 @@ hero_alt: "Stories_Example"
   <!-- ===== Story 2 ===== -->
   <article class="story-card">
     <figure class="story-media">
-      <!-- replace with your image path -->
-      <img src="/assets/stories/story2.jpg" alt="Cozy brick workshop by the sea where a craftsman and a textile artist work with cotton and tools.">
+      <img src="/assets/photos/story_1.png" alt="Cozy brick workshop by the sea where a craftsman and a textile artist work with cotton and tools.">
     </figure>
 
     <div class="story-body">
@@ -145,7 +142,7 @@ hero_alt: "Stories_Example"
         <div class="audio-row">
           <span class="lang-badge"><span class="dot"></span> French audio</span>
           <!-- replace src with your FR file -->
-          <audio controls preload="metadata" src="/assets/audio/day2/story2-fr.mp3">
+          <audio controls preload="metadata" src="/assets/audios/story_2_6684_story_4.wav">
             Your browser does not support the audio element.
           </audio>
           <div class="mini-links">
