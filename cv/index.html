@@ -1,0 +1,141 @@
+---
+layout: page
+title: "CV"
+permalink: /cv/
+---
+
+<style>
+  :root{
+    --accent:#111827;
+    --muted:#6b7280;
+    --bd:#e5e7eb;
+  }
+  .cv{max-width:900px;margin:0 auto;padding:0 .5rem 2rem}
+  .cv-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+  .cv-header .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  .cv-title{margin:0}
+  .cv-sub{color:var(--muted);margin:.2rem 0 0}
+  .cv-actions{margin:.5rem 0 1rem;display:flex;gap:.6rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.5rem .8rem;border:1px solid var(--bd);border-radius:.6rem;text-decoration:none}
+  .grid{display:grid;grid-template-columns: 1fr auto;gap:.3rem .8rem}
+  .section{margin:1.1rem 0 0}
+  .section h2{font-size:1.05rem;margin:.2rem 0 .6rem;color:var(--accent);letter-spacing:.2px}
+  .item{padding:.7rem .9rem;border:1px solid var(--bd);border-radius:.8rem;margin:.45rem 0;background:#fff}
+  .role{font-weight:600}
+  .where{color:var(--muted)}
+  .when{white-space:nowrap;color:var(--muted)}
+  .bullets{grid-column:1 / -1;margin:.15rem 0 0;padding-left:1rem}
+  .tag-row{grid-column:1 / -1;margin-top:.35rem;display:flex;flex-wrap:wrap;gap:.35rem}
+  .tag{font-size:.78rem;padding:.15rem .45rem;border-radius:999px;background:#f3f4f6;border:1px solid var(--bd)}
+  /* print */
+  @media print{
+    .cv-actions{display:none}
+    .item{break-inside:avoid}
+    @page{size:auto;margin:12mm}
+    a[href^="http"]:after{content:" (" attr(href) ")"; color:#555; font-weight:400}
+  }
+</style>
+
+<div class="cv">
+
+  <!-- Header -->
+  <div class="cv-header">
+    <!-- Optional avatar; remove if you don't want it -->
+    <img class="avatar" src="{{ site.avatar | default: '/assets/profile/me-800.jpg' | relative_url }}" alt="{{ site.author | default: 'Profile' }}">
+    <div>
+      <h1 class="cv-title">{{ site.author | default: "Your Name" }}</h1>
+      <p class="cv-sub">Your Title / Research Area • City, Country</p>
+      <p class="cv-sub">
+        <a href="mailto:you@example.com">you@example.com</a> ·
+        <a href="https://yourwebsite.com">yourwebsite.com</a> ·
+        <a href="https://github.com/yourhandle">github/yourhandle</a> ·
+        <a href="https://www.linkedin.com/in/yourhandle">linkedin/yourhandle</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="cv-actions">
+    <!-- If you have a static PDF, put it in /assets/cv/ -->
+    <a class="btn" href="{{ '/assets/cv/YourName-CV.pdf' | relative_url }}" download>⬇︎ Download PDF</a>
+    <a class="btn" href="#" onclick="window.print();return false;">🖨 Print</a>
+  </div>
+
+  <!-- Experience -->
+  <section class="section">
+    <h2>Experience</h2>
+
+    <div class="item grid">
+      <div>
+        <div class="role">Senior Researcher</div>
+        <div class="where">Institute / Lab · City</div>
+      </div>
+      <div class="when">2022–present</div>
+      <ul class="bullets">
+        <li>Lead project on X using Y; published in Z.</li>
+        <li>Built pipeline that reduced processing time by 35%.</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">ML</span><span class="tag">NLP</span><span class="tag">Python</span>
+      </div>
+    </div>
+
+    <div class="item grid">
+      <div>
+        <div class="role">Data Scientist</div>
+        <div class="where">Company · City</div>
+      </div>
+      <div class="when">2019–2022</div>
+      <ul class="bullets">
+        <li>Owned A/B framework across product surfaces (10M+ users).</li>
+        <li>Deployed forecasting model (MAPE 7.8%).</li>
+      </ul>
+      <div class="tag-row">
+        <span class="tag">Experimentation</span><span class="tag">Forecasting</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section">
+    <h2>Education</h2>
+
+    <div class="item grid">
+      <div>
+        <div class="role">MSc, Field</div>
+        <div class="where">University · City</div>
+      </div>
+      <div class="when">2017–2019</div>
+      <ul class="bullets">
+        <li>Thesis: “Title…” (Advisor: Dr. X).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Selected Publications / Projects -->
+  <section class="section">
+    <h2>Selected Publications & Projects</h2>
+
+    <div class="item grid">
+      <div>
+        <div class="role">Paper / Project Title</div>
+        <div class="where">Venue / Repo</div>
+      </div>
+      <div class="when">2024</div>
+      <ul class="bullets">
+        <li>One-line contribution/value proposition. <a href="#">doi/link</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section">
+    <h2>Skills</h2>
+    <div class="item">
+      <div class="tag-row">
+        <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span>
+        <span class="tag">Pytorch</span><span class="tag">TensorFlow</span><span class="tag">Docker</span>
+      </div>
+    </div>
+  </section>
+
+</div>
