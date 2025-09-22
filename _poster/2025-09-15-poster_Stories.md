@@ -75,7 +75,7 @@ hero_alt: "Stories_Example"
   h2{margin:1.2rem 0 .4rem}
 </style>
 
-<div class="pod-wrap" markdown="0">
+<div class="pod-wrap" markdown="1">
 
   {% if page.hero_image %}
   <header class="hero">
@@ -110,15 +110,16 @@ hero_alt: "Stories_Example"
             <a href="/assets/audio/day2/story1-fr.mp3" download>Download FR</a>
           </div>
         </div>
+      </div>
 
-      <details>
+      <details markdown= "1">
         <summary>Read story (FR)</summary>
         <p>Dans un petit <b>archipel</b> méditerranéen, Maya, une jeune <b>photographe</b> <b>sportive</b> , vivait dans un ancien <b>appartement <b>transformé en studio. Passionnée d'<b>astronomie</b> , elle passait ses <b>nuits</b> à capturer des <b>images</b> du <b>ciel</b> étoilé avec ses <b>lunettes</b> spécialisées, créant de magnifiques <b>photos</b> des <b>nuages</b> et constellations. Un matin, en explorant les <b>rues</b> du village, elle découvrit derrière un <b>massif</b> de pierres un vieux <b>portail</b> orné d'un <b>dessin</b> représentant une <b>baleine</b> entourée d'un <b>triangle</b> , d'un <b>cercle</b> et d'un <b>ovale</b> . Intriguée, elle décida de <b>lire</b> dans le <b>dictionnaire</b> local la signification de ces <b>symboles</b> , et apprit qu'ils indiquaient l'emplacement d'une ancienne <b>fontaine</b> aux pouvoirs artistiques légendaires. </p>
 
         <p>Guidée par sa <b>vision</b>  créative, Maya organisa avec la <b>religieuse</b>  du village un festival d'<b>illustration</b>  et de <b>photographie</b> . Elles transformèrent le <b>terrain</b>  autour de la <b>fontaine</b>  en galerie à ciel ouvert, décorant les <b>murs</b>  de <b>miroirs</b> , d'<b>enseignes</b> colorées et de <b>portraits</b> . Des <b>lampes</b>  et <b>lanternes</b>  <b>violettes</b>  illuminent les <b>statues</b>  disposées dans les <b>rues</b> , créant une <b>architecture</b>  <b>visuellement</b>  <b>attractive</b> . Les <b>passagers</b>  des bateaux de croisière venaient désormais admirer cette <b>île</b> devenue célèbre pour sa <b>transparence</b>  artistique, où <b>papillons</b>  et <b>abeilles</b>  voltigeaient entre les œuvres d'art. Le village prospéra grâce à ce projet <b>proprement</b>  magique, transformant un lieu oublié en destination <b>couleur</b>  de rêve pour tous les amateurs d'art et de <b>photographie</b>. </p>
       </details>
 
-      <details>
+      <details markdown= "1">
         <summary>Read story (EN)</summary>
         <p>In a small Mediterranean <b>archipelago</b>, Maya, a young <b>photographer</b>, <b>sporty</b>, lived in an old <b>apartment</b> turned into a studio. Passionate about <b>astronomy</b>, she spent her <b>nights</b> capturing <b>images</b> of the starry <b>sky</b> with her specialized <b>lenses</b>, creating beautiful <b>photos</b> of the <b>clouds</b> and constellations. One morning, while exploring the village <b>streets</b>, she discovered behind a <b>massif</b> of stones an old <b>gate</b> decorated with a <b>drawing</b> of a <b>whale</b> surrounded by a <b>triangle</b>, a <b>circle</b>, and an <b>oval</b>. Intrigued, she decided to <b>read</b> in the local <b>dictionary</b> the meaning of these <b>symbols</b>, and learned that they indicated the location of an ancient <b>fountain</b> with legendary artistic powers. </p>
         <p>Guided by her creative <b>vision</b>, Maya organized with the village <b>nun</b> a festival of <b>illustration</b> and <b>photography</b>. They transformed the <b>terrain</b> around the <b>fountain</b> into an open-air gallery, decorating the <b>walls</b> with <b>mirrors</b>, colorful <b>signs</b>, and <b>portraits</b>. <b>Lamps</b> and <b>lanterns</b> <b>violet</b> illuminated the <b>statues</b> set along the <b>streets</b>, creating an <b>architecture</b> <b>visually</b> <b>attractive</b>. The <b>passengers</b> from cruise ships now came to admire this <b>island</b>, famous for its artistic <b>transparency</b>, where <b>butterflies</b> and <b>bees</b> fluttered among the artworks. The village prospered thanks to this <b>properly</b> magical project, turning a forgotten place into a <b>color</b> dream destination for all lovers of art and <b>photography</b>. </p>
@@ -149,8 +150,9 @@ hero_alt: "Stories_Example"
             <a href="/assets/audio/day2/story2-fr.mp3" download>Download FR</a>
           </div>
         </div>
+      </div>
 
-      <details>
+      <details markdown= "1">
         <summary>Read story (FR)</summary>
         <p>Dans une petite maison en <b>brique</b> au bord de la mer, vivait un artisan aux <b>cheveux</b> gris nommé <b>Jean</b>. Il passait ses journées à <b>pousser</b> les limites de son artisanat en créant des objets pratiques : un <b>aimant</b> pour retrouver les <b>bijoux</b> perdus, une <b>brosse</b> avec un système de <b>lavage</b> automatique, et même un <b>pistolet</b> à <b>eau</b> avec <b>pression</b> réglable pour <b>arroser</b> son jardin. Sa pièce d'atelier était remplie de <b>meubles</b> recouverts de <b>velours</b>, un vieux <b>tapis</b> oriental et un <b>clavier</b> connecté à un système <b>thermique</b> qu'il utilisait pour tester des <b>tissus</b>. Il portait toujours ses <b>bottes</b> usées et un <b>col</b> en <b>laine</b>, et il notait chaque idée sur du <b>papier</b> froissé posé près d'un <b>cube</b> de <b>poudre</b> parfumée. Ses <b>mains</b> expertes manient chaque <b>outil</b> avec précision, ses <b>doigts</b> habiles travaillant sur des <b>surfaces</b> de <b>coton</b> et autres matières. Dans son <b>bain</b> quotidien, il réfléchissait à ses créations, <b>sentir</b> l’<b>eau</b> <b>chaude</b> sur sa <b>peau</b> l'aidait à penser.</p>
         
@@ -158,7 +160,7 @@ hero_alt: "Stories_Example"
         </p>
       </details>
 
-      <details>
+      <details markdown= "1">
         <summary>Read story (EN)</summary>
         <p>In a small <b>brick</b> house by the sea lived a craftsman with gray <b>hair</b> named <b>Jean</b>. He spent his days <b>pushing</b> the limits of his craft by creating practical objects: a <b>magnet</b> to find lost <b>jewelry</b>, a <b>brush</b> with an automatic <b>washing</b> system, and even a <b>water</b> <b>gun</b> with adjustable <b>pressure</b> to <b>water</b> his garden. His workshop was filled with <b>furniture</b> covered in <b>velvet</b>, an old oriental <b>rug</b>, and a <b>keyboard</b> connected to a <b>thermal</b> system that he used to test <b>fabrics</b>. He always wore his worn <b>boots</b> and a <b>wool</b> <b>collar</b>, and he jotted every idea on crumpled <b>paper</b> set beside a <b>cube</b> of scented <b>powder</b>. His skilled <b>hands</b> handled each <b>tool</b> with precision, his deft <b>fingers</b> working on <b>cotton</b> <b>surfaces</b> and other materials. In his daily <b>bath</b>, he reflected on his creations; <b>feeling</b> the <b>hot</b> <b>water</b> on his <b>skin</b> helped him think. </p>
         
