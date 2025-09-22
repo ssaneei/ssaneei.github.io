@@ -2,7 +2,7 @@ theme: minima
 remote_theme: sunrise
 
 author: Sarah Saneei
-avatar: /assets/photos/pic.jpg
+avatar: /assets/photos/pic.png
 
 collections:
   poster:
