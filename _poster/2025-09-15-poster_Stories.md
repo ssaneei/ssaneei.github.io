@@ -112,14 +112,14 @@ hero_alt: "Stories_Example"
         </div>
       </div>
 
-      <details markdown= "1">
+      <details>
         <summary>Read story (FR)</summary>
          <p markdown = "1">Dans un petit **archipel** méditerranéen, Maya, une jeune **photographe** **sportive**, vivait dans un ancien **appartement **transformé en studio. Passionnée d'**astronomie**, elle passait ses **nuits** à capturer des **images** du **ciel** étoilé avec ses **lunettes** spécialisées, créant de magnifiques **photos** des **nuages** et constellations. Un matin, en explorant les **rues** du village, elle découvrit derrière un **massif** de pierres un vieux **portail** orné d'un **dessin** représentant une **baleine** entourée d'un **triangle**, d'un **cercle** et d'un **ovale**. Intriguée, elle décida de **lire** dans le **dictionnaire** local la signification de ces **symboles**, et apprit qu'ils indiquaient l'emplacement d'une ancienne **fontaine** aux pouvoirs artistiques légendaires. </p>
 
         <p markdown = "1">Guidée par sa **vision** créative, Maya organisa avec la **religieuse** du village un festival d'**illustration** et de **photographie**. Elles transformèrent le **terrain** autour de la **fontaine** en galerie à ciel ouvert, décorant les **murs** de **miroirs**, d'**enseignes** colorées et de **portraits**. Des **lampes** et **lanternes** **violettes** illuminent les **statues** disposées dans les **rues**, créant une **architecture** **visuellement** **attractive**. Les **passagers** des bateaux de croisière venaient désormais admirer cette **île** devenue célèbre pour sa **transparence** artistique, où **papillons** et **abeilles** voltigeaient entre les œuvres d'art. Le village prospéra grâce à ce projet **proprement** magique, transformant un lieu oublié en destination **couleur** de rêve pour tous les amateurs d'art et de **photographie**.</p>
       </details>
 
-      <details markdown= "1">
+      <details>
         <summary>Read story (EN)</summary>
          <p markdown = "1">In a small Mediterranean **archipelago**, Maya, a young **photographer**, **sporty**, lived in an old **apartment** turned into a studio. Passionate about **astronomy**, she spent her **nights** capturing **images** of the starry **sky** with her specialized **lenses**, creating beautiful **photos** of the **clouds** and constellations. One morning, while exploring the village **streets**, she discovered behind a **massif** of stones an old **gate** decorated with a **drawing** of a **whale** surrounded by a **triangle**, a **circle**, and an **oval**. Intrigued, she decided to **read** in the local **dictionary** the meaning of these **symbols**, and learned that they indicated the location of an ancient **fountain** with legendary artistic powers. </p>
 
