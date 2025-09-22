@@ -2,8 +2,6 @@
   url: /poster/
 - title: Quotes
   url: /quotes/
-- title: Publication
-  url: /publication/
 - title: Blog
   sublinks:
     - title: Summaries
