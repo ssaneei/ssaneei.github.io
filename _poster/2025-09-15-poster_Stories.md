@@ -9,6 +9,7 @@ hero_alt: "Stories_Example"
 ---
 
 <style>
+
   :root{
     --accent:#7c3aed;           /* violet */
     --accent-2:#a78bfa;         /* lighter violet */
@@ -19,7 +20,10 @@ hero_alt: "Stories_Example"
     --chip-bg:#f5f3ff;          /* chips */
     --chip-bd:#e9d5ff;
   }
-
+  .sidebar .avatar, .site-avatar, .sidebar-avatar{
+  width:120px; height:120px; border-radius:50%;
+  object-fit:cover; display:block; margin:0 auto .75rem;
+}
   .pod-wrap{max-width:980px;margin:0 auto;padding:0 1rem 3rem}
   .hero{display:flex;flex-direction:column;gap:.5rem;margin:0 0 1.25rem}
   .hero img{width:100%;height:auto;border-radius:16px;border:1px solid var(--card-bd)}
