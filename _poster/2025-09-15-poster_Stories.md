@@ -23,7 +23,8 @@ hero_alt: "Stories_Example"
   .pod-wrap{max-width:980px;margin:0 auto;padding:0 1rem 3rem}
   .hero{display:flex;flex-direction:column;gap:.5rem;margin:0 0 1.25rem}
   .hero img{width:100%;height:auto;border-radius:16px;border:1px solid var(--card-bd)}
-  .credit{font-style:italic;color:var(--muted)}
+  .credit{font-style:italic;color:var(--muted,#6b7280);font-size:.9rem;margin-top:.35rem}
+  .story-media{position:relative}
 
   .story-card{
     background:var(--card-bg);
@@ -90,8 +91,8 @@ hero_alt: "Stories_Example"
   <!-- ===== Story 1 ===== -->
   <article class="story-card">
     <figure class="story-media">
-      
       <img src="/assets/photos/story_1.png" alt="Twilight festival by a fountain in a Mediterranean village with lanterns and art on the walls.">
+      <p class="credit">Image: AI-generated with ChatGPT</p>
     </figure>
 
     <div class="story-body">
@@ -133,6 +134,7 @@ hero_alt: "Stories_Example"
   <article class="story-card">
     <figure class="story-media">
       <img src="/assets/photos/story_2.png" alt="Cozy brick workshop by the sea where a craftsman and a textile artist work with cotton and tools.">
+      <p class="credit">Image: AI-generated with ChatGPT</p>
     </figure>
 
     <div class="story-body">
