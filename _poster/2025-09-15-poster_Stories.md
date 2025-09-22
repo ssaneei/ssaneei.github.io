@@ -36,3 +36,20 @@ hero_alt: "Stories_Example"
     <p class="credit">Image: <i>brought to you by illustrea</i></p>
   </header>
   {% endif %}
+
+<div class="pod-wrap" markdown="1">
+
+{% if page.hero_image %}
+<header class="hero">
+  <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | default: 'Episode cover image' }}">
+  <p class="credit">Image: <i>brought to you by illustrea</i></p>
+</header>
+{% endif %}
+
+> This is a Markdown callout rendered inside the box.
+
+## Examples of Day 2 Stories
+- Story A — one-line blurb
+- Story B — one-line blurb
+
+</div>
