@@ -1,4 +1,4 @@
-# theme: minima      # remove or comment this out
+theme: minima      # remove or comment this out
 remote_theme: ngzhio/jekyll-theme-hamilton
 skin: sunrise        # this is where “sunrise” belongs
 
