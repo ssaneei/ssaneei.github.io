@@ -112,17 +112,6 @@ hero_alt: "Stories_Example"
             <a href="/assets/audio/day2/story1-fr.mp3" download>Download FR</a>
           </div>
         </div>
-
-        <div class="audio-row">
-          <span class="lang-badge"><span class="dot"></span> English audio</span>
-          <!-- replace src with your EN file -->
-          <audio controls preload="metadata" src="/assets/audio/day2/story1-en.mp3">
-            Your browser does not support the audio element.
-          </audio>
-          <div class="mini-links">
-            <a href="/assets/audio/day2/story1-en.mp3" download>Download EN</a>
-          </div>
-        </div>
       </div>
 
       <details>
@@ -161,17 +150,6 @@ hero_alt: "Stories_Example"
           </audio>
           <div class="mini-links">
             <a href="/assets/audio/day2/story2-fr.mp3" download>Download FR</a>
-          </div>
-        </div>
-
-        <div class="audio-row">
-          <span class="lang-badge"><span class="dot"></span> English audio</span>
-          <!-- replace src with your EN file -->
-          <audio controls preload="metadata" src="/assets/audio/day2/story2-en.mp3">
-            Your browser does not support the audio element.
-          </audio>
-          <div class="mini-links">
-            <a href="/assets/audio/day2/story2-en.mp3" download>Download EN</a>
           </div>
         </div>
       </div>
