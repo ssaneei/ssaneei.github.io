@@ -428,9 +428,6 @@ permalink: /rating-study/
         <option value="">— sélectionner —</option>
         <option value="C2">C2 — Maîtrise</option>
         <option value="C1">C1 — Autonome avancé</option>
-        <option value="B2">B2 — Autonome</option>
-        <option value="B1">B1 — Intermédiaire</option>
-      </select>
     </div>
   </div>
 
@@ -509,11 +506,23 @@ permalink: /rating-study/
   </div>
   <div class="progress-label" id="progress-label"></div>
 
+  <!-- <div class="story-card">
+    <div class="story-label">Histoire à lire</div>
+    <div class="story-text" id="story-display"></div>
+  </div> -->
   <div class="story-card">
     <div class="story-label">Histoire à lire</div>
     <div class="story-text" id="story-display"></div>
+    
+    <!-- Subtle naturalness flag at bottom of story -->
+    <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer;
+                    font-family:var(--font-ui);font-size:12px;color:var(--muted)">
+        <input type="checkbox" id="weird-flag">
+        Cette histoire m'a semblé peu naturelle en français.
+      </label>
+    </div>
   </div>
-
   <div class="rating-section">
     <h2>Vos évaluations</h2>
     <div class="instruction">Dans quelle mesure cette histoire évoque-t-elle les sensations suivantes&nbsp;?</div>
@@ -1027,6 +1036,7 @@ function renderStory() {
   document.getElementById("progress-fill").style.width  = pct + "%";
   document.getElementById("progress-label").textContent = `Histoire ${currentIdx + 1} sur ${n}`;
   document.getElementById("story-display").textContent  = story.text;
+  document.getElementById("weird-flag").checked = false;
 
   const saved = responses[currentIdx];
   DIMS.forEach(dim => {
@@ -1043,10 +1053,12 @@ function renderStory() {
 // ── Save ratings ──────────────────────────────
 function saveCurrentRatings() {
   responses[currentIdx].time_seconds = Math.round((Date.now() - window.storyStartTime) / 1000);
+  responses[currentIdx].sounded_unnatural = document.getElementById("weird-flag").checked;
   DIMS.forEach(dim => {
     const checked = document.querySelector(`input[name="rating-${dim}"]:checked`);
     responses[currentIdx][dim] = checked ? parseInt(checked.value) : null;
   });
+ 
 }
 
 // ── Navigation ────────────────────────────────
