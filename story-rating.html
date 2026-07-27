@@ -368,13 +368,14 @@ permalink: /rating-study/
 <div id="screen-consent">
   <div class="study-header">
     <div class="eyebrow">Sarah Saneei · Université de Genève</div>
+    <p style="font-size:13px;color:var(--muted)"> Contact : sarah.saneei@unige.ch</p>
     <h1>Comment les histoires évoquent-elles des sensations&nbsp;?</h1>
     <p>Une étude sur la perception sensorielle dans les récits en français — environ 15 minutes.</p>
   </div>
 
   <div class="consent-box">
     <h2>Informations sur l'étude</h2>
-    <p>Vous lirez <strong>14 courtes histoires</strong> en français (environ 80–150 mots chacune) et évaluerez dans quelle mesure chacune évoque différentes sensations corporelles. À la fin, une section optionnelle de 5 minutes vous demandera de traduire 40 mots du français vers l'anglais.</p>
+    <p>Vous lirez <strong>14 courtes histoires</strong> en français (environ 80–150 mots chacune) et évaluerez dans quelle mesure chacune évoque différentes sensations corporelles. À la fin, une section de 3 minutes vous demandera d'évaluer 10 phrases courtes sur les mêmes 4 dimensions.</p>
     <br>
     <p>Vos réponses sont <strong>anonymes</strong> et utilisées uniquement à des fins de recherche scientifique dans le cadre d'une thèse de doctorat en Neurosciences à l'Université de Genève.</p>
   </div>
@@ -886,6 +887,7 @@ let currentIdx         = 0;
 let responses          = [];
 let demographics       = {};
 let participantId      = "";
+let startTime         = 0;
 
 // ── Utility ──────────────────────────────────
 function showScreen(name) {
@@ -929,6 +931,7 @@ document.getElementById("btn-start-instructions").onclick = () => {
                   ? document.getElementById("french-level").value
                   : "native",
   };
+  startTime = Date.now();
   showScreen("instructions");
 };
 
