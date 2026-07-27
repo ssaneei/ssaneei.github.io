@@ -673,8 +673,6 @@ permalink: /rating-study/
   <h2>Merci beaucoup&nbsp;!</h2>
   <p>Vos réponses ont été enregistrées et contribuent à une recherche sur la façon dont le langage évoque des expériences sensorielles.</p>
   <p>Étude menée par <strong>Sarah Saneei</strong>, doctorante en Neurosciences, Université de Genève.</p>
-  <div id="output-box"></div>
-  <button class="btn btn-secondary" style="margin-top:16px" onclick="copyResults()">📋 Copier les résultats (JSON)</button>
 </div>
 
 </div><!-- /shell -->
@@ -3262,13 +3260,13 @@ function prevSentence() {
 }
 
 function submitAll() {
-  collectTranslations();
 
   const result = {
-    participant_id:   participantId,
-    timestamp:        new Date().toISOString(),
+    participant_id:     participantId,
+    timestamp_end:      new Date().toISOString(),
+    duration_minutes:   Math.round((Date.now() - startTime) / 60000),
     demographics,
-    story_responses:  responses,
+    story_responses:    responses,
     sentence_responses: sentenceResponses,
   };
   // ── POST to Formspree ─────────────────────
@@ -3281,16 +3279,6 @@ function submitAll() {
   .catch(err => console.error("Formspree error:", err));
 
   showScreen("done");
-  document.getElementById("output-box").textContent =
-    JSON.stringify(result, null, 2);
-
-  console.log("Results:", result);
-}
-
-function copyResults() {
-  navigator.clipboard.writeText(
-    document.getElementById("output-box").textContent
-  ).then(() => alert("Copié dans le presse-papiers !"));
 }
 </script>
 </body>
