@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Étude des Histoires & Sensations</title>
+<style>
+  :root {
+    --bg:        #F7F6F3;
+    --surface:   #FFFFFF;
+    --border:    #E2DED8;
+    --text:      #1A1916;
+    --muted:     #6B6860;
+    --accent:    #3D6B9A;
+    --accent-lt: #EBF1F8;
+    --motor:     #2196F3;
+    --oral:      #FF9800;
+    --internal:  #E91E63;
+    --audvis:    #4CAF50;
+    --neutral:   #9E9E9E;
+    --radius:    10px;
+    --font-body: 'Georgia', serif;
+    --font-ui:   'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .shell {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .study-header {
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .study-header .eyebrow {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .study-header h1 {
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .study-header p { color: var(--muted); font-size: 15px; }
+
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 4px;
+    height: 4px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+    margin-bottom: 28px;
+  }
+
+  .story-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 32px;
+  }
+  .story-label {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .story-text { font-size: 16px; line-height: 1.85; }
+
+  .rating-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 36px;
+    margin-bottom: 32px;
+  }
+  .rating-section h2 {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .rating-section .instruction {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .dim-row {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+  }
+  .dim-row:first-of-type { border-top: none; }
+
+  .dim-label .dim-name {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .dim-label .dim-desc {
+    font-family: var(--font-ui);
+    font-weight: normal;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  .dim-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .likert {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .likert-anchor {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .likert-options { display: flex; gap: 6px; }
+  .likert-options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .likert-options input[type="radio"] { display: none; }
+  .likert-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    transition: all 0.15s ease;
+    background: var(--bg);
+    user-select: none;
+  }
+  .likert-options input[type="radio"]:checked + .likert-btn {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+  .dim-motor   .likert-options input:checked + .likert-btn { background: var(--motor);    border-color: var(--motor); }
+  .dim-oral    .likert-options input:checked + .likert-btn { background: var(--oral);     border-color: var(--oral); }
+  .dim-internal .likert-options input:checked + .likert-btn { background: var(--internal); border-color: var(--internal); }
+  .dim-audvis  .likert-options input:checked + .likert-btn { background: var(--audvis);   border-color: var(--audvis); }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  .btn {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn:hover { opacity: 0.85; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+  }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* ── Consent ── */
+  #screen-consent .consent-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  #screen-consent h2 { font-size: 20px; font-weight: normal; margin-bottom: 16px; color: var(--text); }
+  .consent-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-family: var(--font-ui);
+    font-size: 14px;
+  }
+  .consent-check input { margin-top: 3px; flex-shrink: 0; }
+
+  /* ── Demographics ── */
+  .demo-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  .demo-row label { font-family: var(--font-ui); font-size: 13px; font-weight: 600; }
+  .demo-row select,
+  .demo-row input[type="number"] {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    width: 100%;
+    max-width: 320px;
+  }
+  .non-native-box {
+    background: var(--accent-lt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-family: var(--font-ui);
+    font-size: 13px;
+  }
+  .non-native-box label { font-weight: 600; display: block; margin-bottom: 8px; }
+
+  /* ── Translation check ── */
+  .translation-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .translation-item .french-word {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .translation-item .dim-tag {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: white;
+    margin-bottom: 14px;
+  }
+  .translation-input {
+    width: 100%;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .confidence-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .confidence-row label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+
+  /* ── Done ── */
+  #screen-done { text-align: center; padding: 60px 0; }
+  #screen-done .done-icon { font-size: 48px; margin-bottom: 20px; }
+  #screen-done h2 { font-size: 24px; font-weight: normal; margin-bottom: 12px; }
+  #screen-done p { color: var(--muted); font-size: 15px; max-width: 440px; margin: 0 auto 16px; }
+
+  #output-box {
+    background: #1A1916;
+    color: #a8d8a8;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 20px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-top: 20px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ══ SCREEN 0: CONSENT ══ -->
+<div id="screen-consent">
+  <div class="study-header">
+    <div class="eyebrow">Sarah Saneei · Université de Genève</div>
+    <h1>Comment les histoires évoquent-elles des sensations&nbsp;?</h1>
+    <p>Une étude sur la perception sensorielle dans les récits en français — environ 15 minutes.</p>
+  </div>
+
+  <div class="consent-box">
+    <h2>Informations sur l'étude</h2>
+    <p>Vous lirez <strong>14 courtes histoires</strong> en français (environ 80–150 mots chacune) et évaluerez dans quelle mesure chacune évoque différentes sensations corporelles. À la fin, une section optionnelle de 5 minutes vous demandera de traduire 40 mots du français vers l'anglais.</p>
+    <br>
+    <p>Vos réponses sont <strong>anonymes</strong> et utilisées uniquement à des fins de recherche scientifique dans le cadre d'une thèse de doctorat en Neurosciences à l'Université de Genève.</p>
+  </div>
+
+  <div class="consent-check">
+    <input type="checkbox" id="consent-cb">
+    <label for="consent-cb">J'ai lu les informations ci-dessus et j'accepte de participer volontairement à cette étude.</label>
+  </div>
+
+  <button class="btn btn-primary" id="btn-start-demo" disabled>Commencer →</button>
+</div>
+
+<!-- ══ SCREEN 1: DEMOGRAPHICS ══ -->
+<div id="screen-demo" class="hidden">
+  <div class="study-header">
+    <div class="eyebrow">Informations générales</div>
+    <h1>Quelques questions rapides</h1>
+  </div>
+
+  <div class="demo-row">
+    <label for="demo-age">Âge</label>
+    <input type="number" id="demo-age" min="18" max="99" placeholder="ex. 28">
+  </div>
+
+  <div class="demo-row">
+    <label for="demo-gender">Genre</label>
+    <select id="demo-gender">
+      <option value="">— sélectionner —</option>
+      <option>Femme</option>
+      <option>Homme</option>
+      <option>Non-binaire</option>
+      <option>Préfère ne pas répondre</option>
+    </select>
+  </div>
+
+  <div class="demo-row">
+    <div style="font-family:var(--font-ui);font-size:13px;font-weight:600;margin-bottom:8px">
+      Langue maternelle
+    </div>
+    <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);margin-bottom:10px">
+      Nous supposons que le français est votre langue maternelle. Si ce n'est pas le cas, cochez la case ci-dessous.
+    </div>
+    <label style="display:flex;align-items:center;gap:8px;font-family:var(--font-ui);font-size:13px;cursor:pointer">
+      <input type="checkbox" id="non-native-cb">
+      Le français n'est pas ma langue maternelle.
+    </label>
+
+    <div class="non-native-box hidden" id="non-native-box">
+      <label for="french-level">Niveau de français</label>
+      <select id="french-level">
+        <option value="">— sélectionner —</option>
+        <option value="C2">C2 — Maîtrise</option>
+        <option value="C1">C1 — Autonome avancé</option>
+        <option value="B2">B2 — Autonome</option>
+        <option value="B1">B1 — Intermédiaire</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="nav-row" style="margin-top:28px">
+    <button class="btn btn-secondary" onclick="showScreen('consent')">← Retour</button>
+    <button class="btn btn-primary" id="btn-start-instructions">Continuer →</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 2: INSTRUCTIONS ══ -->
+<div id="screen-instructions" class="hidden">
+  <div class="study-header">
+    <div class="eyebrow">Mode d'emploi</div>
+    <h1>Comment évaluer les histoires</h1>
+  </div>
+
+  <div class="rating-section">
+    <p style="margin-bottom:18px">Pour chaque histoire, évaluez <strong>4 dimensions</strong> sur une échelle de 1 à 5&nbsp;:</p>
+
+    <div class="dim-row dim-motor">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--motor)"></span>Moteur</span>
+        <span class="dim-desc">Mouvements du corps, actions physiques, contact, manipulation d'objets</span>
+      </div>
+      <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);line-height:1.6">
+        <em>Exemples&nbsp;: courir, saisir, nager, frapper, construire</em>
+      </div>
+    </div>
+
+    <div class="dim-row dim-oral">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--oral)"></span>Oral</span>
+        <span class="dim-desc">Goût, odeur, alimentation, boisson, saveurs</span>
+      </div>
+      <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);line-height:1.6">
+        <em>Exemples&nbsp;: manger du chocolat, sentir une fleur, boire du vin</em>
+      </div>
+    </div>
+
+    <div class="dim-row dim-internal">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--internal)"></span>Interne</span>
+        <span class="dim-desc">Sensations corporelles internes, santé, douleur, émotions physiques</span>
+      </div>
+      <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);line-height:1.6">
+        <em>Exemples&nbsp;: douleur, fatigue, battements cardiaques, nausée, froid intérieur</em>
+      </div>
+    </div>
+
+    <div class="dim-row dim-audvis">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--audvis)"></span>AudVis</span>
+        <span class="dim-desc">Voir, entendre, percevoir l'environnement extérieur</span>
+      </div>
+      <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);line-height:1.6">
+        <em>Exemples&nbsp;: regarder un paysage, écouter de la musique, observer des couleurs</em>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:var(--font-ui);font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.7">
+    <strong>1</strong> = Pas du tout évoqué &nbsp;·&nbsp; <strong>5</strong> = Très fortement évoqué<br>
+    Il n'y a pas de bonne ou mauvaise réponse — faites confiance à votre première impression.
+  </div>
+
+  <div class="nav-row">
+    <button class="btn btn-secondary" onclick="showScreen('demo')">← Retour</button>
+    <button class="btn btn-primary" onclick="startRating()">C'est parti →</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 3: RATING ══ -->
+<div id="screen-rating" class="hidden">
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+  <div class="progress-label" id="progress-label"></div>
+
+  <div class="story-card">
+    <div class="story-label">Histoire à lire</div>
+    <div class="story-text" id="story-display"></div>
+  </div>
+
+  <div class="rating-section">
+    <h2>Vos évaluations</h2>
+    <div class="instruction">Dans quelle mesure cette histoire évoque-t-elle les sensations suivantes&nbsp;?</div>
+
+    <div class="dim-row dim-motor">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--motor)"></span>Moteur</span>
+        <span class="dim-desc">Mouvements, actions physiques</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="likert-motor"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-oral">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--oral)"></span>Oral</span>
+        <span class="dim-desc">Goût, odeur, alimentation</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="likert-oral"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-internal">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--internal)"></span>Interne</span>
+        <span class="dim-desc">Sensations corporelles internes</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="likert-internal"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-audvis">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--audvis)"></span>AudVis</span>
+        <span class="dim-desc">Voir, entendre, percevoir</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="likert-audvis"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn btn-secondary" id="btn-prev" onclick="prevStory()">← Précédent</button>
+    <button class="btn btn-primary" id="btn-next" onclick="nextStory()">Suivant →</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 4: TRANSLATION CHECK ══ -->
+<div id="screen-translation" class="hidden">
+  <div class="study-header">
+    <div class="eyebrow">Section optionnelle — ~5 minutes</div>
+    <h1>Traduction de mots</h1>
+    <p>Pour chaque mot français ci-dessous, donnez la traduction anglaise qui vous vient en tête et indiquez votre niveau de confiance.</p>
+  </div>
+
+  <div id="translation-items"></div>
+
+  <div class="nav-row" style="margin-top: 8px">
+    <button class="btn btn-secondary" onclick="skipTranslation()">Passer cette section</button>
+    <button class="btn btn-primary" onclick="submitAll()">Terminer et envoyer ✓</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 5: DONE ══ -->
+<div id="screen-done" class="hidden">
+  <div class="done-icon">✦</div>
+  <h2>Merci beaucoup&nbsp;!</h2>
+  <p>Vos réponses ont été enregistrées et contribuent à une recherche sur la façon dont le langage évoque des expériences sensorielles.</p>
+  <p>Étude menée par <strong>Sarah Saneei</strong>, doctorante en Neurosciences, Université de Genève.</p>
+  <div id="output-box"></div>
+  <button class="btn btn-secondary" style="margin-top:16px" onclick="copyResults()">📋 Copier les résultats (JSON)</button>
+</div>
+
+</div><!-- /shell -->
+
+<script>
+// ══════════════════════════════════════════════
+// STORIES 
+// (generated by build_story_js.py)
+// ══════════════════════════════════════════════
+const ALL_STORIES = [
+  {
+    id: "3780_story_3",
+    category: "motor",
+    text: `Par une chaude journée d'été, Jean se promenait au marché, admirant les bijoux scintillants et les rouleaux de tissu velours, soyeux et colorés. Il s'arrêta devant un stand où une femme aux cheveux retenus par un bouton en perle vendait un vase fait main posé sur un tapis usé. La surface de ses créations était douce au contact - elle travaillait avec des matériaux fragiles comme la craie, la poudre et le bambou, qu'elle renforçait grâce à un liant secret et un procédé thermique unique. Physiquement attiré par son art et sa passion, Jean lui acheta un petit pistolet à eau décoratif en forme de sabre, qu'elle enveloppa dans du papier textile.
+Plus tard, ils se retrouvèrent au bord d'un lac pour nager. Jean plongea, appréciant la fraîcheur contre sa peau, pendant que la jeune femme posait une serviette sur une chaise en bois, ses bottes de cuir abandonnées à côté. Ils rirent en se poussant dans l'eau, leurs cheveux trempés formant des mèches folles. De retour chez Jean, ils partagèrent un bain chaud, utilisant une brosse flexible pour enlever le sable de leurs coudes, genoux et poignets. Ce fut un moment de tendresse touchant, leurs doigts entrelacés, la chaleur s'infiltrant jusqu'à leur ossature. Quand elle lui donna un baiser timide en touchant son cou de sa main, il sut qu'une belle romance venait de commencer.`
+  },
+  {
+    id: "6684_story_14",
+    category: "motor",
+    text: `Laure était une nageuse passionnée qui rêvait de participer à un triathlon. Malheureusement, une blessure au genou l'avait affaiblie et elle se sentait fatiguée chaque fois qu'elle tentait de courir. Son médecin lui avait conseillé de diversifier son entraînement avec des activités aquatiques comme la natation et des exercices de coordination. Un jour, en explorant les rues de sa ville à pied, elle découvrit un centre sportif qui proposait des cours de danse, de judo et même d'alpinisme sur mur artificiel. Thomas, un grimpeur expérimenté, portait un jean et des bottes de montagne, et il l'observait depuis le plancher du gymnase.
+Thomas s'approcha d'elle avec un sourire et lui proposa de l'aider à retrouver sa force musculaire. Ensemble, ils commencèrent par marcher sur le sentier qui menait à la montagne, puis graduellement elle put grimper les escaliers sans douleur. Après plusieurs semaines d'entraînement, incluant des séances de boxe, du tennis et même du golf pour améliorer son positionnement, Laure se sentait flexible et en pleine forme. Le jour du marathon aquatique, elle réussit à nager, marcher et courir sans problème, remportant la première place dans sa catégorie. Thomas était assis dans les gradins, applaudissant sa victoire, et ce voyage sportif avait non seulement guéri sa jambe mais aussi fait naître un bel amour entre eux.`
+  },
+  {
+    id: "6684_story_13",
+    category: "motor",
+    text: `Jean était un travailleur passionné de sport, mais il se sentait affaibli et fatigué après des mois de travail intensif. Son médecin lui conseilla de partir en voyage pour explorer de nouveaux horizons. Il décida de suivre un programme de remise en forme dans les montagnes des Alpes. Chaque matin, il enfilait son jean et ses bottes pour marcher sur les sentiers rocheux. L'air froid de la montagne lui donnait une nouvelle force. Il commença par de simples exercices de coordination, puis progressa vers l'escalier naturel des rochers. Malgré une petite entorse au genou le troisième jour, il continua à avancer avec détermination.
+Au fil des semaines, Jean découvrit sa passion pour l'alpinisme et le surf sur les lacs aquatiques de la région. Il apprit à grimper, à nager avec plus de rythme, et même à pratiquer le ballet aquatique dans les cuves naturelles. Son muscle de la cuisse et de la jambe se renforçaient chaque jour. Il rencontra d'autres passionnés de natation, de tennis et de golf qui l'encouragèrent dans sa transformation. Quand il rentra chez lui après deux mois, Jean était devenu un grimpeur accompli et un nageur expérimenté. Il avait retrouvé sa joie de vivre et décida d'ouvrir une école de sport de montagne pour partager sa passion avec d'autres personnes fatiguées par la routine urbaine. Son voyage avait non seulement transformé son corps, mais aussi sa vie entière.`
+  },
+  {
+    id: "6684_story_3",
+    category: "motor",
+    text: `Par une chaude journée d'été, Jean se promenait au marché, admirant les bijoux scintillants et les rouleaux de tissu velours, soyeux et colorés. Il s'arrêta devant un stand où une femme aux cheveux retenus par un bouton en perle vendait un vase fait main posé sur un tapis usé. La surface de ses créations était douce au contact - elle travaillait avec des matériaux fragiles comme la craie, la poudre et le bambou, qu'elle renforçait grâce à un liant secret et un procédé thermique unique. Physiquement attiré par son art et sa passion, Jean lui acheta un petit pistolet à eau décoratif en forme de sabre, qu'elle enveloppa dans du papier textile.
+Plus tard, ils se retrouvèrent au bord d'un lac pour nager. Jean plongea, appréciant la fraîcheur contre sa peau, pendant que la jeune femme posait une serviette sur une chaise en bois, ses bottes de cuir abandonnées à côté. Ils rirent en se poussant dans l'eau, leurs cheveux trempés formant des mèches folles. De retour chez Jean, ils partagèrent un bain chaud, utilisant une brosse flexible pour enlever le sable de leurs coudes, genoux et poignets. Ce fut un moment de tendresse touchant, leurs doigts entrelacés, la chaleur s'infiltrant jusqu'à leur ossature. Quand elle lui donna un baiser timide en touchant son cou de sa main, il sut qu'une belle romance venait de commencer.`
+  },
+  {
+    id: "3780_story_1",
+    category: "oral",
+    text: `Par un matin de printemps, Marie découvrit dans son jardin que la floraison des tulipes et des lys avait transformé sa pelouse en paradis coloré. Passionnée de gastronomie, elle décida de préparer un repas spécial avec du thym et des herbes fraîches de son potager. Elle concocta une délicieuse soupe de chou parfumée, accompagnée de pain frais de la boulangerie, de beurre et de fromage local. L'odeur qui s'échappait de sa cuisine attirant les voisins, elle ajouta une sauce à l'huile d'olive, du poivre, et même du saumon fumé qu'elle avait acheté au marché. Un verre de vin rouge et du jus d'orange frais complétaient ce festin, créant une ambiance chaleureuse où chaque chose avait du sens.
+L'après-midi, les personnes du village arrivèrent pour célébrer cette journée insolite. Le boulanger apporta des pâtisseries au chocolat et au cacao, tandis que la brasserie locale offrait de l'ale artisanale et un soupçon de rhum pour les plus aventureux. Les enfants transformèrent le jardin en cirque improvisé, jouant près des fruits et des herbes qui embaumaient l'air. On parlait d'environnement, de rejeter la pollution, les engrais chimiques, le diesel et le gaz, pour privilégier une vie plus saine. Contrairement aux souvenirs d'autrefois où tout sentait la cigarette, l'ammoniac et le tabac, cette existence culturelle renouvelée permettait à chacun de manger en paix, savourant chaque moment de bonheur simple et authentique.`
+  },
+  {
+    id: "6684_story_2",
+    category: "oral",
+    text: `Par une belle journée de printemps, dans un jardin luxuriant près d'un ancien marais, un petit restaurant familial célébrait la gastronomie locale et l'environnement. Le boulanger passionné préparait du pain croustillant au thym, tandis que dans la brasserie voisine, on brassait une boisson artisanale à base d'orange et d'herbes sauvages. Le chef, connu pour sa cuisine insolite, concoctait une soupe de saumon fumé avec de l'huile d'olive parfumée et un soupçon de poivre. En dessert, un moelleux au chocolat noir et cacao avec une pointe de safran enchantait les papilles. Une douce odeur flottait dans l'air, mêlant fruit, herbe et beurre, éveillant les souvenirs des floraisons passées.
+À l'extérieur, sur la pelouse parsemée de tulipes, des personnes riaient autour d'une dégustation de vin, de rhum vieux et d'ale locale. Des enfants couraient en reprenant leur souffle, insouciants, près d'une ancienne grange transformée en centre éducatif sur la réduction du carbone et les dangers des produits chimiques comme l'ammoniac ou les engrais industriels. Malgré les défis de la pollution moderne, le village avait su créer un équilibre permanent entre modernité et traditions. Cette existence harmonieuse, cette vie plus attirante, où chacun sentait une connexion profonde avec la nature et le patrimoine culturel, représentait un véritable havre de paix dans le cirque du monde moderne.`
+  },
+  {
+    id: "3780_story_2",
+    category: "oral",
+    text: `Par une belle journée de printemps, dans un jardin luxuriant près d'un ancien marais, un petit restaurant familial célébrait la gastronomie locale et l'environnement. Le boulanger passionné préparait du pain croustillant au thym, tandis que dans la brasserie voisine, on brassait une boisson artisanale à base d'orange et d'herbes sauvages. Le chef, connu pour sa cuisine insolite, concoctait une soupe de saumon fumé avec de l'huile d'olive parfumée et un soupçon de poivre. En dessert, un moelleux au chocolat noir et cacao avec une pointe de safran enchantait les papilles. Une douce odeur flottait dans l'air, mêlant fruit, herbe et beurre, éveillant les souvenirs des floraisons passées.
+À l'extérieur, sur la pelouse parsemée de tulipes, des personnes riaient autour d'une dégustation de vin, de rhum vieux et d'ale locale. Des enfants couraient en reprenant leur souffle, insouciants, près d'une ancienne grange transformée en centre éducatif sur la réduction du carbone et les dangers des produits chimiques comme l'ammoniac ou les engrais industriels. Malgré les défis de la pollution moderne, le village avait su créer un équilibre permanent entre modernité et traditions. Cette existence harmonieuse, cette vie plus attirante, où chacun sentait une connexion profonde avec la nature et le patrimoine culturel, représentait un véritable havre de paix dans le cirque du monde moderne.`
+  },
+  {
+    id: "6684_story_1",
+    category: "oral",
+    text: `Par un matin de printemps, Marie découvrit dans son jardin que la floraison des tulipes et des lys avait transformé sa pelouse en paradis coloré. Passionnée de gastronomie, elle décida de préparer un repas spécial avec du thym et des herbes fraîches de son potager. Elle concocta une délicieuse soupe de chou parfumée, accompagnée de pain frais de la boulangerie, de beurre et de fromage local. L'odeur qui s'échappait de sa cuisine attirant les voisins, elle ajouta une sauce à l'huile d'olive, du poivre, et même du saumon fumé qu'elle avait acheté au marché. Un verre de vin rouge et du jus d'orange frais complétaient ce festin, créant une ambiance chaleureuse où chaque chose avait du sens.
+L'après-midi, les personnes du village arrivèrent pour célébrer cette journée insolite. Le boulanger apporta des pâtisseries au chocolat et au cacao, tandis que la brasserie locale offrait de l'ale artisanale et un soupçon de rhum pour les plus aventureux. Les enfants transformèrent le jardin en cirque improvisé, jouant près des fruits et des herbes qui embaumaient l'air. On parlait d'environnement, de rejeter la pollution, les engrais chimiques, le diesel et le gaz, pour privilégier une vie plus saine. Contrairement aux souvenirs d'autrefois où tout sentait la cigarette, l'ammoniac et le tabac, cette existence culturelle renouvelée permettait à chacun de manger en paix, savourant chaque moment de bonheur simple et authentique.`
+  },
+  {
+    id: "3780_story_30",
+    category: "internal",
+    text: `Dans un village en altitude, vivait Élise, tourmentée par une profonde souffrance. Sa grossesse avait été suivie d'une fracture complexe et d'une infection persistante qui l'avait laissée en état d'affaiblissement constant. Ses nuits étaient hantées par des cauchemars, remplis de terreur et de panique, nourrissant une psychose latente. Elle se sentait contrainte, confuse, et parfois même accro à cette agonie. Son envie de dormir sans fin, d'oublier tout ce douloureux passé, était une obsession. Mais un instinct puissant, un vouloir inébranlable, la poussait à ne pas tenter de fuir complètement.
+Un jour, cherchant à refroidir ses pensées, Élise rencontra Théo. Sa passion pour la botanique et son inspiration l'attirèrent. Il parlait de plantes nourrissantes et de l'empathie qu'il ressentait. Avec lui, Élise senti une vigueur nouvelle. Ses bleus de l'âme commençaient à guérir. Leur humeur commune, positivement enjouée, fut marquée par des gags absurdes et des discussions sur la croyance en la guérison. La jalousie n'avait aucune place dans leur affection mutuelle. Malgré la nostalgie de son passé, Élise retrouva espoir et un sentiment de justesse. Ce fut un bonheur simple mais une immense satisfaction, un amour sublime né de leur bravoure partagée.`
+  },
+  {
+    id: "3780_story_26",
+    category: "internal",
+    text: `Par une froide journée d’hiver, Éloi, un grimpeur expérimenté et ancien patineur artistique, sentait la morsure du climat. Vêtu d'un gilet thermique et d'un uniforme de montagne, il progressait sur les falaises. Son positionnement précis et son mouvement fluide, hérités de son passé en gymnastique et en ballet, lui permettaient de plier son corps avec une grâce flexible. Soudain, il aperçut un chamois piégé dans une cuve naturelle, son dos visiblement blessé. Sans hésiter, Éloi utilisa son expérience pour le hisser, improvisant un treuil. Le sauvetage, bien que difficile, fut une preuve de sa force musculaire et de sa volonté de faire le bien dans le monde.
+Éloi, devenu un travailleur respecté de la montagne, portait souvent des costumes adaptés à chaque situation, mais aussi parfois une robe plus décontractée lorsqu'il était "chez lui". Il racontait comment il avait toujours ressenti un lien intime avec la nature, soulignant l'importance de sentir chaque organe de son corps pour survivre en milieu extrême, du foie au poumon, du rein à la rate. Grâce à ses exploits, il fut invité à enseigner l'art de la pose et de la posture pour le sauvetage, et même à rivaliser amicalement en judo ou à nager lors de festivals aquatiques, montrant sa capacité à lutter et à faire des pompes. Son corps, qu'il considérait comme son temple, n'avait jamais été aussi fort, ni sa vie aussi riche et pleine de sens, loin de toute attaque du cancer ou du vieillissement prématuré.`
+  },
+  {
+    id: "3780_story_25",
+    category: "internal",
+    text: `Par un hiver glacial, un jeune grimpeur passionné rêvait de rivaliser avec les meilleurs athlètes olympiques. Chaque matin, il enfilait son uniforme de sport, renforçait ses muscles par des pompes, puis partait s’entraîner physiquement dans les montagnes. Son positionnement sur les parois était d’une précision acrobatique, et malgré les douleurs au dos et au ventre, il ne cessait de plier ses limites. Inspiré par la gymnastique et le judo, il s’entraînait avec discipline, son sein gonflé d’espoir. Il avait un corps flexible et fort, même si le climat rude menaçait parfois sa santé. Un jour, victime d’une attaque virale au poumon, il faillit mourir, mais il choisit de survivre, soutenu par son organe de volonté et sa foi en son rêve.
+Quelques mois plus tard, guéri, il participa à une grande compétition de grimpe en salle, un événement aquatique surprise clôturait les épreuves. Vêtu d'une tenue audacieuse, presque sexy, il montra un mouvement fluide en natation puis en surf, avant les épreuves musculaires. La foule, assise sur des chaises, applaudissait sa posture parfaite et son regard déterminé. Lorsqu’il monta sur le podium, il se souvint de ses jours sombres sur son lit d’hôpital, de ses planches d'entraînement bricolées, et de son gilet trempé de sueur. Ce n’était pas qu’une victoire : c’était une naissance, un retour à la vie. Il portait dans sa chair, dans chaque pose, la preuve que même un travailleur simple peut atteindre les sommets du monde s’il croit assez fort en lui.`
+  },
+  {
+    id: "6684_story_17",
+    category: "internal",
+    text: `Camille était une gymnaste olympique passionnée qui consacrait sa vie au sport. Chaque matin, elle enfilait son uniforme de gymnastique et se rendait à la salle d'entraînement où elle pratiquait ses mouvements acrobatiques. Son muscle principal, le dos, était particulièrement flexible grâce à ses années d'exercice. Un jour d'hiver, alors qu'elle s'entraînait sur les planches, elle remarqua Lucas, un nageur professionnel qui utilisait la piscine aquatique adjacente. Il portait un gilet de natation et sa posture dans l'eau était parfaite. Camille fut immédiatement attirée par sa force et sa détermination. Leur première rencontre fut timide - elle était assise sur une chaise près de la piscine, observant sa technique de nage, quand il sortit de l'eau et vint lui parler.
+Au fil des semaines, leur romance s'épanouit. Lucas admirait la façon dont Camille pouvait plier son corps dans des poses impossibles, tandis qu'elle était fascinée par sa capacité à nager avec tant d'élégance. Ils découvrirent qu'ils partageaient la même passion pour maintenir leur corps en forme - lui travaillant ses poumons et sa circulation cardiaque dans l'eau, elle développant chaque muscle avec ses routines. Ensemble, ils commencèrent à sentir que leur relation était plus qu'une simple attraction physique - c'était une connexion profonde basée sur leur amour commun du mouvement et de la discipline. Un an plus tard, lors d'une compétition internationale où Camille participait au triathlon et Lucas aux épreuves de natation, ils se fiancèrent. Leur histoire d'amour, née dans le monde du sport, promettait un avenir radieux où ils continueraient à se soutenir dans leurs dans leurs passions respectives.`
+  },
+  {
+    id: "3780_story_8",
+    category: "audvis",
+    text: `Dans un petit village, le conteur local décida d'organiser un concert spécial mêlant musique et narration. Le guitariste, le violoniste et le bassiste formèrent un orchestre accompagné d’une percussion et de tambour pour donner la cadence. Leur voix claire captivait les enfants et adultes venus en grand nombre. À travers des contes, fables et mythe du folklore local, le narrateur réussit à divertir son public. Sa prononciation parfaite et sa maîtrise de la grammaire et de la linguistique rendaient chaque parole magique. Les chansons et la conversation se mêlaient dans un dialogue harmonieux, transformant la simple communication en véritable fête.
+Au fil de la soirée, un jeune rappeur du village surprend tout le monde en proposant un remix original, mêlant rap et jazz avec des éléments audio modernes. Son hymne joyeux fit rire l'assemblée et permit d'apaiser d'anciennes disputes entre familles. Même quand une alarme retentit au loin, personne ne se laissa troubler par ce bruit - le message de paix était plus fort que tous les cris. L'orateur principal conclut la soirée par une proclamation chaleureuse, invitant tous à perpétuer cette tradition. Le verdict fut unanime : cette nouvelle forme d'art avait réussi à former une communauté unie. Désormais, ces histoires seraient commentées, traduites en d'autres langues, et diffusées à la radio pour briser l'isolement d'autres villages.`
+  },
+  {
+    id: "3780_story_7",
+    category: "audvis",
+    text: `Par un soir d'orage, un conteur passionné arriva dans un petit village pour donner un concert pour les enfants. Avec sa guitare, son violoncelle et quelques instruments de percussion, il transforma la salle d'accueil en véritable orchestre vivant. Son message, transmis en chanson,  portait sur l'importance de la communication, du consentement et de l'information. Entre chaque chanson, il faisait une petite narration, mélangeant fable, mythe et folklore, avec une touche humoristique qui faisait rire tout le monde. Il utilisait un langage riche en rimes, au phrasé clair et à la cadence envoûtante,, captivant l'attention du plus jeune enfant au plus vieux orateur.
+À la fin du spectacle, un rappeur local, inspiré par ce qu'il venait d'entendre, demanda la permission de monter sur scène pour commenter à sa manière. Avec son style rap unique, il fit un remix d'un ancien hymne, transformant les paroles en un puissant argument en faveur de la paix. Le narrateur l'accompagnait à la guitare, créant une fusion surprenante entre conte traditionnel et musique moderne. Le public, ému, applaudit chaleureusement cette conversation artistique improvisée. Une vieille cloche du village sonna au loin, comme pour approuver cette belle discussion musicale. Le conteur clôtura la soirée en expliquant que, parfois, une simple conversation verbale peut transformer un village entier. Tout le monde repartit avec un sourire et le cœur rempli de musique.`
+  },
+  {
+    id: "3780_story_9",
+    category: "audvis",
+    text: `Dans un petit archipel méditerranéen, Maya, une jeune photographe sportive, vivait dans un ancien appartement transformé en studio. Passionnée d'astronomie, elle passait ses nuits à capturer des images du ciel étoilé avec ses lunettes spécialisées, créant de magnifiques photos des nuages et constellations. Un matin, en explorant les rues du village, elle découvrit derrière un massif de pierres un vieux portail orné d'un dessin représentant une baleine entourée d'un triangle, d'un cercle et d'un ovale. Intriguée, elle décida de lire dans le dictionnaire local la signification de ces symboles, et apprit qu'ils indiquaient l'emplacement d'une ancienne fontaine aux pouvoirs artistiques légendaires.
+Guidée par sa vision créative, Maya organisa avec la religieuse du village un festival d'illustration et de photographie. Elles transformèrent le terrain autour de la fontaine en galerie à ciel ouvert, décorant les murs de miroirs, d'enseignes colorées et de portraits. Des lampes et lanternes violettes illuminent les statues disposées dans les rues, créant une architecture visuellement attractive. Les passagers des bateaux de croisière venaient désormais admirer cette île devenue célèbre pour sa transparence artistique, où papillons et abeilles voltigeaient entre les œuvres d'art. Le village prospéra grâce à ce projet proprement magique, transformant un lieu oublié en destination couleur de rêve pour tous les amateurs d'art et de photographie.`
+  },
+  {
+    id: "6684_story_9",
+    category: "audvis",
+    text: `Dans un petit archipel méditerranéen, Maya, une jeune photographe sportive, vivait dans un ancien appartement transformé en studio. Passionnée d'astronomie, elle passait ses nuits à capturer des images du ciel étoilé avec ses lunettes spécialisées, créant de magnifiques photos des nuages et constellations. Un matin, en explorant les rues du village, elle découvrit derrière un massif de pierres un vieux portail orné d'un dessin représentant une baleine entourée d'un triangle, d'un cercle et d'un ovale. Intriguée, elle décida de lire dans le dictionnaire local la signification de ces symboles, et apprit qu'ils indiquaient l'emplacement d'une ancienne fontaine aux pouvoirs artistiques légendaires.
+Guidée par sa vision créative, Maya organisa avec la religieuse du village un festival d'illustration et de photographie. Elles transformèrent le terrain autour de la fontaine en galerie à ciel ouvert, décorant les murs de miroirs, d'enseignes colorées et de portraits. Des lampes et lanternes violettes illuminent les statues disposées dans les rues, créant une architecture visuellement attractive. Les passagers des bateaux de croisière venaient désormais admirer cette île devenue célèbre pour sa transparence artistique, où papillons et abeilles voltigeaient entre les œuvres d'art. Le village prospéra grâce à ce projet proprement magique, transformant un lieu oublié en destination couleur de rêve pour tous les amateurs d'art et de photographie.`
+  },
+  {
+    id: "6684_story_20",
+    category: "neutral",
+    text: `L'ambassadeur Julien, un homme chaleureux mais au caractère difficile, était aussi directeur d'un consortium d'artistes. Un jour, il reçut une demande touristique inhabituelle : créer un concours photographique pour apaiser les tensions dans un quartier ordinaire de Paris. Malgré sa motivation, il se sentait suspect face à cette conjoncture délicate. Sa compagnonne Sophie, amatrice de statistiques et au soutien constant, lui suggéra d'autoriser ce projet remarquable. Elle portait ce jour-là un bonnet brillant et une ceinture en fourrure, tenant un bouquet de fleurs comme cadeau. "Il faut vaincre cette honte et accorder ta confiance", dit-elle doucement. Le traitement de cette affaire nécessitait de tracer un plan efficace, sans accidentellement créer plus de menace.
+Le gardien du quartier, un homme robuste apprenant encore le métier, accepta de monter l'exposition près de la passerelle. Julien décida de descendre personnellement pour raconter l'histoire de chaque œuvre. Les photos montraient l'artisanat local, des restes de bâtiments historiques, et même un vieux mannequin en vitrine. Le maximum de participants fut atteint rapidement. Sophie arriva avec des gants colorés et un fruit organique pour célébrer. "Quel indice de réussite !" s'exclama-t-elle, observant la largeur du sourire de Julien. Les habitants, touchés par ce projet lyrique et humoristique, organisèrent une remise de prix improvisée. Cette revanche sur les préjugés transforma le quartier : l'art avait réussi à augmenter les liens sociaux et à créer une communauté vivace et unie.`
+  },
+  {
+    id: "3780_story_5",
+    category: "neutral",
+    text: `Dans un campement isolé près de la mer, un jeune adolescent blond vivait dans une habitation minuscule mais pleine de charme. Passionné d'artisanat, il passait ses journées à construire des filets pour plongeurs et à perfectionner la conception d'un accessoire utilitaire marin. Sa petite demeure était silencieuse, ornée d'une cloche suspendue à l'entrée. Un jour, il fut surpris par l'arrivée d'un vieil astronaute à la retraite devenu entrepreneur. L'homme cherchait à commercialiser une nouvelle combinaison marine révolutionnaire, mais ses bagages contenaient aussi des armes futuristes qu'il voulait vendre discrètement. Touché par l'ingéniosité du garçon, il décida de le valider comme partenaire professionnel.
+Malgré un début chaotique, ils mirent soigneusement en place un traitement spécial pour renforcer leurs créations avec des perles de polymère solide, rendant leur produit fabuleux. Leur invention fit sensation, même dans les cercles les plus conventionnels du parlement maritime. Grâce à une foi inébranlable et à leur endurance, ils purent atteindre les plus hauts sommets du succès. Le garçon, autrefois presque oublié dans son coin de silence, devint un producteur reconnu. Ses créations furent brillamment exposées dans une synagogue locale lors d'une exposition sur l'innovation, symbole de rassemblement pour quiconque rêvait de perfection. Ensemble, ils prouvèrent qu'avec un peu de chance et une vision développée, même les rêves les plus simplistes peuvent devenir monumentaux.`
+  },
+  {
+    id: "neutral_2_systeme",
+    category: "neutral",
+    text: `Un système informatique devait traiter une série d'opérations complexes. Chaque étape dépendait des résultats de la précédente. Les paramètres furent vérifiés un par un, et les erreurs potentielles identifiées. Des corrections furent apportées au fur et à mesure. Une fois l'ensemble validé, le processus fut lancé automatiquement. Les résultats obtenus correspondaient aux attentes initiales. Le système pouvait désormais fonctionner de manière autonome.`
+  },
+  {
+    id: "neutral_3_concepts",
+    category: "neutral",
+    text: `La notion de catégorie permet de regrouper des éléments selon des propriétés communes. Certaines classifications sont fondées sur des critères formels, d'autres sur des conventions établies. Les limites entre catégories restent souvent floues et dépendent du système de référence adopté. Des débats persistent quant à la nature de ces regroupements — sont-ils découverts ou construits? Ces questions intéressent aussi bien la logique que la philosophie du langage.`
+  },
+  {
+    id: "6684_story_7",
+    category: "unselected",
+    text: `Nina était une jeune enseignante de français qui avait des difficultés avec son élève Jean. Le garçon refusait de parler en classe et restait muet pendant les cours de grammaire et de vocabulaire. Un jour, elle décida de le consulter après les cours pour comprendre son problème. Jean, d'une voix timide, fit une confession intime : il avait honte de sa prononciation et craignait les insultes de ses camarades. Nina l'écouta avec aisance, sans protestation ni argument, et lui expliqua avec patience que tout le monde fait des erreurs en apprenant. Elle lui suggéra de commencer par chanter des comptines pour améliorer son oral.
+Les semaines suivantes, Nina organisa des sessions spéciales d'enseignement où Jean pouvait s'exercer sans peur. Elle lui apportait du lait et des pommes pour créer une atmosphère détendue, et ils discutaient de sujets simples comme la nourriture qu'il aimait consommer. Petit à petit, Jean gagna en confiance et commença à prononcer les mots avec plus d'assurance. Le jour de l'examen final, il réussit brillamment son épreuve orale, et tous ses camarades l'applaudirent. Nina sourit, sachant que la communication et la patience avaient triomphé de ses craintes.`
+  },
+  {
+    id: "6684_story_8",
+    category: "unselected",
+    text: `Lili était narrateur dans une émission de radio locale, mais elle traversait une période difficile. Atteinte de la grippe, elle avait perdu sa voix et ne pouvait plus parler correctement. Son médecin lui avait conseillé de consulter un spécialiste, mais elle était réticente. Un jour, dans un moment d'aisance inhabituelle, elle décida de faire une confession intime à son meilleur ami Ben : elle avait peur de perdre son travail. Ben, avec beaucoup de patience, l'écouta expliquer ses craintes tout en partageant un verre de lait et quelques raisins. Il lui rappela que sa prononciation reviendrait avec le temps et qu'elle pourrait utiliser cette période pour améliorer son vocabulaire et sa grammaire.
+Inspirée par les paroles encourageantes de Ben, Lili décida de transformer cette épreuve en opportunité. elle commença à chanter doucement pour rééduquer sa voix, à boire beaucoup d'eau potable et à éviter l'alcool.. Elle prit des cours d'enseignement vocal et apprit à prononcer chaque mot avec précision. Pendant sa convalescence, elle écrivit des histoires qu'elle pourrait raconter à l'air, travaillant sur son expression et sa communication orale. Quand elle put enfin avaler sans difficulté et parler de nouveau, sa voix était plus belle qu'avant. Elle retourna à la radio avec une nouvelle instruction : discuter de sujets qui lui tenaient à cœur. Son dialogue avec les auditeurs devint plus authentique, et elle réalisa que cette expérience l'avait rendue meilleure dans son art de communiquer.`
+  },
+  {
+    id: "6684_story_29",
+    category: "unselected",
+    text: `Le ministre de la Culture avait souhaité organiser un festival pour célébrer les traditions musicales françaises. Il peut maintenant annoncer que le projet va faire sensation ! Le directeur artistique, un ancien pensionnaire du conservatoire, avait initialement voulu engager seulement des artistes locaux. Mais alors qu'il cherchait soigneusement les meilleurs talents, il découvrit parfaitement par hasard un guitariste et un bassiste dans un petit café. Ces musiciens jouaient facilement ensemble, créant un effet magique sur l'audience. Le directeur comprit clairement qu'il devrait les engager aussi pour le festival.
+Comment ces deux artistes s'étaient-ils rencontrés ? Pratiquement par miracle ! Le guitariste, ancien compatriote d'un célèbre peintre, prenait continuellement le même autobus pour se rendre à ses cours. Un jour, il entendit de la musique venant des chambres d'un hôtel voisin. Il voulu essayer de rencontrer ce mystérieux musicien et découvrit le bassiste qui pratiquait durablement son art depuis des années. Leurs rapports furent rapidement excellents, et ils décidèrent de laisser leurs projets individuels pour jouer ensemble. Le festival fut un succès retentissant, et ils pourraient maintenant mieux vivre de leur passion commune.`
+  },
+  {
+    id: "3780_story_21",
+    category: "unselected",
+    text: `C’était un matin inattendu dans le petit village florissant de Belle-Rive. Camille, une biologiste passionnée par les algues, avait récemment obtenu une bourse pour installer un laboratoire en bord de mer. Malgré les obstacles insupportables imposés par une météo improbable et un accès parfois inaccessible au site, elle restait tenace. Un jour, alors qu’elle était sur le point de soumettre son projet final, un événement surprenant se produisit : une espèce d'algues inconnues et particulières fut découverte, dotée de propriétés médicinales favorables. Son équipe, attentive et curieuse, décida de souligner l’importance de cette découverte dans un rapport complet.
+Malgré quelques critiques impopulaires au début, les résultats furent unanimement salués par la communauté scientifique. La presse locale commentera l’événement avec enthousiasme, parlant d’une chanceuse découverte qui allait modifier l’avenir de la médecine marine. Camille, profondément reconnaissante, décida de proposer des programmes éducatifs pour encourager les jeunes à explorer les richesses de la mer. Le projet, d’abord fragmentaire, devint un succès entier, adapté aux écoles de toute la région. L’histoire de Camille, d’abord incertaine et semée de doutes, se termina sur une note satisfaite et attractive, prouvant que même les chemins les plus paradoxaux peuvent mener à de grandes découvertes.`
+  },
+  {
+    id: "6619_story_8",
+    category: "unselected",
+    text: `Dans les rues d’une petite ville illuminée par les lampadaires, une jeune artiste nommée Clara préparait une exposition unique. Passionnée par le dessin et la photographie, elle avait décidé de combiner ces deux arts pour capturer l'essence de la vie urbaine. Ce soir-là, sous un ciel étoilé, elle installa ses oeuvres sous une grande lampe dans la rue. Elle ajusta un miroir près de son chevalet pour réfléchir la lumière sur ses esquisses, donnant vie à des portraits réalistes et vibrants. L’atelier était un mélange de créativité et de magie, où chaque forme et chaque couleur semblaient raconter une histoire.
+Le jour de l’exposition arriva enfin, et les visiteurs affluèrent. Au centre de la rue, un magnifique portrait d’un lion, fièrement dessiné et entouré de nuages, attira tous les regards. Ce tableau représentait la force et la liberté, des valeurs qui inspiraient Clara. Parmi les visiteurs se trouvait une photographe professionnelle, fascinée par l’univers visuel de l’artiste. Ensemble, elles discutèrent de collaboration future et imaginèrent un projet mêlant photos et peintures. La soirée se termina par des applaudissements chaleureux, et Clara réalisa que son art pouvait véritablement toucher les cœurs.`
+  },
+  {
+    id: "3780_story_6",
+    category: "unselected",
+    text: `Dans un campement simple près d'une plage de sable doré, un entrepreneur professionnel vivait dans une petite habitation qu'il avait construite soigneusement. Cet homme parfait dans son artisanat créait des filets de pêche, des accessoires marins ornés de perles, et les vendait aux plongeurs locaux. Un jour, surpris par l'arrivée d'un adolescent blond et silencieux aux manches longues, il découvrit que ce jeune musicien cherchait un endroit paisible pour composer. Le garçon, fasciné par la saveur salée de l'air marin et le charme du lieu presque désert, décida de rester quelques jours.
+Peu à peu, leur collaboration fabuleuse prit forme : l'artisan enseignait sa conception traditionnelle tandis que le musicien apportait ses mélodies. Des visiteurs commencèrent à venir, attirés par cette convention artistique unique où quiconque pouvait atteindre une forme de perfection créative. Grâce à leur endurance et leur foi dans ce projet monumental, ils réussirent à transformer ce lieu minuscule en un véritable centre d'art. Leur succès prouve que même les rêves les plus simplistes peuvent devenir réalité quand on sait saisir les bonnes opportunités.`
+  },
+  {
+    id: "6684_story_15",
+    category: "unselected",
+    text: `Julien était un pensionnaire timide dans un chalet isolé en montagne, où il travaillait comme guide de luge pendant l'hiver. Un jour tardif, il rencontra Sophie, une volontaire courageuse qui venait ravitailler le refuge. Malgré sa fatigue et son isolement, Julien décida de poursuivre une conversation avec cette femme au courage grandiose. Sophie, qui était seule dans sa mission, accepta volontiers son aide pour parcourir les sentiers enneigés. Ensemble, ils découvrirent un grenier secret dans le chalet où un ancien clan de montagnards avait caché un trésor - non pas de l'or, mais des statistiques précieuses sur la pollution de la région qui pourraient produire un accomplissement majeur pour la construction d'un nouveau foyer écologique.
+Souvent, Sophie et Julien se retrouvaient pour consulter ces documents, et leur engagement mutuel grandit bien au-delà de leur mission initiale. Ils décidèrent de coller leurs efforts pour propager l'information et rejeter toute hypocrisie concernant la protection de l'environnement montagnard. Grâce à leur sondage et leur travail acharné, ils réussirent à gagner le soutien de la communauté locale et à devenir des opposants efficaces contre les projets destructeurs. Leur chance fut de percevoir que leur amour naissant était aussi solide que leur cause commune. Aujourd'hui, ils vivent ensemble dans leur chalet, transformé en centre de recherche environnementale, où ils continuent à assister les visiteurs tout en protégeant la base naturelle de leur magnifique région alpine.`
+  },
+  {
+    id: "3780_story_14",
+    category: "unselected",
+    text: `Dans un village florissant caché entre les montagnes, vivait un jeune apprenant passionné de sciences naturelles. Chaque jour, il partait souligner dans son carnet les plantes et algues qu’il découvrait au bord de la rivière. Un jour, alors qu’il explorait une grotte inaccessible, il fit une surprenante découverte : une espèce de mousse lumineuse encore inconnue. Loin de vouloir soumettre cette trouvaille à des laboratoires privés, il décida de la proposer à une université locale pour étude. Bien que certains jugèrent ce projet improbable ou même grotesque, il persista avec un esprit tenace. Son enthousiasme peut animer une équipe de chercheurs qui l’aida à structurer un plan de préservation.
+Grâce à ses efforts, le village devint un lieu d’étude attractif pour les scientifiques du monde entier. Ce succès a pu bien modifier la perception des habitants, d’abord incertains, puis satisfait et même unanime face à ce progrès. L’accès à la grotte fut rendu accessible, permettant aux visiteurs attentifs de contempler la merveille. L’apprenant, désormais reconnu, n’avait jamais cessé d’apprendre, d’encourager les plus jeunes et d'adapter son approche pour préserver la nature. Ce fut une aventure favorable, où même les moments insupportables devinrent des leçons. Et comme il aimait à souligner : "Ce que l’on obtient avec passion devient toujours important."`
+  },
+  {
+    id: "3780_story_15",
+    category: "unselected",
+    text: `Un doc passionné, connu pour ses recherches historiquement importantes, travaillait soigneusement sur un remède contre une maladie mortellement dangereuse. Il vivait dans une petite ville, plutôt quelconque, mais son esprit était fabuleux. Bien que faible en apparence, il possédait une forte détermination. On le disait un peu accro au café et à la musique rare. Ses collègues, souvent pro mais exclusivement concentrés sur leurs propres projets, le trouvaient un peu vulgaire, surtout quand abordait des sujets politiquement sensibles. Pourtant, il continuait correctement son travail, potentiellement capable de sauver de nombreux patients.
+Un jour, grâce à un soutien militairement discret mais efficace, et à une idée incroyable, il réussit à finaliser son traitement. Ce fut un succès formidable, accueilli avec enthousiasme par la communauté médicale. La nouvelle se répandit radicalement, et même les journaux socialement engagés en parlèrent. Le taxi local qui le transportait quotidiennement devint célèbre lui aussi, surnommé "le taxi de l’espoir". Sa découverte, bien que faite dans l’ombre, fut nouvellement célébrée dans le monde entier. Lui, avec sa blouse bon marché tachée de jus de raisin, devint un héros. Et il s’offrit enfin une vie lourdement méritée de repos, entouré de belle nature et d’une équipe superbe. Ce n’était pas un destin dramatique, mais une fin simple et heureuse.`
+  },
+  {
+    id: "6619_story_38",
+    category: "unselected",
+    text: `Dans un petit village côtier, un pêcheur nommé Léo observait avec inquiétude l'accumulation d'algues sur la plage. Ce phénomène, autrefois rare, devenait de plus en plus important, rendant la pêche difficile et menaçant l’équilibre marin. Ne sachant que faire, il décida de proposer une réunion avec les habitants pour trouver une solution. Après de longues discussions, une idée surprenante émergea : et si ces algues pouvaient être utilisées pour enrichir les terres agricoles ? Motivés, les villageois commencèrent à diversifier leurs activités en transformant les algues en engrais naturel.
+Grâce à cette initiative, le village connut une période florissante. Les récoltes étaient plus abondantes, et les pêcheurs purent retourner en mer sans entrave. Léo, désormais satisfait, contemplait le rivage dégagé et les sourires retrouvés des habitants. Il réalisa que même face à une situation incertaine, il suffisait d'être attentif aux opportunités cachées. Leur village devint un modèle écologique, attirant des visiteurs curieux et désireux d'apprendre. Ce fut une véritable renaissance pour tous, un avenir favorable bâti sur la solidarité et l'innovation.`
+  },
+  {
+    id: "6684_story_24",
+    category: "unselected",
+    text: `Celia, titulaire d'un diplôme en gestion, avait absolument besoin de changer de vie. Elle était travailleuse acharnée mais restait malheureuse dans son quartier de Paris. Un jour, elle découvrit une annonce pour un poste de gestionnaire dans un campus universitaire en province. Comment pourrait-elle refuser cette opportunité ? Le personnel du club étudiant cherchait aussi quelqu'un pour organiser les événements. Celia devait faire ses bagages et partir, même si elle devrait laisser son album de souvenirs derrière elle. Exactement ce qu'il lui fallait pour recommencer !
+Arrivée sur le campus, Celia rencontre Thomas, le cofondateur du club de musique et bassiste talentueux. Il devient rapidement son guide et lui montre la zone des chambres étudiantes, le service de blanchissage, et même l'annexe où se trouve son bureau. Concernant son travail, une refonte complète de l'organisation était nécessaire, et Celia s'y attaque pleinement. Thomas, souhaitant l'aider, lui apporte chaque matin un panier de fruits frais. Leur collaboration professionnelle se transforme intimement en amour, et six mois plus tard, ils décident de se marier. Celia avait trouvé pratiquement tout ce qu'elle cherchait : un nouveau travail, un nouveau foyer, et l'amour de sa vie.`
+  },
+  {
+    id: "3780_story_18",
+    category: "unselected",
+    text: `Par une froide matinée de neige, un fonctionnaire un peu fatigué monta dans un bus en direction d'un vieil immeuble du centre-ville. Il portait une enveloppe contenant une traduction clé pour une concession importante. Malgré l'ennui général, il restait confiant. Son effort serait récompensé. À ses côtés, un enfant au rire enfantin le salua joyeusement, dissipant un instant sa fatigue. Il se sentait prêt à affronter son adversaire lors de la négociation. Le chasseur de vérité qu'il était avait une aptitude particulière pour déceler le bon indice.
+Plus tard, grâce à son anticipation et son sens du pilotage des discussions, il réussit à convaincre l'adversaire que la solution proposée, bien que d'une complexité surnaturelle pour certains, était la meilleure offre pour les deux parties. Une prime exceptionnelle lui fut accordée pour son travail, fruit d'un journalisme rigoureux qu'il avait mené sur le sujet. En rentrant, la couverture d'un journal à la main, il était célébré comme un champion de la paix. Le laitier du quartier, qui avait vu ses racines s'ancrer dans ce quartier, vint le saluer. Tout semblait s'aligner parfaitement, comme les racines d'un arbre qui avaient traversé les épreuves pour atteindre leur force maximale.`
+  },
+];
+
+// ══════════════════════════════════════════════
+// TRANSLATION WORDS
+// Top 10 words per dimension (40 total)
+// Format: { french, dimension }
+// ══════════════════════════════════════════════
+const TRANSLATION_WORDS = [
+  // MOTOR (10 words)
+  { french: "sentir",       dimension: "motor" },
+  { french: "touchant",     dimension: "motor" },
+  { french: "vêtements",    dimension: "motor" },
+  { french: "chair",        dimension: "motor" },
+  { french: "nager",        dimension: "motor" },
+  { french: "bain",         dimension: "motor" },
+  { french: "muscle",       dimension: "motor" },
+  { french: "natation",     dimension: "motor" },
+  { french: "flexible",     dimension: "motor" },
+  { french: "mouvement",    dimension: "motor" },
+  // ORAL (10 words)
+  { french: "repas",        dimension: "oral" },
+  { french: "chocolat",     dimension: "oral" },
+  { french: "festin",       dimension: "oral" },
+  { french: "cacao",        dimension: "oral" },
+  { french: "soufflé",      dimension: "oral" },
+  { french: "vin",          dimension: "oral" },
+  { french: "rhum",         dimension: "oral" },
+  { french: "manger",       dimension: "oral" },
+  { french: "alcool",       dimension: "oral" },
+  { french: "poivre",       dimension: "oral" },
+  // INTERNAL (10 words)
+  { french: "cardiaque",    dimension: "internal" },
+  { french: "grippe",       dimension: "internal" },
+  { french: "douleur",      dimension: "internal" },
+  { french: "santé",        dimension: "internal" },
+  { french: "poumons",      dimension: "internal" },
+  { french: "exercice",     dimension: "internal" },
+  { french: "fatigue",      dimension: "internal" },
+  { french: "sensation",    dimension: "internal" },
+  { french: "énergie",      dimension: "internal" },
+  { french: "affamé",       dimension: "internal" },
+  // AUDVIS (10 words)
+  { french: "concert",      dimension: "audvis" },
+  { french: "mots",         dimension: "audvis" },
+  { french: "sport",        dimension: "audvis" },
+  { french: "information",  dimension: "audvis" },
+  { french: "découverte",   dimension: "audvis" },
+  { french: "radio",        dimension: "audvis" },
+  { french: "orchestre",    dimension: "audvis" },
+  { french: "feuilleton",   dimension: "audvis" },
+  { french: "bassiste",     dimension: "audvis" },
+  { french: "littérature",  dimension: "audvis" },
+];
+
+const DIMS = ["motor", "oral", "internal", "audvis"];
+const N_SELECTED_PER_DIM = 2;
+const N_NEUTRAL           = 2;
+const N_UNSELECTED        = 4;
+
+// ── State ────────────────────────────────────
+let participantStories = [];
+let currentIdx         = 0;
+let responses          = [];
+let translationResults = [];
+let demographics       = {};
+let participantId      = "";
+
+// ── Utility ──────────────────────────────────
+function showScreen(name) {
+  ["consent","demo","instructions","rating","translation","done"].forEach(s => {
+    document.getElementById(`screen-${s}`).classList.toggle("hidden", s !== name);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generateId() {
+  return "P" + Date.now().toString(36).toUpperCase();
+}
+
+// ── Consent ──────────────────────────────────
+document.getElementById("consent-cb").addEventListener("change", function() {
+  document.getElementById("btn-start-demo").disabled = !this.checked;
+});
+document.getElementById("btn-start-demo").onclick = () => showScreen("demo");
+
+// ── Non-native toggle ─────────────────────────
+document.getElementById("non-native-cb").addEventListener("change", function() {
+  document.getElementById("non-native-box").classList.toggle("hidden", !this.checked);
+});
+
+// ── Demographics → Instructions ───────────────
+document.getElementById("btn-start-instructions").onclick = () => {
+  demographics = {
+    age:          document.getElementById("demo-age").value,
+    gender:       document.getElementById("demo-gender").value,
+    native_french: !document.getElementById("non-native-cb").checked,
+    french_level: document.getElementById("non-native-cb").checked
+                  ? document.getElementById("french-level").value
+                  : "native",
+  };
+  showScreen("instructions");
+};
+
+// ── Story selection ───────────────────────────
+function selectStories() {
+  const selected   = [];
+  const neutral    = [];
+  const unselected = [];
+
+  ALL_STORIES.forEach(s => {
+    if (s.category === "neutral")    neutral.push(s);
+    else if (s.category === "unselected") unselected.push(s);
+    else selected.push(s);
+  });
+
+  // 2 per dimension from selected
+  let chosenSelected = [];
+  DIMS.forEach(dim => {
+    const pool = shuffle(selected.filter(s => s.category === dim));
+    chosenSelected.push(...pool.slice(0, N_SELECTED_PER_DIM));
+  });
+
+  // 2 neutral
+  const chosenNeutral    = shuffle(neutral).slice(0, N_NEUTRAL);
+  // 4 unselected
+  const chosenUnselected = shuffle(unselected).slice(0, N_UNSELECTED);
+
+  return shuffle([...chosenSelected, ...chosenNeutral, ...chosenUnselected]);
+}
+
+// ── Build Likerts ─────────────────────────────
+function buildLikerts() {
+  DIMS.forEach(dim => {
+    const container = document.getElementById(`likert-${dim}`);
+    container.innerHTML = "";
+    for (let v = 1; v <= 5; v++) {
+      const lbl = document.createElement("label");
+      lbl.innerHTML = `
+        <input type="radio" name="rating-${dim}" value="${v}">
+        <div class="likert-btn">${v}</div>
+      `;
+      container.appendChild(lbl);
+    }
+  });
+}
+
+// ── Start rating ──────────────────────────────
+function startRating() {
+  participantId      = generateId();
+  participantStories = selectStories();
+  responses          = participantStories.map(s => ({
+    story_id:  s.id,
+    category:  s.category,
+    motor:     null, oral: null, internal: null, audvis: null,
+  }));
+  currentIdx = 0;
+  buildLikerts();
+  showScreen("rating");
+  renderStory();
+}
+
+// ── Render story ──────────────────────────────
+function renderStory() {
+  const story = participantStories[currentIdx];
+  const n     = participantStories.length;
+  const pct   = Math.round((currentIdx / n) * 100);
+
+  document.getElementById("progress-fill").style.width  = pct + "%";
+  document.getElementById("progress-label").textContent = `Histoire ${currentIdx + 1} sur ${n}`;
+  document.getElementById("story-display").textContent  = story.text;
+
+  const saved = responses[currentIdx];
+  DIMS.forEach(dim => {
+    document.querySelectorAll(`input[name="rating-${dim}"]`).forEach(r => {
+      r.checked = saved[dim] !== null && parseInt(r.value) === saved[dim];
+    });
+  });
+
+  document.getElementById("btn-prev").disabled = currentIdx === 0;
+  document.getElementById("btn-next").textContent =
+    currentIdx === n - 1 ? "Terminer les histoires →" : "Suivant →";
+}
+
+// ── Save ratings ──────────────────────────────
+function saveCurrentRatings() {
+  DIMS.forEach(dim => {
+    const checked = document.querySelector(`input[name="rating-${dim}"]:checked`);
+    responses[currentIdx][dim] = checked ? parseInt(checked.value) : null;
+  });
+}
+
+// ── Navigation ────────────────────────────────
+function nextStory() {
+  saveCurrentRatings();
+  const missing = DIMS.filter(d => responses[currentIdx][d] === null);
+  if (missing.length > 0) {
+    alert("Merci de noter toutes les dimensions avant de continuer.");
+    return;
+  }
+  if (currentIdx < participantStories.length - 1) {
+    currentIdx++;
+    renderStory();
+  } else {
+    showTranslation();
+  }
+}
+
+function prevStory() {
+  saveCurrentRatings();
+  if (currentIdx > 0) { currentIdx--; renderStory(); }
+}
+
+// ── Translation section ───────────────────────
+function showTranslation() {
+  const shuffledWords = shuffle(TRANSLATION_WORDS);
+  const container     = document.getElementById("translation-items");
+  container.innerHTML = "";
+
+  const DIM_COLORS = {
+    motor: "#2196F3", oral: "#FF9800",
+    internal: "#E91E63", audvis: "#4CAF50"
+  };
+  const DIM_LABELS = {
+    motor: "Moteur", oral: "Oral",
+    internal: "Interne", audvis: "AudVis"
+  };
+
+  shuffledWords.forEach((w, idx) => {
+    const div = document.createElement("div");
+    div.className = "translation-item";
+    div.innerHTML = `
+      <div class="french-word">${w.french}</div>
+      <div class="dim-tag" style="background:${DIM_COLORS[w.dimension]}">${DIM_LABELS[w.dimension]}</div>
+      <input class="translation-input" type="text"
+             id="trans-${idx}" placeholder="Traduction anglaise..."
+             autocomplete="off" spellcheck="false">
+      <div class="confidence-row">
+        <span>Confiance&nbsp;:</span>
+        <label><input type="radio" name="conf-${idx}" value="1"> 1 — Peu sûr·e·x</label>
+        <label><input type="radio" name="conf-${idx}" value="2"> 2 — Assez sûr·e·x</label>
+        <label><input type="radio" name="conf-${idx}" value="3"> 3 — Très sûr·e·x</label>
+      </div>
+    `;
+    div.dataset.french    = w.french;
+    div.dataset.dimension = w.dimension;
+    div.dataset.idx       = idx;
+    container.appendChild(div);
+  });
+
+  showScreen("translation");
+}
+
+function collectTranslations() {
+  translationResults = [];
+  document.querySelectorAll(".translation-item").forEach(item => {
+    const idx   = item.dataset.idx;
+    const conf  = document.querySelector(`input[name="conf-${idx}"]:checked`);
+    translationResults.push({
+      french:     item.dataset.french,
+      dimension:  item.dataset.dimension,
+      translation: document.getElementById(`trans-${idx}`).value.trim(),
+      confidence: conf ? parseInt(conf.value) : null,
+    });
+  });
+}
+
+function skipTranslation() { translationResults = []; submitAll(); }
+
+function submitAll() {
+  collectTranslations();
+
+  const result = {
+    participant_id:   participantId,
+    timestamp:        new Date().toISOString(),
+    demographics,
+    story_responses:  responses,
+    translation_check: translationResults,
+  };
+
+  // ── POST to Formspree ─────────────────────
+
+  fetch("https://formspree.io/f/mqerlkrz", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(result)
+       }).then(() => console.log("Submitted to Formspree"))
+  .catch(err => console.error("Formspree error:", err));
+
+  showScreen("done");
+  document.getElementById("output-box").textContent =
+    JSON.stringify(result, null, 2);
+
+  console.log("Results:", result);
+}
+
+function copyResults() {
+  navigator.clipboard.writeText(
+    document.getElementById("output-box").textContent
+  ).then(() => alert("Copié dans le presse-papiers !"));
+}
+</script>
+</body>
