@@ -922,13 +922,37 @@ document.getElementById("non-native-cb").addEventListener("change", function() {
 
 // ── Demographics → Instructions ───────────────
 document.getElementById("btn-start-instructions").onclick = () => {
+  // Validate age
+  const age = document.getElementById("demo-age").value;
+  if (!age || age < 18 || age > 99) {
+    alert("Merci d'indiquer votre âge.");
+    return;
+  }
+
+  // Validate gender
+  const gender = document.getElementById("demo-gender").value;
+  if (!gender) {
+    alert("Merci de sélectionner votre genre.");
+    return;
+  }
+
+  // Validate French level if non-native
+  const isNonNative = document.getElementById("non-native-cb").checked;
+  if (isNonNative) {
+    const level = document.getElementById("french-level").value;
+    if (!level) {
+      alert("Merci d'indiquer votre niveau de français.");
+      return;
+    }
+  }
+
   demographics = {
-    age:          document.getElementById("demo-age").value,
-    gender:       document.getElementById("demo-gender").value,
-    native_french: !document.getElementById("non-native-cb").checked,
-    french_level: document.getElementById("non-native-cb").checked
-                  ? document.getElementById("french-level").value
-                  : "native",
+    age:           age,
+    gender:        gender,
+    native_french: !isNonNative,
+    french_level:  isNonNative
+                   ? document.getElementById("french-level").value
+                   : "native",
   };
   startTime = Date.now();
   showScreen("instructions");
