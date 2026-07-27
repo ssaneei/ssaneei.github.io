@@ -272,7 +272,26 @@ permalink: /rating-study/
   }
   .non-native-box label { font-weight: 600; display: block; margin-bottom: 8px; }
 
-  /* ── Translation check ── */
+.dim-reminder {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.dim-reminder-item {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dim-reminder-item strong { color: var(--text); }
+  /* ── Translation check ──
   .translation-item {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -316,7 +335,7 @@ permalink: /rating-study/
     font-size: 12px;
     color: var(--muted);
   }
-  .confidence-row label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+  .confidence-row label { display: flex; align-items: center; gap: 4px; cursor: pointer; } */
 
   /* ── Done ── */
   #screen-done { text-align: center; padding: 60px 0; }
@@ -554,19 +573,97 @@ permalink: /rating-study/
   </div>
 </div>
 
-<!-- ══ SCREEN 4: TRANSLATION CHECK ══ -->
-<div id="screen-translation" class="hidden">
+
+<!-- ══ SCREEN 4: SENTENCE RATING ══ -->
+<div id="screen-sentences" class="hidden">
   <div class="study-header">
-    <div class="eyebrow">Section optionnelle — ~5 minutes</div>
-    <h1>Traduction de mots</h1>
-    <p>Pour chaque mot français ci-dessous, donnez la traduction anglaise qui vous vient en tête et indiquez votre niveau de confiance.</p>
+    <div class="eyebrow">Section finale — ~3 minutes</div>
+    <h1>Évaluation de phrases</h1>
+    <p>Lisez chaque phrase et évaluez dans quelle mesure elle évoque les 4 dimensions.</p>
   </div>
 
-  <div id="translation-items"></div>
+  <!-- Dimension reminder glass -->
+  <div class="dim-reminder">
+    <div class="dim-reminder-item">
+      <span class="dim-dot" style="background:var(--motor)"></span>
+      <strong>Moteur</strong> — mouvements, actions physiques
+    </div>
+    <div class="dim-reminder-item">
+      <span class="dim-dot" style="background:var(--oral)"></span>
+      <strong>Oral</strong> — goût, odeur, alimentation
+    </div>
+    <div class="dim-reminder-item">
+      <span class="dim-dot" style="background:var(--internal)"></span>
+      <strong>Interne</strong> — sensations corporelles internes
+    </div>
+    <div class="dim-reminder-item">
+      <span class="dim-dot" style="background:var(--audvis)"></span>
+      <strong>AudVis</strong> — voir, entendre, percevoir
+    </div>
+  </div>
 
-  <div class="nav-row" style="margin-top: 8px">
-    <button class="btn btn-secondary" onclick="skipTranslation()">Passer cette section</button>
-    <button class="btn btn-primary" onclick="submitAll()">Terminer et envoyer ✓</button>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="sent-progress-fill"></div>
+  </div>
+  <div class="progress-label" id="sent-progress-label"></div>
+
+  <div class="story-card">
+    <div class="story-label">Phrase à évaluer</div>
+    <div class="story-text" id="sentence-display"></div>
+  </div>
+
+  <div class="rating-section">
+    <h2>Vos évaluations</h2>
+    <div class="instruction">Dans quelle mesure cette phrase évoque-t-elle les sensations suivantes&nbsp;?</div>
+
+    <div class="dim-row dim-motor">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--motor)"></span>Moteur</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="sent-likert-motor"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-oral">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--oral)"></span>Oral</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="sent-likert-oral"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-internal">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--internal)"></span>Interne</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="sent-likert-internal"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+
+    <div class="dim-row dim-audvis">
+      <div class="dim-label">
+        <span class="dim-name"><span class="dim-dot" style="background:var(--audvis)"></span>AudVis</span>
+      </div>
+      <div class="likert">
+        <span class="likert-anchor">Pas du tout</span>
+        <div class="likert-options" id="sent-likert-audvis"></div>
+        <span class="likert-anchor">Très fort</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn btn-secondary" id="sent-btn-prev" onclick="prevSentence()">← Précédent</button>
+    <button class="btn btn-primary" id="sent-btn-next" onclick="nextSentence()">Suivant →</button>
   </div>
 </div>
 
@@ -780,58 +877,6 @@ Plus tard, grâce à son anticipation et son sens du pilotage des discussions, i
   },
 ];
 
-// ══════════════════════════════════════════════
-// TRANSLATION WORDS
-// Top 10 words per dimension (40 total)
-// Format: { french, dimension }
-// ══════════════════════════════════════════════
-const TRANSLATION_WORDS = [
-  // MOTOR (10 words)
-  { french: "sentir",       dimension: "motor" },
-  { french: "touchant",     dimension: "motor" },
-  { french: "vêtements",    dimension: "motor" },
-  { french: "chair",        dimension: "motor" },
-  { french: "nager",        dimension: "motor" },
-  { french: "bain",         dimension: "motor" },
-  { french: "muscle",       dimension: "motor" },
-  { french: "natation",     dimension: "motor" },
-  { french: "flexible",     dimension: "motor" },
-  { french: "mouvement",    dimension: "motor" },
-  // ORAL (10 words)
-  { french: "repas",        dimension: "oral" },
-  { french: "chocolat",     dimension: "oral" },
-  { french: "festin",       dimension: "oral" },
-  { french: "cacao",        dimension: "oral" },
-  { french: "soufflé",      dimension: "oral" },
-  { french: "vin",          dimension: "oral" },
-  { french: "rhum",         dimension: "oral" },
-  { french: "manger",       dimension: "oral" },
-  { french: "alcool",       dimension: "oral" },
-  { french: "poivre",       dimension: "oral" },
-  // INTERNAL (10 words)
-  { french: "cardiaque",    dimension: "internal" },
-  { french: "grippe",       dimension: "internal" },
-  { french: "douleur",      dimension: "internal" },
-  { french: "santé",        dimension: "internal" },
-  { french: "poumons",      dimension: "internal" },
-  { french: "exercice",     dimension: "internal" },
-  { french: "fatigue",      dimension: "internal" },
-  { french: "sensation",    dimension: "internal" },
-  { french: "énergie",      dimension: "internal" },
-  { french: "affamé",       dimension: "internal" },
-  // AUDVIS (10 words)
-  { french: "concert",      dimension: "audvis" },
-  { french: "mots",         dimension: "audvis" },
-  { french: "sport",        dimension: "audvis" },
-  { french: "information",  dimension: "audvis" },
-  { french: "découverte",   dimension: "audvis" },
-  { french: "radio",        dimension: "audvis" },
-  { french: "orchestre",    dimension: "audvis" },
-  { french: "feuilleton",   dimension: "audvis" },
-  { french: "bassiste",     dimension: "audvis" },
-  { french: "littérature",  dimension: "audvis" },
-];
-
 const DIMS = ["motor", "oral", "internal", "audvis"];
 const N_SELECTED_PER_DIM = 2;
 const N_NEUTRAL           = 2;
@@ -841,13 +886,12 @@ const N_UNSELECTED        = 4;
 let participantStories = [];
 let currentIdx         = 0;
 let responses          = [];
-let translationResults = [];
 let demographics       = {};
 let participantId      = "";
 
 // ── Utility ──────────────────────────────────
 function showScreen(name) {
-  ["consent","demo","instructions","rating","translation","done"].forEach(s => {
+  ["consent","demo","instructions","rating","sentences","done"].forEach(s => {
     document.getElementById(`screen-${s}`).classList.toggle("hidden", s !== name);
   });
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -935,6 +979,7 @@ function buildLikerts() {
 
 // ── Start rating ──────────────────────────────
 function startRating() {
+  window.startTime = Date.now();
   participantId      = generateId();
   participantStories = selectStories();
   responses          = participantStories.map(s => ({
@@ -950,6 +995,7 @@ function startRating() {
 
 // ── Render story ──────────────────────────────
 function renderStory() {
+  window.storyStartTime = Date.now();
   const story = participantStories[currentIdx];
   const n     = participantStories.length;
   const pct   = Math.round((currentIdx / n) * 100);
@@ -972,6 +1018,7 @@ function renderStory() {
 
 // ── Save ratings ──────────────────────────────
 function saveCurrentRatings() {
+  responses[currentIdx].time_seconds = Math.round((Date.now() - window.storyStartTime) / 1000);
   DIMS.forEach(dim => {
     const checked = document.querySelector(`input[name="rating-${dim}"]:checked`);
     responses[currentIdx][dim] = checked ? parseInt(checked.value) : null;
@@ -990,7 +1037,7 @@ function nextStory() {
     currentIdx++;
     renderStory();
   } else {
-    showTranslation();
+    startSentenceRating();
   }
 }
 
@@ -999,61 +1046,2220 @@ function prevStory() {
   if (currentIdx > 0) { currentIdx--; renderStory(); }
 }
 
-// ── Translation section ───────────────────────
-function showTranslation() {
-  const shuffledWords = shuffle(TRANSLATION_WORDS);
-  const container     = document.getElementById("translation-items");
-  container.innerHTML = "";
 
-  const DIM_COLORS = {
-    motor: "#2196F3", oral: "#FF9800",
-    internal: "#E91E63", audvis: "#4CAF50"
-  };
-  const DIM_LABELS = {
-    motor: "Moteur", oral: "Oral",
-    internal: "Interne", audvis: "AudVis"
-  };
 
-  shuffledWords.forEach((w, idx) => {
-    const div = document.createElement("div");
-    div.className = "translation-item";
-    div.innerHTML = `
-      <div class="french-word">${w.french}</div>
-      <div class="dim-tag" style="background:${DIM_COLORS[w.dimension]}">${DIM_LABELS[w.dimension]}</div>
-      <input class="translation-input" type="text"
-             id="trans-${idx}" placeholder="Traduction anglaise..."
-             autocomplete="off" spellcheck="false">
-      <div class="confidence-row">
-        <span>Confiance&nbsp;:</span>
-        <label><input type="radio" name="conf-${idx}" value="1"> 1 — Peu sûr·e·x</label>
-        <label><input type="radio" name="conf-${idx}" value="2"> 2 — Assez sûr·e·x</label>
-        <label><input type="radio" name="conf-${idx}" value="3"> 3 — Très sûr·e·x</label>
-      </div>
-    `;
-    div.dataset.french    = w.french;
-    div.dataset.dimension = w.dimension;
-    div.dataset.idx       = idx;
-    container.appendChild(div);
+// ══════════════════════════════════════════════
+// SENTENCES 
+// (generated by build_sentence_js.py)
+// ══════════════════════════════════════════════
+// ── Sentence state ────────────────────────
+const ALL_SENTENCES = [
+  {
+    id:            "3780_story_8_sent_77",
+    story_id:      "3780_story_8",
+    sentence_id:   77,
+    category:      "audvis",
+    text:          `Dans un petit village, le conteur local décida d'organiser un concert spécial mêlant musique et narration.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.2927,
+    oral_mean:     -0.0395,
+    internal_mean: -0.1041,
+    audvis_mean:   0.5871,
+  },
+  {
+    id:            "3780_story_8_sent_78",
+    story_id:      "3780_story_8",
+    sentence_id:   78,
+    category:      "audvis",
+    text:          `Le guitariste, le violoniste et le bassiste formèrent un orchestre accompagné d’une percussion et de tambour pour donner la cadence.`,
+    n_lsn_words:   10,
+    motor_mean:    0.3468,
+    oral_mean:     -0.4891,
+    internal_mean: -0.1779,
+    audvis_mean:   0.8251,
+  },
+  {
+    id:            "3780_story_8_sent_79",
+    story_id:      "3780_story_8",
+    sentence_id:   79,
+    category:      "audvis",
+    text:          `Leur voix claire captivait les enfants et adultes venus en grand nombre.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.3241,
+    oral_mean:     0.0476,
+    internal_mean: -0.0694,
+    audvis_mean:   0.486,
+  },
+  {
+    id:            "3780_story_8_sent_80",
+    story_id:      "3780_story_8",
+    sentence_id:   80,
+    category:      "audvis",
+    text:          `À travers des contes, fables et mythe du folklore local, le narrateur réussit à divertir son public.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.5533,
+    oral_mean:     0.186,
+    internal_mean: -0.3701,
+    audvis_mean:   0.9531,
+  },
+  {
+    id:            "3780_story_8_sent_81",
+    story_id:      "3780_story_8",
+    sentence_id:   81,
+    category:      "audvis",
+    text:          `Sa prononciation parfaite et sa maîtrise de la grammaire et de la linguistique rendaient chaque parole magique.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.6509,
+    oral_mean:     0.2026,
+    internal_mean: -0.4893,
+    audvis_mean:   -0.169,
+  },
+  {
+    id:            "3780_story_8_sent_82",
+    story_id:      "3780_story_8",
+    sentence_id:   82,
+    category:      "audvis",
+    text:          `Les chansons et la conversation se mêlaient dans un dialogue harmonieux, transformant la simple communication en véritable fête.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.6885,
+    oral_mean:     0.4089,
+    internal_mean: -0.3328,
+    audvis_mean:   0.4424,
+  },
+  {
+    id:            "3780_story_8_sent_83",
+    story_id:      "3780_story_8",
+    sentence_id:   83,
+    category:      "audvis",
+    text:          `Au fil de la soirée, un jeune rappeur du village surprend tout le monde en proposant un remix original, mêlant rap et jazz avec des éléments audio modernes.`,
+    n_lsn_words:   15,
+    motor_mean:    0.0293,
+    oral_mean:     0.2452,
+    internal_mean: -0.1849,
+    audvis_mean:   0.4299,
+  },
+  {
+    id:            "3780_story_8_sent_84",
+    story_id:      "3780_story_8",
+    sentence_id:   84,
+    category:      "audvis",
+    text:          `Son hymne joyeux fit rire l'assemblée et permit d'apaiser d'anciennes disputes entre familles.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.2702,
+    oral_mean:     0.161,
+    internal_mean: 0.2945,
+    audvis_mean:   0.55,
+  },
+  {
+    id:            "3780_story_8_sent_85",
+    story_id:      "3780_story_8",
+    sentence_id:   85,
+    category:      "audvis",
+    text:          `Même quand une alarme retentit au loin, personne ne se laissa troubler par ce bruit - le message de paix était plus fort que tous les cris.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.2601,
+    oral_mean:     0.002,
+    internal_mean: -0.1009,
+    audvis_mean:   0.2946,
+  },
+  {
+    id:            "3780_story_8_sent_86",
+    story_id:      "3780_story_8",
+    sentence_id:   86,
+    category:      "audvis",
+    text:          `L'orateur principal conclut la soirée par une proclamation chaleureuse, invitant tous à perpétuer cette tradition.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.3614,
+    oral_mean:     0.1145,
+    internal_mean: -0.1091,
+    audvis_mean:   0.0793,
+  },
+  {
+    id:            "3780_story_8_sent_87",
+    story_id:      "3780_story_8",
+    sentence_id:   87,
+    category:      "audvis",
+    text:          `Le verdict fut unanime : cette nouvelle forme d'art avait réussi à former une communauté unie.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.309,
+    oral_mean:     -0.273,
+    internal_mean: -0.4861,
+    audvis_mean:   0.9035,
+  },
+  {
+    id:            "3780_story_8_sent_88",
+    story_id:      "3780_story_8",
+    sentence_id:   88,
+    category:      "audvis",
+    text:          `Désormais, ces histoires seraient commentées, traduites en d'autres langues, et diffusées à la radio pour briser l'isolement d'autres villages.`,
+    n_lsn_words:   13,
+    motor_mean:    -0.3996,
+    oral_mean:     0.0156,
+    internal_mean: -0.5,
+    audvis_mean:   0.2028,
+  },
+  {
+    id:            "3780_story_7_sent_55",
+    story_id:      "3780_story_7",
+    sentence_id:   55,
+    category:      "audvis",
+    text:          `Par un soir d'orage, un conteur passionné arriva dans un petit village pour donner un concert pour les enfants.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.1777,
+    oral_mean:     -0.1045,
+    internal_mean: -0.1401,
+    audvis_mean:   0.6319,
+  },
+  {
+    id:            "3780_story_7_sent_56",
+    story_id:      "3780_story_7",
+    sentence_id:   56,
+    category:      "audvis",
+    text:          `Avec sa guitare, son violoncelle et quelques instruments de percussion, il transforma la salle d'accueil en véritable orchestre vivant.`,
+    n_lsn_words:   9,
+    motor_mean:    0.3613,
+    oral_mean:     -0.306,
+    internal_mean: -0.1755,
+    audvis_mean:   0.7452,
+  },
+  {
+    id:            "3780_story_7_sent_57",
+    story_id:      "3780_story_7",
+    sentence_id:   57,
+    category:      "audvis",
+    text:          `Son message, transmis en chanson,  portait sur l'importance de la communication, du consentement et de l'information.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.1592,
+    oral_mean:     0.102,
+    internal_mean: -0.0974,
+    audvis_mean:   0.5926,
+  },
+  {
+    id:            "3780_story_7_sent_58",
+    story_id:      "3780_story_7",
+    sentence_id:   58,
+    category:      "audvis",
+    text:          `Entre chaque chanson, il faisait une petite narration, mélangeant fable, mythe et folklore, avec une touche humoristique qui faisait rire tout le monde.`,
+    n_lsn_words:   13,
+    motor_mean:    0.1845,
+    oral_mean:     0.5007,
+    internal_mean: 0.2045,
+    audvis_mean:   0.4883,
+  },
+  {
+    id:            "3780_story_7_sent_59",
+    story_id:      "3780_story_7",
+    sentence_id:   59,
+    category:      "audvis",
+    text:          `Il utilisait un langage riche en rimes, au phrasé clair et à la cadence envoûtante,, captivant l'attention du plus jeune enfant au plus vieux orateur.`,
+    n_lsn_words:   15,
+    motor_mean:    -0.3458,
+    oral_mean:     0.0465,
+    internal_mean: -0.1866,
+    audvis_mean:   0.1385,
+  },
+  {
+    id:            "3780_story_7_sent_60",
+    story_id:      "3780_story_7",
+    sentence_id:   60,
+    category:      "audvis",
+    text:          `À la fin du spectacle, un rappeur local, inspiré par ce qu'il venait d'entendre, demanda la permission de monter sur scène pour commenter à sa manière.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.5336,
+    oral_mean:     -0.1388,
+    internal_mean: -0.3517,
+    audvis_mean:   0.2904,
+  },
+  {
+    id:            "3780_story_7_sent_61",
+    story_id:      "3780_story_7",
+    sentence_id:   61,
+    category:      "audvis",
+    text:          `Avec son style rap unique, il fit un remix d'un ancien hymne, transformant les paroles en un puissant argument en faveur de la paix.`,
+    n_lsn_words:   11,
+    motor_mean:    -0.4191,
+    oral_mean:     0.1931,
+    internal_mean: -0.2326,
+    audvis_mean:   0.2179,
+  },
+  {
+    id:            "3780_story_7_sent_62",
+    story_id:      "3780_story_7",
+    sentence_id:   62,
+    category:      "audvis",
+    text:          `Le narrateur l'accompagnait à la guitare, créant une fusion surprenante entre conte traditionnel et musique moderne.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.138,
+    oral_mean:     0.0045,
+    internal_mean: -0.1958,
+    audvis_mean:   0.323,
+  },
+  {
+    id:            "3780_story_7_sent_63",
+    story_id:      "3780_story_7",
+    sentence_id:   63,
+    category:      "audvis",
+    text:          `Le public, ému, applaudit chaleureusement cette conversation artistique improvisée.`,
+    n_lsn_words:   6,
+    motor_mean:    0.0983,
+    oral_mean:     0.0996,
+    internal_mean: -0.0542,
+    audvis_mean:   0.5562,
+  },
+  {
+    id:            "3780_story_7_sent_64",
+    story_id:      "3780_story_7",
+    sentence_id:   64,
+    category:      "audvis",
+    text:          `Une vieille cloche du village sonna au loin, comme pour approuver cette belle discussion musicale.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.4394,
+    oral_mean:     -0.1981,
+    internal_mean: -0.4496,
+    audvis_mean:   0.5357,
+  },
+  {
+    id:            "3780_story_7_sent_65",
+    story_id:      "3780_story_7",
+    sentence_id:   65,
+    category:      "audvis",
+    text:          `Le conteur clôtura la soirée en expliquant que, parfois, une simple conversation verbale peut transformer un village entier.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.5565,
+    oral_mean:     -0.0658,
+    internal_mean: -0.4369,
+    audvis_mean:   -0.0605,
+  },
+  {
+    id:            "3780_story_7_sent_66",
+    story_id:      "3780_story_7",
+    sentence_id:   66,
+    category:      "audvis",
+    text:          `Tout le monde repartit avec un sourire et le cœur rempli de musique.`,
+    n_lsn_words:   5,
+    motor_mean:    0.294,
+    oral_mean:     0.9484,
+    internal_mean: 0.7183,
+    audvis_mean:   0.5753,
+  },
+  {
+    id:            "3780_story_9_sent_111",
+    story_id:      "3780_story_9",
+    sentence_id:   111,
+    category:      "audvis",
+    text:          `Dans un petit archipel méditerranéen, Maya, une jeune photographe sportive, vivait dans un ancien appartement transformé en studio.`,
+    n_lsn_words:   10,
+    motor_mean:    0.0349,
+    oral_mean:     -0.1333,
+    internal_mean: -0.2335,
+    audvis_mean:   0.2399,
+  },
+  {
+    id:            "3780_story_9_sent_112",
+    story_id:      "3780_story_9",
+    sentence_id:   112,
+    category:      "audvis",
+    text:          `Passionnée d'astronomie, elle passait ses nuits à capturer des images du ciel étoilé avec ses lunettes spécialisées, créant de magnifiques photos des nuages et constellations.`,
+    n_lsn_words:   14,
+    motor_mean:    -0.4192,
+    oral_mean:     -0.5002,
+    internal_mean: -0.5613,
+    audvis_mean:   0.2946,
+  },
+  {
+    id:            "3780_story_9_sent_113",
+    story_id:      "3780_story_9",
+    sentence_id:   113,
+    category:      "audvis",
+    text:          `Un matin, en explorant les rues du village, elle découvrit derrière un massif de pierres un vieux portail orné d'un dessin représentant une baleine entourée d'un triangle, d'un cercle et d'un ovale.`,
+    n_lsn_words:   14,
+    motor_mean:    0.1177,
+    oral_mean:     -0.3891,
+    internal_mean: -0.4752,
+    audvis_mean:   0.1632,
+  },
+  {
+    id:            "3780_story_9_sent_114",
+    story_id:      "3780_story_9",
+    sentence_id:   114,
+    category:      "audvis",
+    text:          `Intriguée, elle décida de lire dans le dictionnaire local la signification de ces symboles, et apprit qu'ils indiquaient l'emplacement d'une ancienne fontaine aux pouvoirs artistiques légendaires.`,
+    n_lsn_words:   11,
+    motor_mean:    -0.4354,
+    oral_mean:     -0.3004,
+    internal_mean: -0.4442,
+    audvis_mean:   0.3391,
+  },
+  {
+    id:            "3780_story_9_sent_115",
+    story_id:      "3780_story_9",
+    sentence_id:   115,
+    category:      "audvis",
+    text:          `Guidée par sa vision créative, Maya organisa avec la religieuse du village un festival d'illustration et de photographie.`,
+    n_lsn_words:   8,
+    motor_mean:    0.1034,
+    oral_mean:     -0.1566,
+    internal_mean: -0.4051,
+    audvis_mean:   0.5636,
+  },
+  {
+    id:            "3780_story_9_sent_116",
+    story_id:      "3780_story_9",
+    sentence_id:   116,
+    category:      "audvis",
+    text:          `Elles transformèrent le terrain autour de la fontaine en galerie à ciel ouvert, décorant les murs de miroirs, d'enseignes colorées et de portraits.`,
+    n_lsn_words:   9,
+    motor_mean:    0.1205,
+    oral_mean:     -0.6945,
+    internal_mean: -0.5529,
+    audvis_mean:   0.1694,
+  },
+  {
+    id:            "3780_story_9_sent_117",
+    story_id:      "3780_story_9",
+    sentence_id:   117,
+    category:      "audvis",
+    text:          `Des lampes et lanternes violettes illuminent les statues disposées dans les rues, créant une architecture visuellement attractive.`,
+    n_lsn_words:   7,
+    motor_mean:    0.2491,
+    oral_mean:     -0.5624,
+    internal_mean: -0.6902,
+    audvis_mean:   0.3575,
+  },
+  {
+    id:            "3780_story_9_sent_118",
+    story_id:      "3780_story_9",
+    sentence_id:   118,
+    category:      "audvis",
+    text:          `Les passagers des bateaux de croisière venaient désormais admirer cette île devenue célèbre pour sa transparence artistique, où papillons et abeilles voltigeaient entre les œuvres d'art.`,
+    n_lsn_words:   11,
+    motor_mean:    -0.2378,
+    oral_mean:     -0.2934,
+    internal_mean: -0.2058,
+    audvis_mean:   0.1553,
+  },
+  {
+    id:            "3780_story_9_sent_119",
+    story_id:      "3780_story_9",
+    sentence_id:   119,
+    category:      "audvis",
+    text:          `Le village prospéra grâce à ce projet proprement magique, transformant un lieu oublié en destination couleur de rêve pour tous les amateurs d'art et de photographie.`,
+    n_lsn_words:   13,
+    motor_mean:    -0.2552,
+    oral_mean:     -0.3556,
+    internal_mean: -0.2182,
+    audvis_mean:   0.1451,
+  },
+  {
+    id:            "6684_story_9_sent_111",
+    story_id:      "6684_story_9",
+    sentence_id:   111,
+    category:      "audvis",
+    text:          `Dans un petit archipel méditerranéen, Maya, une jeune photographe sportive, vivait dans un ancien appartement transformé en studio.`,
+    n_lsn_words:   10,
+    motor_mean:    0.0349,
+    oral_mean:     -0.1333,
+    internal_mean: -0.2335,
+    audvis_mean:   0.2399,
+  },
+  {
+    id:            "6684_story_9_sent_112",
+    story_id:      "6684_story_9",
+    sentence_id:   112,
+    category:      "audvis",
+    text:          `Passionnée d'astronomie, elle passait ses nuits à capturer des images du ciel étoilé avec ses lunettes spécialisées, créant de magnifiques photos des nuages et constellations.`,
+    n_lsn_words:   14,
+    motor_mean:    -0.4192,
+    oral_mean:     -0.5002,
+    internal_mean: -0.5613,
+    audvis_mean:   0.2946,
+  },
+  {
+    id:            "6684_story_9_sent_113",
+    story_id:      "6684_story_9",
+    sentence_id:   113,
+    category:      "audvis",
+    text:          `Un matin, en explorant les rues du village, elle découvrit derrière un massif de pierres un vieux portail orné d'un dessin représentant une baleine entourée d'un triangle, d'un cercle et d'un ovale.`,
+    n_lsn_words:   14,
+    motor_mean:    0.1177,
+    oral_mean:     -0.3891,
+    internal_mean: -0.4752,
+    audvis_mean:   0.1632,
+  },
+  {
+    id:            "6684_story_9_sent_114",
+    story_id:      "6684_story_9",
+    sentence_id:   114,
+    category:      "audvis",
+    text:          `Intriguée, elle décida de lire dans le dictionnaire local la signification de ces symboles, et apprit qu'ils indiquaient l'emplacement d'une ancienne fontaine aux pouvoirs artistiques légendaires.`,
+    n_lsn_words:   11,
+    motor_mean:    -0.4354,
+    oral_mean:     -0.3004,
+    internal_mean: -0.4442,
+    audvis_mean:   0.3391,
+  },
+  {
+    id:            "6684_story_9_sent_115",
+    story_id:      "6684_story_9",
+    sentence_id:   115,
+    category:      "audvis",
+    text:          `Guidée par sa vision créative, Maya organisa avec la religieuse du village un festival d'illustration et de photographie.`,
+    n_lsn_words:   8,
+    motor_mean:    0.1034,
+    oral_mean:     -0.1566,
+    internal_mean: -0.4051,
+    audvis_mean:   0.5636,
+  },
+  {
+    id:            "6684_story_9_sent_116",
+    story_id:      "6684_story_9",
+    sentence_id:   116,
+    category:      "audvis",
+    text:          `Elles transformèrent le terrain autour de la fontaine en galerie à ciel ouvert, décorant les murs de miroirs, d'enseignes colorées et de portraits.`,
+    n_lsn_words:   9,
+    motor_mean:    0.1205,
+    oral_mean:     -0.6945,
+    internal_mean: -0.5529,
+    audvis_mean:   0.1694,
+  },
+  {
+    id:            "6684_story_9_sent_117",
+    story_id:      "6684_story_9",
+    sentence_id:   117,
+    category:      "audvis",
+    text:          `Des lampes et lanternes violettes illuminent les statues disposées dans les rues, créant une architecture visuellement attractive.`,
+    n_lsn_words:   7,
+    motor_mean:    0.2491,
+    oral_mean:     -0.5624,
+    internal_mean: -0.6902,
+    audvis_mean:   0.3575,
+  },
+  {
+    id:            "6684_story_9_sent_118",
+    story_id:      "6684_story_9",
+    sentence_id:   118,
+    category:      "audvis",
+    text:          `Les passagers des bateaux de croisière venaient désormais admirer cette île devenue célèbre pour sa transparence artistique, où papillons et abeilles voltigeaient entre les œuvres d'art.`,
+    n_lsn_words:   11,
+    motor_mean:    -0.2378,
+    oral_mean:     -0.2934,
+    internal_mean: -0.2058,
+    audvis_mean:   0.1553,
+  },
+  {
+    id:            "6684_story_9_sent_119",
+    story_id:      "6684_story_9",
+    sentence_id:   119,
+    category:      "audvis",
+    text:          `Le village prospéra grâce à ce projet proprement magique, transformant un lieu oublié en destination couleur de rêve pour tous les amateurs d'art et de photographie.`,
+    n_lsn_words:   13,
+    motor_mean:    -0.2552,
+    oral_mean:     -0.3556,
+    internal_mean: -0.2182,
+    audvis_mean:   0.1451,
+  },
+  {
+    id:            "3780_story_30_sent_255",
+    story_id:      "3780_story_30",
+    sentence_id:   255,
+    category:      "internal",
+    text:          `Dans un village en altitude, vivait Élise, tourmentée par une profonde souffrance.`,
+    n_lsn_words:   4,
+    motor_mean:    -0.1274,
+    oral_mean:     -0.1497,
+    internal_mean: 0.9579,
+    audvis_mean:   0.1192,
+  },
+  {
+    id:            "3780_story_30_sent_256",
+    story_id:      "3780_story_30",
+    sentence_id:   256,
+    category:      "internal",
+    text:          `Sa grossesse avait été suivie d'une fracture complexe et d'une infection persistante qui l'avait laissée en état d'affaiblissement constant.`,
+    n_lsn_words:   8,
+    motor_mean:    0.2719,
+    oral_mean:     -0.1895,
+    internal_mean: 0.7147,
+    audvis_mean:   -0.2942,
+  },
+  {
+    id:            "3780_story_30_sent_257",
+    story_id:      "3780_story_30",
+    sentence_id:   257,
+    category:      "internal",
+    text:          `Ses nuits étaient hantées par des cauchemars, remplis de terreur et de panique, nourrissant une psychose latente.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.5362,
+    oral_mean:     0.0334,
+    internal_mean: 0.9233,
+    audvis_mean:   0.1027,
+  },
+  {
+    id:            "3780_story_30_sent_258",
+    story_id:      "3780_story_30",
+    sentence_id:   258,
+    category:      "internal",
+    text:          `Elle se sentait contrainte, confuse, et parfois même accro à cette agonie.`,
+    n_lsn_words:   6,
+    motor_mean:    -0.3956,
+    oral_mean:     0.219,
+    internal_mean: 0.5438,
+    audvis_mean:   -0.4221,
+  },
+  {
+    id:            "3780_story_30_sent_259",
+    story_id:      "3780_story_30",
+    sentence_id:   259,
+    category:      "internal",
+    text:          `Son envie de dormir sans fin, d'oublier tout ce douloureux passé, était une obsession.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.2161,
+    oral_mean:     -0.0347,
+    internal_mean: 1.1665,
+    audvis_mean:   -0.1194,
+  },
+  {
+    id:            "3780_story_30_sent_260",
+    story_id:      "3780_story_30",
+    sentence_id:   260,
+    category:      "internal",
+    text:          `Mais un instinct puissant, un vouloir inébranlable, la poussait à ne pas tenter de fuir complètement.`,
+    n_lsn_words:   9,
+    motor_mean:    0.1858,
+    oral_mean:     -0.0676,
+    internal_mean: 0.6323,
+    audvis_mean:   -0.3344,
+  },
+  {
+    id:            "3780_story_30_sent_261",
+    story_id:      "3780_story_30",
+    sentence_id:   261,
+    category:      "internal",
+    text:          `Un jour, cherchant à refroidir ses pensées, Élise rencontra Théo.`,
+    n_lsn_words:   3,
+    motor_mean:    0.1539,
+    oral_mean:     -0.2851,
+    internal_mean: 0.6418,
+    audvis_mean:   0.2685,
+  },
+  {
+    id:            "3780_story_30_sent_262",
+    story_id:      "3780_story_30",
+    sentence_id:   262,
+    category:      "internal",
+    text:          `Sa passion pour la botanique et son inspiration l'attirèrent.`,
+    n_lsn_words:   4,
+    motor_mean:    0.0063,
+    oral_mean:     0.3451,
+    internal_mean: 0.87,
+    audvis_mean:   0.0945,
+  },
+  {
+    id:            "3780_story_30_sent_263",
+    story_id:      "3780_story_30",
+    sentence_id:   263,
+    category:      "internal",
+    text:          `Il parlait de plantes nourrissantes et de l'empathie qu'il ressentait.`,
+    n_lsn_words:   3,
+    motor_mean:    -0.9355,
+    oral_mean:     0.7556,
+    internal_mean: 0.7004,
+    audvis_mean:   -0.0815,
+  },
+  {
+    id:            "3780_story_30_sent_265",
+    story_id:      "3780_story_30",
+    sentence_id:   265,
+    category:      "internal",
+    text:          `Ses bleus de l'âme commençaient à guérir.`,
+    n_lsn_words:   3,
+    motor_mean:    -0.4559,
+    oral_mean:     -0.4009,
+    internal_mean: 0.9739,
+    audvis_mean:   -0.7077,
+  },
+  {
+    id:            "3780_story_30_sent_266",
+    story_id:      "3780_story_30",
+    sentence_id:   266,
+    category:      "internal",
+    text:          `Leur humeur commune, positivement enjouée, fut marquée par des gags absurdes et des discussions sur la croyance en la guérison.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.5396,
+    oral_mean:     0.1778,
+    internal_mean: 0.7377,
+    audvis_mean:   0.1145,
+  },
+  {
+    id:            "3780_story_30_sent_267",
+    story_id:      "3780_story_30",
+    sentence_id:   267,
+    category:      "internal",
+    text:          `La jalousie n'avait aucune place dans leur affection mutuelle.`,
+    n_lsn_words:   4,
+    motor_mean:    -0.4101,
+    oral_mean:     -0.1421,
+    internal_mean: 0.4955,
+    audvis_mean:   -0.0065,
+  },
+  {
+    id:            "3780_story_30_sent_268",
+    story_id:      "3780_story_30",
+    sentence_id:   268,
+    category:      "internal",
+    text:          `Malgré la nostalgie de son passé, Élise retrouva espoir et un sentiment de justesse.`,
+    n_lsn_words:   5,
+    motor_mean:    -0.6973,
+    oral_mean:     0.0159,
+    internal_mean: 0.7105,
+    audvis_mean:   0.0215,
+  },
+  {
+    id:            "3780_story_30_sent_269",
+    story_id:      "3780_story_30",
+    sentence_id:   269,
+    category:      "internal",
+    text:          `Ce fut un bonheur simple mais une immense satisfaction, un amour sublime né de leur bravoure partagée.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.0778,
+    oral_mean:     0.0617,
+    internal_mean: 1.0282,
+    audvis_mean:   0.0015,
+  },
+  {
+    id:            "3780_story_26_sent_211",
+    story_id:      "3780_story_26",
+    sentence_id:   211,
+    category:      "internal",
+    text:          `Par une froide journée d’hiver, Éloi, un grimpeur expérimenté et ancien patineur artistique, sentait la morsure du climat.`,
+    n_lsn_words:   9,
+    motor_mean:    0.8573,
+    oral_mean:     0.1802,
+    internal_mean: 0.775,
+    audvis_mean:   0.0358,
+  },
+  {
+    id:            "3780_story_26_sent_212",
+    story_id:      "3780_story_26",
+    sentence_id:   212,
+    category:      "internal",
+    text:          `Vêtu d'un gilet thermique et d'un uniforme de montagne, il progressait sur les falaises.`,
+    n_lsn_words:   6,
+    motor_mean:    1.0988,
+    oral_mean:     -0.6476,
+    internal_mean: 0.5763,
+    audvis_mean:   -0.2972,
+  },
+  {
+    id:            "3780_story_26_sent_213",
+    story_id:      "3780_story_26",
+    sentence_id:   213,
+    category:      "internal",
+    text:          `Son positionnement précis et son mouvement fluide, hérités de son passé en gymnastique et en ballet, lui permettaient de plier son corps avec une grâce flexible.`,
+    n_lsn_words:   12,
+    motor_mean:    1.0488,
+    oral_mean:     -0.1207,
+    internal_mean: 0.8671,
+    audvis_mean:   0.0222,
+  },
+  {
+    id:            "3780_story_26_sent_214",
+    story_id:      "3780_story_26",
+    sentence_id:   214,
+    category:      "internal",
+    text:          `Soudain, il aperçut un chamois piégé dans une cuve naturelle, son dos visiblement blessé.`,
+    n_lsn_words:   8,
+    motor_mean:    0.6618,
+    oral_mean:     -0.1066,
+    internal_mean: 1.098,
+    audvis_mean:   -0.167,
+  },
+  {
+    id:            "3780_story_26_sent_215",
+    story_id:      "3780_story_26",
+    sentence_id:   215,
+    category:      "internal",
+    text:          `Sans hésiter, Éloi utilisa son expérience pour le hisser, improvisant un treuil.`,
+    n_lsn_words:   6,
+    motor_mean:    0.9143,
+    oral_mean:     0.0257,
+    internal_mean: 0.5133,
+    audvis_mean:   -0.1652,
+  },
+  {
+    id:            "3780_story_26_sent_216",
+    story_id:      "3780_story_26",
+    sentence_id:   216,
+    category:      "internal",
+    text:          `Le sauvetage, bien que difficile, fut une preuve de sa force musculaire et de sa volonté de faire le bien dans le monde.`,
+    n_lsn_words:   10,
+    motor_mean:    0.828,
+    oral_mean:     0.3197,
+    internal_mean: 1.0202,
+    audvis_mean:   0.148,
+  },
+  {
+    id:            "3780_story_26_sent_217",
+    story_id:      "3780_story_26",
+    sentence_id:   217,
+    category:      "internal",
+    text:          `Éloi, devenu un travailleur respecté de la montagne, portait souvent des costumes adaptés à chaque situation, mais aussi parfois une robe plus décontractée lorsqu'il était "chez lui".`,
+    n_lsn_words:   11,
+    motor_mean:    0.3901,
+    oral_mean:     -0.3556,
+    internal_mean: 0.4089,
+    audvis_mean:   -0.3047,
+  },
+  {
+    id:            "3780_story_26_sent_218",
+    story_id:      "3780_story_26",
+    sentence_id:   218,
+    category:      "internal",
+    text:          `Il racontait comment il avait toujours ressenti un lien intime avec la nature, soulignant l'importance de sentir chaque organe de son corps pour survivre en milieu extrême, du foie au poumon, du rein à la rate.`,
+    n_lsn_words:   18,
+    motor_mean:    0.068,
+    oral_mean:     0.1062,
+    internal_mean: 0.9672,
+    audvis_mean:   -0.4968,
+  },
+  {
+    id:            "3780_story_26_sent_219",
+    story_id:      "3780_story_26",
+    sentence_id:   219,
+    category:      "internal",
+    text:          `Grâce à ses exploits, il fut invité à enseigner l'art de la pose et de la posture pour le sauvetage, et même à rivaliser amicalement en judo ou à nager lors de festivals aquatiques, montrant sa capacité à lutter et à faire des pompes.`,
+    n_lsn_words:   18,
+    motor_mean:    0.9961,
+    oral_mean:     -0.0753,
+    internal_mean: 0.8846,
+    audvis_mean:   0.0484,
+  },
+  {
+    id:            "3780_story_26_sent_220",
+    story_id:      "3780_story_26",
+    sentence_id:   220,
+    category:      "internal",
+    text:          `Son corps, qu'il considérait comme son temple, n'avait jamais été aussi fort, ni sa vie aussi riche et pleine de sens, loin de toute attaque du cancer ou du vieillissement prématuré.`,
+    n_lsn_words:   15,
+    motor_mean:    0.0471,
+    oral_mean:     0.0932,
+    internal_mean: 0.4559,
+    audvis_mean:   -0.2193,
+  },
+  {
+    id:            "3780_story_25_sent_186",
+    story_id:      "3780_story_25",
+    sentence_id:   186,
+    category:      "internal",
+    text:          `Par un hiver glacial, un jeune grimpeur passionné rêvait de rivaliser avec les meilleurs athlètes olympiques.`,
+    n_lsn_words:   8,
+    motor_mean:    0.8189,
+    oral_mean:     -0.0174,
+    internal_mean: 0.9981,
+    audvis_mean:   0.1523,
+  },
+  {
+    id:            "3780_story_25_sent_187",
+    story_id:      "3780_story_25",
+    sentence_id:   187,
+    category:      "internal",
+    text:          `Chaque matin, il enfilait son uniforme de sport, renforçait ses muscles par des pompes, puis partait s’entraîner physiquement dans les montagnes.`,
+    n_lsn_words:   10,
+    motor_mean:    0.8358,
+    oral_mean:     -0.2949,
+    internal_mean: 0.6761,
+    audvis_mean:   -0.2171,
+  },
+  {
+    id:            "3780_story_25_sent_188",
+    story_id:      "3780_story_25",
+    sentence_id:   188,
+    category:      "internal",
+    text:          `Son positionnement sur les parois était d’une précision acrobatique, et malgré les douleurs au dos et au ventre, il ne cessait de plier ses limites.`,
+    n_lsn_words:   9,
+    motor_mean:    0.9425,
+    oral_mean:     -0.3836,
+    internal_mean: 1.19,
+    audvis_mean:   -0.404,
+  },
+  {
+    id:            "3780_story_25_sent_189",
+    story_id:      "3780_story_25",
+    sentence_id:   189,
+    category:      "internal",
+    text:          `Inspiré par la gymnastique et le judo, il s’entraînait avec discipline, son sein gonflé d’espoir.`,
+    n_lsn_words:   8,
+    motor_mean:    0.1984,
+    oral_mean:     -0.2824,
+    internal_mean: 0.7635,
+    audvis_mean:   -0.3191,
+  },
+  {
+    id:            "3780_story_25_sent_190",
+    story_id:      "3780_story_25",
+    sentence_id:   190,
+    category:      "internal",
+    text:          `Il avait un corps flexible et fort, même si le climat rude menaçait parfois sa santé.`,
+    n_lsn_words:   9,
+    motor_mean:    0.6989,
+    oral_mean:     0.0794,
+    internal_mean: 1.0082,
+    audvis_mean:   -0.0717,
+  },
+  {
+    id:            "3780_story_25_sent_191",
+    story_id:      "3780_story_25",
+    sentence_id:   191,
+    category:      "internal",
+    text:          `Un jour, victime d’une attaque virale au poumon, il faillit mourir, mais il choisit de survivre, soutenu par son organe de volonté et sa foi en son rêve.`,
+    n_lsn_words:   13,
+    motor_mean:    -0.0239,
+    oral_mean:     -0.0058,
+    internal_mean: 1.0556,
+    audvis_mean:   -0.0452,
+  },
+  {
+    id:            "3780_story_25_sent_192",
+    story_id:      "3780_story_25",
+    sentence_id:   192,
+    category:      "internal",
+    text:          `Quelques mois plus tard, guéri, il participa à une grande compétition de grimpe en salle, un événement aquatique surprise clôturait les épreuves.`,
+    n_lsn_words:   7,
+    motor_mean:    0.1523,
+    oral_mean:     -0.21,
+    internal_mean: 0.212,
+    audvis_mean:   -0.1079,
+  },
+  {
+    id:            "3780_story_25_sent_193",
+    story_id:      "3780_story_25",
+    sentence_id:   193,
+    category:      "internal",
+    text:          `Vêtu d'une tenue audacieuse, presque sexy, il montra un mouvement fluide en natation puis en surf, avant les épreuves musculaires.`,
+    n_lsn_words:   12,
+    motor_mean:    1.2744,
+    oral_mean:     0.0095,
+    internal_mean: 1.1142,
+    audvis_mean:   0.1072,
+  },
+  {
+    id:            "3780_story_25_sent_194",
+    story_id:      "3780_story_25",
+    sentence_id:   194,
+    category:      "internal",
+    text:          `La foule, assise sur des chaises, applaudissait sa posture parfaite et son regard déterminé.`,
+    n_lsn_words:   7,
+    motor_mean:    0.3723,
+    oral_mean:     -0.3629,
+    internal_mean: 0.2748,
+    audvis_mean:   -0.0141,
+  },
+  {
+    id:            "3780_story_25_sent_195",
+    story_id:      "3780_story_25",
+    sentence_id:   195,
+    category:      "internal",
+    text:          `Lorsqu’il monta sur le podium, il se souvint de ses jours sombres sur son lit d’hôpital, de ses planches d'entraînement bricolées, et de son gilet trempé de sueur.`,
+    n_lsn_words:   12,
+    motor_mean:    0.7389,
+    oral_mean:     -0.4158,
+    internal_mean: 0.3898,
+    audvis_mean:   -0.0721,
+  },
+  {
+    id:            "3780_story_25_sent_196",
+    story_id:      "3780_story_25",
+    sentence_id:   196,
+    category:      "internal",
+    text:          `Ce n’était pas qu’une victoire : c’était une naissance, un retour à la vie.`,
+    n_lsn_words:   5,
+    motor_mean:    0.2682,
+    oral_mean:     0.2464,
+    internal_mean: 0.8517,
+    audvis_mean:   0.3026,
+  },
+  {
+    id:            "3780_story_25_sent_197",
+    story_id:      "3780_story_25",
+    sentence_id:   197,
+    category:      "internal",
+    text:          `Il portait dans sa chair, dans chaque pose, la preuve que même un travailleur simple peut atteindre les sommets du monde s’il croit assez fort en lui.`,
+    n_lsn_words:   13,
+    motor_mean:    0.7482,
+    oral_mean:     0.142,
+    internal_mean: 0.499,
+    audvis_mean:   0.0169,
+  },
+  {
+    id:            "6684_story_17_sent_224",
+    story_id:      "6684_story_17",
+    sentence_id:   224,
+    category:      "internal",
+    text:          `Camille était une gymnaste olympique passionnée qui consacrait sa vie au sport.`,
+    n_lsn_words:   6,
+    motor_mean:    0.6811,
+    oral_mean:     0.1894,
+    internal_mean: 0.9646,
+    audvis_mean:   0.4404,
+  },
+  {
+    id:            "6684_story_17_sent_225",
+    story_id:      "6684_story_17",
+    sentence_id:   225,
+    category:      "internal",
+    text:          `Chaque matin, elle enfilait son uniforme de gymnastique et se rendait à la salle d'entraînement où elle pratiquait ses mouvements acrobatiques.`,
+    n_lsn_words:   8,
+    motor_mean:    1.0783,
+    oral_mean:     -0.2817,
+    internal_mean: 0.94,
+    audvis_mean:   0.0638,
+  },
+  {
+    id:            "6684_story_17_sent_226",
+    story_id:      "6684_story_17",
+    sentence_id:   226,
+    category:      "internal",
+    text:          `Son muscle principal, le dos, était particulièrement flexible grâce à ses années d'exercice.`,
+    n_lsn_words:   8,
+    motor_mean:    0.7466,
+    oral_mean:     -0.3932,
+    internal_mean: 0.9878,
+    audvis_mean:   -0.5279,
+  },
+  {
+    id:            "6684_story_17_sent_227",
+    story_id:      "6684_story_17",
+    sentence_id:   227,
+    category:      "internal",
+    text:          `Un jour d'hiver, alors qu'elle s'entraînait sur les planches, elle remarqua Lucas, un nageur professionnel qui utilisait la piscine aquatique adjacente.`,
+    n_lsn_words:   11,
+    motor_mean:    0.8006,
+    oral_mean:     -0.0845,
+    internal_mean: 0.4903,
+    audvis_mean:   -0.0732,
+  },
+  {
+    id:            "6684_story_17_sent_228",
+    story_id:      "6684_story_17",
+    sentence_id:   228,
+    category:      "internal",
+    text:          `Il portait un gilet de natation et sa posture dans l'eau était parfaite.`,
+    n_lsn_words:   6,
+    motor_mean:    1.3117,
+    oral_mean:     0.3059,
+    internal_mean: 1.4383,
+    audvis_mean:   -0.0805,
+  },
+  {
+    id:            "6684_story_17_sent_229",
+    story_id:      "6684_story_17",
+    sentence_id:   229,
+    category:      "internal",
+    text:          `Camille fut immédiatement attirée par sa force et sa détermination.`,
+    n_lsn_words:   4,
+    motor_mean:    0.3269,
+    oral_mean:     -0.1348,
+    internal_mean: 1.1353,
+    audvis_mean:   -0.2628,
+  },
+  {
+    id:            "6684_story_17_sent_230",
+    story_id:      "6684_story_17",
+    sentence_id:   230,
+    category:      "internal",
+    text:          `Leur première rencontre fut timide - elle était assise sur une chaise près de la piscine, observant sa technique de nage, quand il sortit de l'eau et vint lui parler.`,
+    n_lsn_words:   9,
+    motor_mean:    -0.0265,
+    oral_mean:     0.2961,
+    internal_mean: -0.0437,
+    audvis_mean:   0.5377,
+  },
+  {
+    id:            "6684_story_17_sent_231",
+    story_id:      "6684_story_17",
+    sentence_id:   231,
+    category:      "internal",
+    text:          `Au fil des semaines, leur romance s'épanouit.`,
+    n_lsn_words:   3,
+    motor_mean:    0.6435,
+    oral_mean:     0.174,
+    internal_mean: 0.6611,
+    audvis_mean:   0.0184,
+  },
+  {
+    id:            "6684_story_17_sent_232",
+    story_id:      "6684_story_17",
+    sentence_id:   232,
+    category:      "internal",
+    text:          `Lucas admirait la façon dont Camille pouvait plier son corps dans des poses impossibles, tandis qu'elle était fascinée par sa capacité à nager avec tant d'élégance.`,
+    n_lsn_words:   10,
+    motor_mean:    0.538,
+    oral_mean:     -0.1921,
+    internal_mean: 0.8483,
+    audvis_mean:   0.0567,
+  },
+  {
+    id:            "6684_story_17_sent_233",
+    story_id:      "6684_story_17",
+    sentence_id:   233,
+    category:      "internal",
+    text:          `Ils découvrirent qu'ils partageaient la même passion pour maintenir leur corps en forme - lui travaillant ses poumons et sa circulation cardiaque dans l'eau, elle développant chaque muscle avec ses routines.`,
+    n_lsn_words:   14,
+    motor_mean:    0.6074,
+    oral_mean:     0.1079,
+    internal_mean: 1.2036,
+    audvis_mean:   -0.2534,
+  },
+  {
+    id:            "6684_story_17_sent_234",
+    story_id:      "6684_story_17",
+    sentence_id:   234,
+    category:      "internal",
+    text:          `Ensemble, ils commencèrent à sentir que leur relation était plus qu'une simple attraction physique - c'était une connexion profonde basée sur leur amour commun du mouvement et de la discipline.`,
+    n_lsn_words:   12,
+    motor_mean:    0.577,
+    oral_mean:     0.0503,
+    internal_mean: 0.7252,
+    audvis_mean:   -0.1027,
+  },
+  {
+    id:            "6684_story_17_sent_235",
+    story_id:      "6684_story_17",
+    sentence_id:   235,
+    category:      "internal",
+    text:          `Un an plus tard, lors d'une compétition internationale où Camille participait au triathlon et Lucas aux épreuves de natation, ils se fiancèrent.`,
+    n_lsn_words:   6,
+    motor_mean:    0.7189,
+    oral_mean:     -0.037,
+    internal_mean: 0.8142,
+    audvis_mean:   -0.2021,
+  },
+  {
+    id:            "6684_story_17_sent_236",
+    story_id:      "6684_story_17",
+    sentence_id:   236,
+    category:      "internal",
+    text:          `Leur histoire d'amour, née dans le monde du sport, promettait un avenir radieux où ils continueraient à se soutenir dans leurs dans leurs passions respectives.`,
+    n_lsn_words:   9,
+    motor_mean:    0.2979,
+    oral_mean:     0.2545,
+    internal_mean: 0.7164,
+    audvis_mean:   0.2736,
+  },
+  {
+    id:            "3780_story_1_sent_67",
+    story_id:      "3780_story_1",
+    sentence_id:   67,
+    category:      "oral",
+    text:          `Par un matin de printemps, Marie découvrit dans son jardin que la floraison des tulipes et des lys avait transformé sa pelouse en paradis coloré.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.0276,
+    oral_mean:     0.1763,
+    internal_mean: -0.2611,
+    audvis_mean:   0.0847,
+  },
+  {
+    id:            "3780_story_1_sent_68",
+    story_id:      "3780_story_1",
+    sentence_id:   68,
+    category:      "oral",
+    text:          `Passionnée de gastronomie, elle décida de préparer un repas spécial avec du thym et des herbes fraîches de son potager.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.1632,
+    oral_mean:     1.8562,
+    internal_mean: 0.3578,
+    audvis_mean:   -0.4364,
+  },
+  {
+    id:            "3780_story_1_sent_69",
+    story_id:      "3780_story_1",
+    sentence_id:   69,
+    category:      "oral",
+    text:          `Elle concocta une délicieuse soupe de chou parfumée, accompagnée de pain frais de la boulangerie, de beurre et de fromage local.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.019,
+    oral_mean:     2.608,
+    internal_mean: -0.3881,
+    audvis_mean:   -0.4543,
+  },
+  {
+    id:            "3780_story_1_sent_70",
+    story_id:      "3780_story_1",
+    sentence_id:   70,
+    category:      "oral",
+    text:          `L'odeur qui s'échappait de sa cuisine attirant les voisins, elle ajouta une sauce à l'huile d'olive, du poivre, et même du saumon fumé qu'elle avait acheté au marché.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.1543,
+    oral_mean:     1.7608,
+    internal_mean: -0.4853,
+    audvis_mean:   -0.1125,
+  },
+  {
+    id:            "3780_story_1_sent_71",
+    story_id:      "3780_story_1",
+    sentence_id:   71,
+    category:      "oral",
+    text:          `Un verre de vin rouge et du jus d'orange frais complétaient ce festin, créant une ambiance chaleureuse où chaque chose avait du sens.`,
+    n_lsn_words:   13,
+    motor_mean:    0.128,
+    oral_mean:     1.3322,
+    internal_mean: 0.015,
+    audvis_mean:   -0.2084,
+  },
+  {
+    id:            "3780_story_1_sent_72",
+    story_id:      "3780_story_1",
+    sentence_id:   72,
+    category:      "oral",
+    text:          `L'après-midi, les personnes du village arrivèrent pour célébrer cette journée insolite.`,
+    n_lsn_words:   6,
+    motor_mean:    0.1864,
+    oral_mean:     0.3988,
+    internal_mean: 0.3525,
+    audvis_mean:   0.3786,
+  },
+  {
+    id:            "3780_story_1_sent_73",
+    story_id:      "3780_story_1",
+    sentence_id:   73,
+    category:      "oral",
+    text:          `Le boulanger apporta des pâtisseries au chocolat et au cacao, tandis que la brasserie locale offrait de l'ale artisanale et un soupçon de rhum pour les plus aventureux.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.0245,
+    oral_mean:     1.8639,
+    internal_mean: -0.0596,
+    audvis_mean:   -0.3442,
+  },
+  {
+    id:            "3780_story_1_sent_74",
+    story_id:      "3780_story_1",
+    sentence_id:   74,
+    category:      "oral",
+    text:          `Les enfants transformèrent le jardin en cirque improvisé, jouant près des fruits et des herbes qui embaumaient l'air.`,
+    n_lsn_words:   9,
+    motor_mean:    0.1222,
+    oral_mean:     1.084,
+    internal_mean: -0.1818,
+    audvis_mean:   -0.0142,
+  },
+  {
+    id:            "3780_story_1_sent_75",
+    story_id:      "3780_story_1",
+    sentence_id:   75,
+    category:      "oral",
+    text:          `On parlait d'environnement, de rejeter la pollution, les engrais chimiques, le diesel et le gaz, pour privilégier une vie plus saine.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.0406,
+    oral_mean:     1.0096,
+    internal_mean: 0.2525,
+    audvis_mean:   -0.0072,
+  },
+  {
+    id:            "3780_story_1_sent_76",
+    story_id:      "3780_story_1",
+    sentence_id:   76,
+    category:      "oral",
+    text:          `Contrairement aux souvenirs d'autrefois où tout sentait la cigarette, l'ammoniac et le tabac, cette existence culturelle renouvelée permettait à chacun de manger en paix, savourant chaque moment de bonheur simple et authentique.`,
+    n_lsn_words:   18,
+    motor_mean:    -0.2719,
+    oral_mean:     1.1326,
+    internal_mean: 0.225,
+    audvis_mean:   -0.0816,
+  },
+  {
+    id:            "6684_story_1_sent_66",
+    story_id:      "6684_story_1",
+    sentence_id:   66,
+    category:      "oral",
+    text:          `Par un matin de printemps, Marie découvrit dans son jardin que la floraison des tulipes et des lys avait transformé sa pelouse en paradis coloré.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.0276,
+    oral_mean:     0.1763,
+    internal_mean: -0.2611,
+    audvis_mean:   0.0847,
+  },
+  {
+    id:            "6684_story_1_sent_67",
+    story_id:      "6684_story_1",
+    sentence_id:   67,
+    category:      "oral",
+    text:          `Passionnée de gastronomie, elle décida de préparer un repas spécial avec du thym et des herbes fraîches de son potager.`,
+    n_lsn_words:   8,
+    motor_mean:    -0.1632,
+    oral_mean:     1.8562,
+    internal_mean: 0.3578,
+    audvis_mean:   -0.4364,
+  },
+  {
+    id:            "6684_story_1_sent_68",
+    story_id:      "6684_story_1",
+    sentence_id:   68,
+    category:      "oral",
+    text:          `Elle concocta une délicieuse soupe de chou parfumée, accompagnée de pain frais de la boulangerie, de beurre et de fromage local.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.019,
+    oral_mean:     2.608,
+    internal_mean: -0.3881,
+    audvis_mean:   -0.4543,
+  },
+  {
+    id:            "6684_story_1_sent_69",
+    story_id:      "6684_story_1",
+    sentence_id:   69,
+    category:      "oral",
+    text:          `L'odeur qui s'échappait de sa cuisine attirant les voisins, elle ajouta une sauce à l'huile d'olive, du poivre, et même du saumon fumé qu'elle avait acheté au marché.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.1543,
+    oral_mean:     1.7608,
+    internal_mean: -0.4853,
+    audvis_mean:   -0.1125,
+  },
+  {
+    id:            "6684_story_1_sent_70",
+    story_id:      "6684_story_1",
+    sentence_id:   70,
+    category:      "oral",
+    text:          `Un verre de vin rouge et du jus d'orange frais complétaient ce festin, créant une ambiance chaleureuse où chaque chose avait du sens.`,
+    n_lsn_words:   13,
+    motor_mean:    0.128,
+    oral_mean:     1.3322,
+    internal_mean: 0.015,
+    audvis_mean:   -0.2084,
+  },
+  {
+    id:            "6684_story_1_sent_71",
+    story_id:      "6684_story_1",
+    sentence_id:   71,
+    category:      "oral",
+    text:          `L'après-midi, les personnes du village arrivèrent pour célébrer cette journée insolite.`,
+    n_lsn_words:   6,
+    motor_mean:    0.1864,
+    oral_mean:     0.3988,
+    internal_mean: 0.3525,
+    audvis_mean:   0.3786,
+  },
+  {
+    id:            "6684_story_1_sent_72",
+    story_id:      "6684_story_1",
+    sentence_id:   72,
+    category:      "oral",
+    text:          `Le boulanger apporta des pâtisseries au chocolat et au cacao, tandis que la brasserie locale offrait de l'ale artisanale et un soupçon de rhum pour les plus aventureux.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.0245,
+    oral_mean:     1.8639,
+    internal_mean: -0.0596,
+    audvis_mean:   -0.3442,
+  },
+  {
+    id:            "6684_story_1_sent_73",
+    story_id:      "6684_story_1",
+    sentence_id:   73,
+    category:      "oral",
+    text:          `Les enfants transformèrent le jardin en cirque improvisé, jouant près des fruits et des herbes qui embaumaient l'air.`,
+    n_lsn_words:   9,
+    motor_mean:    0.1222,
+    oral_mean:     1.084,
+    internal_mean: -0.1818,
+    audvis_mean:   -0.0142,
+  },
+  {
+    id:            "6684_story_1_sent_74",
+    story_id:      "6684_story_1",
+    sentence_id:   74,
+    category:      "oral",
+    text:          `On parlait d'environnement, de rejeter la pollution, les engrais chimiques, le diesel et le gaz, pour privilégier une vie plus saine.`,
+    n_lsn_words:   10,
+    motor_mean:    -0.0406,
+    oral_mean:     1.0096,
+    internal_mean: 0.2525,
+    audvis_mean:   -0.0072,
+  },
+  {
+    id:            "6684_story_1_sent_75",
+    story_id:      "6684_story_1",
+    sentence_id:   75,
+    category:      "oral",
+    text:          `Contrairement aux souvenirs d'autrefois où tout sentait la cigarette, l'ammoniac et le tabac, cette existence culturelle renouvelée permettait à chacun de manger en paix, savourant chaque moment de bonheur simple et authentique.`,
+    n_lsn_words:   18,
+    motor_mean:    -0.2719,
+    oral_mean:     1.1326,
+    internal_mean: 0.225,
+    audvis_mean:   -0.0816,
+  },
+  {
+    id:            "6684_story_2_sent_46",
+    story_id:      "6684_story_2",
+    sentence_id:   46,
+    category:      "oral",
+    text:          `Par une belle journée de printemps, dans un jardin luxuriant près d'un ancien marais, un petit restaurant familial célébrait la gastronomie locale et l'environnement.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.006,
+    oral_mean:     0.6028,
+    internal_mean: 0.0058,
+    audvis_mean:   0.0768,
+  },
+  {
+    id:            "6684_story_2_sent_47",
+    story_id:      "6684_story_2",
+    sentence_id:   47,
+    category:      "oral",
+    text:          `Le boulanger passionné préparait du pain croustillant au thym, tandis que dans la brasserie voisine, on brassait une boisson artisanale à base d'orange et d'herbes sauvages.`,
+    n_lsn_words:   14,
+    motor_mean:    0.0429,
+    oral_mean:     1.8204,
+    internal_mean: -0.4505,
+    audvis_mean:   -0.2781,
+  },
+  {
+    id:            "6684_story_2_sent_48",
+    story_id:      "6684_story_2",
+    sentence_id:   48,
+    category:      "oral",
+    text:          `Le chef, connu pour sa cuisine insolite, concoctait une soupe de saumon fumé avec de l'huile d'olive parfumée et un soupçon de poivre.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.3499,
+    oral_mean:     1.7003,
+    internal_mean: -0.3844,
+    audvis_mean:   -0.1712,
+  },
+  {
+    id:            "6684_story_2_sent_49",
+    story_id:      "6684_story_2",
+    sentence_id:   49,
+    category:      "oral",
+    text:          `En dessert, un moelleux au chocolat noir et cacao avec une pointe de safran enchantait les papilles.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.2251,
+    oral_mean:     1.5912,
+    internal_mean: -0.5501,
+    audvis_mean:   -0.4201,
+  },
+  {
+    id:            "6684_story_2_sent_50",
+    story_id:      "6684_story_2",
+    sentence_id:   50,
+    category:      "oral",
+    text:          `Une douce odeur flottait dans l'air, mêlant fruit, herbe et beurre, éveillant les souvenirs des floraisons passées.`,
+    n_lsn_words:   9,
+    motor_mean:    0.2291,
+    oral_mean:     1.5204,
+    internal_mean: -0.1047,
+    audvis_mean:   -0.2308,
+  },
+  {
+    id:            "6684_story_2_sent_51",
+    story_id:      "6684_story_2",
+    sentence_id:   51,
+    category:      "oral",
+    text:          `À l'extérieur, sur la pelouse parsemée de tulipes, des personnes riaient autour d'une dégustation de vin, de rhum vieux et d'ale locale.`,
+    n_lsn_words:   12,
+    motor_mean:    0.0544,
+    oral_mean:     1.3654,
+    internal_mean: -0.1017,
+    audvis_mean:   -0.2953,
+  },
+  {
+    id:            "6684_story_2_sent_52",
+    story_id:      "6684_story_2",
+    sentence_id:   52,
+    category:      "oral",
+    text:          `Des enfants couraient en reprenant leur souffle, insouciants, près d'une ancienne grange transformée en centre éducatif sur la réduction du carbone et les dangers des produits chimiques comme l'ammoniac ou les engrais industriels.`,
+    n_lsn_words:   18,
+    motor_mean:    -0.234,
+    oral_mean:     0.3667,
+    internal_mean: -0.3929,
+    audvis_mean:   -0.2575,
+  },
+  {
+    id:            "6684_story_2_sent_53",
+    story_id:      "6684_story_2",
+    sentence_id:   53,
+    category:      "oral",
+    text:          `Malgré les défis de la pollution moderne, le village avait su créer un équilibre permanent entre modernité et traditions.`,
+    n_lsn_words:   9,
+    motor_mean:    0.0213,
+    oral_mean:     -0.0031,
+    internal_mean: 0.0025,
+    audvis_mean:   -0.0864,
+  },
+  {
+    id:            "6684_story_2_sent_54",
+    story_id:      "6684_story_2",
+    sentence_id:   54,
+    category:      "oral",
+    text:          `Cette existence harmonieuse, cette vie plus attirante, où chacun sentait une connexion profonde avec la nature et le patrimoine culturel, représentait un véritable havre de paix dans le cirque du monde moderne.`,
+    n_lsn_words:   16,
+    motor_mean:    -0.0278,
+    oral_mean:     0.7016,
+    internal_mean: 0.2566,
+    audvis_mean:   0.2616,
+  },
+  {
+    id:            "3780_story_2_sent_46",
+    story_id:      "3780_story_2",
+    sentence_id:   46,
+    category:      "oral",
+    text:          `Par une belle journée de printemps, dans un jardin luxuriant près d'un ancien marais, un petit restaurant familial célébrait la gastronomie locale et l'environnement.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.006,
+    oral_mean:     0.6028,
+    internal_mean: 0.0058,
+    audvis_mean:   0.0768,
+  },
+  {
+    id:            "3780_story_2_sent_47",
+    story_id:      "3780_story_2",
+    sentence_id:   47,
+    category:      "oral",
+    text:          `Le boulanger passionné préparait du pain croustillant au thym, tandis que dans la brasserie voisine, on brassait une boisson artisanale à base d'orange et d'herbes sauvages.`,
+    n_lsn_words:   14,
+    motor_mean:    0.0429,
+    oral_mean:     1.8204,
+    internal_mean: -0.4505,
+    audvis_mean:   -0.2781,
+  },
+  {
+    id:            "3780_story_2_sent_48",
+    story_id:      "3780_story_2",
+    sentence_id:   48,
+    category:      "oral",
+    text:          `Le chef, connu pour sa cuisine insolite, concoctait une soupe de saumon fumé avec de l'huile d'olive parfumée et un soupçon de poivre.`,
+    n_lsn_words:   12,
+    motor_mean:    -0.3499,
+    oral_mean:     1.7003,
+    internal_mean: -0.3844,
+    audvis_mean:   -0.1712,
+  },
+  {
+    id:            "3780_story_2_sent_49",
+    story_id:      "3780_story_2",
+    sentence_id:   49,
+    category:      "oral",
+    text:          `En dessert, un moelleux au chocolat noir et cacao avec une pointe de safran enchantait les papilles.`,
+    n_lsn_words:   7,
+    motor_mean:    -0.2251,
+    oral_mean:     1.5912,
+    internal_mean: -0.5501,
+    audvis_mean:   -0.4201,
+  },
+  {
+    id:            "3780_story_2_sent_50",
+    story_id:      "3780_story_2",
+    sentence_id:   50,
+    category:      "oral",
+    text:          `Une douce odeur flottait dans l'air, mêlant fruit, herbe et beurre, éveillant les souvenirs des floraisons passées.`,
+    n_lsn_words:   9,
+    motor_mean:    0.2291,
+    oral_mean:     1.5204,
+    internal_mean: -0.1047,
+    audvis_mean:   -0.2308,
+  },
+  {
+    id:            "3780_story_2_sent_51",
+    story_id:      "3780_story_2",
+    sentence_id:   51,
+    category:      "oral",
+    text:          `À l'extérieur, sur la pelouse parsemée de tulipes, des personnes riaient autour d'une dégustation de vin, de rhum vieux et d'ale locale.`,
+    n_lsn_words:   12,
+    motor_mean:    0.0544,
+    oral_mean:     1.3654,
+    internal_mean: -0.1017,
+    audvis_mean:   -0.2953,
+  },
+  {
+    id:            "3780_story_2_sent_52",
+    story_id:      "3780_story_2",
+    sentence_id:   52,
+    category:      "oral",
+    text:          `Des enfants couraient en reprenant leur souffle, insouciants, près d'une ancienne grange transformée en centre éducatif sur la réduction du carbone et les dangers des produits chimiques comme l'ammoniac ou les engrais industriels.`,
+    n_lsn_words:   18,
+    motor_mean:    -0.234,
+    oral_mean:     0.3667,
+    internal_mean: -0.3929,
+    audvis_mean:   -0.2575,
+  },
+  {
+    id:            "3780_story_2_sent_53",
+    story_id:      "3780_story_2",
+    sentence_id:   53,
+    category:      "oral",
+    text:          `Malgré les défis de la pollution moderne, le village avait su créer un équilibre permanent entre modernité et traditions.`,
+    n_lsn_words:   9,
+    motor_mean:    0.0213,
+    oral_mean:     -0.0031,
+    internal_mean: 0.0025,
+    audvis_mean:   -0.0864,
+  },
+  {
+    id:            "3780_story_2_sent_54",
+    story_id:      "3780_story_2",
+    sentence_id:   54,
+    category:      "oral",
+    text:          `Cette existence harmonieuse, cette vie plus attirante, où chacun sentait une connexion profonde avec la nature et le patrimoine culturel, représentait un véritable havre de paix dans le cirque du monde moderne.`,
+    n_lsn_words:   16,
+    motor_mean:    -0.0278,
+    oral_mean:     0.7016,
+    internal_mean: 0.2566,
+    audvis_mean:   0.2616,
+  },
+  {
+    id:            "3780_story_3_sent_0",
+    story_id:      "3780_story_3",
+    sentence_id:   0,
+    category:      "motor",
+    text:          `Par une chaude journée d'été, Jean se promenait au marché, admirant les bijoux scintillants et les rouleaux de tissu velours, soyeux et colorés.`,
+    n_lsn_words:   7,
+    motor_mean:    0.5213,
+    oral_mean:     -0.3783,
+    internal_mean: -0.4119,
+    audvis_mean:   -0.2446,
+  },
+  {
+    id:            "3780_story_3_sent_1",
+    story_id:      "3780_story_3",
+    sentence_id:   1,
+    category:      "motor",
+    text:          `Il s'arrêta devant un stand où une femme aux cheveux retenus par un bouton en perle vendait un vase fait main posé sur un tapis usé.`,
+    n_lsn_words:   12,
+    motor_mean:    0.8265,
+    oral_mean:     -0.3147,
+    internal_mean: -0.1706,
+    audvis_mean:   -0.1582,
+  },
+  {
+    id:            "3780_story_3_sent_2",
+    story_id:      "3780_story_3",
+    sentence_id:   2,
+    category:      "motor",
+    text:          `La surface de ses créations était douce au contact - elle travaillait avec des matériaux fragiles comme la craie, la poudre et le bambou, qu'elle renforçait grâce à un liant secret et un procédé thermique unique.`,
+    n_lsn_words:   14,
+    motor_mean:    0.7381,
+    oral_mean:     -0.0573,
+    internal_mean: 0.0064,
+    audvis_mean:   -0.4595,
+  },
+  {
+    id:            "3780_story_3_sent_3",
+    story_id:      "3780_story_3",
+    sentence_id:   3,
+    category:      "motor",
+    text:          `Physiquement attiré par son art et sa passion, Jean lui acheta un petit pistolet à eau décoratif en forme de sabre, qu'elle enveloppa dans du papier textile.`,
+    n_lsn_words:   12,
+    motor_mean:    1.0139,
+    oral_mean:     0.0065,
+    internal_mean: 0.1624,
+    audvis_mean:   0.1286,
+  },
+  {
+    id:            "3780_story_3_sent_4",
+    story_id:      "3780_story_3",
+    sentence_id:   4,
+    category:      "motor",
+    text:          `Plus tard, ils se retrouvèrent au bord d'un lac pour nager.`,
+    n_lsn_words:   3,
+    motor_mean:    0.8088,
+    oral_mean:     -0.079,
+    internal_mean: 0.2843,
+    audvis_mean:   -0.3168,
+  },
+  {
+    id:            "3780_story_3_sent_5",
+    story_id:      "3780_story_3",
+    sentence_id:   5,
+    category:      "motor",
+    text:          `Jean plongea, appréciant la fraîcheur contre sa peau, pendant que la jeune femme posait une serviette sur une chaise en bois, ses bottes de cuir abandonnées à côté.`,
+    n_lsn_words:   11,
+    motor_mean:    1.0198,
+    oral_mean:     0.0339,
+    internal_mean: 0.4116,
+    audvis_mean:   -0.0477,
+  },
+  {
+    id:            "3780_story_3_sent_6",
+    story_id:      "3780_story_3",
+    sentence_id:   6,
+    category:      "motor",
+    text:          `Ils rirent en se poussant dans l'eau, leurs cheveux trempés formant des mèches folles.`,
+    n_lsn_words:   7,
+    motor_mean:    0.8924,
+    oral_mean:     -0.0553,
+    internal_mean: -0.0564,
+    audvis_mean:   0.1243,
+  },
+  {
+    id:            "3780_story_3_sent_7",
+    story_id:      "3780_story_3",
+    sentence_id:   7,
+    category:      "motor",
+    text:          `De retour chez Jean, ils partagèrent un bain chaud, utilisant une brosse flexible pour enlever le sable de leurs coudes, genoux et poignets.`,
+    n_lsn_words:   11,
+    motor_mean:    1.4509,
+    oral_mean:     -0.2299,
+    internal_mean: 0.2443,
+    audvis_mean:   -0.3406,
+  },
+  {
+    id:            "3780_story_3_sent_8",
+    story_id:      "3780_story_3",
+    sentence_id:   8,
+    category:      "motor",
+    text:          `Ce fut un moment de tendresse touchant, leurs doigts entrelacés, la chaleur s'infiltrant jusqu'à leur ossature.`,
+    n_lsn_words:   7,
+    motor_mean:    1.274,
+    oral_mean:     -0.2812,
+    internal_mean: 0.4528,
+    audvis_mean:   -0.7628,
+  },
+  {
+    id:            "3780_story_3_sent_9",
+    story_id:      "3780_story_3",
+    sentence_id:   9,
+    category:      "motor",
+    text:          `Quand elle lui donna un baiser timide en touchant son cou de sa main, il sut qu'une belle romance venait de commencer.`,
+    n_lsn_words:   9,
+    motor_mean:    0.655,
+    oral_mean:     0.0616,
+    internal_mean: 0.4612,
+    audvis_mean:   -0.1267,
+  },
+  {
+    id:            "6684_story_3_sent_0",
+    story_id:      "6684_story_3",
+    sentence_id:   0,
+    category:      "motor",
+    text:          `Par une chaude journée d'été, Jean se promenait au marché, admirant les bijoux scintillants et les rouleaux de tissu velours, soyeux et colorés.`,
+    n_lsn_words:   7,
+    motor_mean:    0.5213,
+    oral_mean:     -0.3783,
+    internal_mean: -0.4119,
+    audvis_mean:   -0.2446,
+  },
+  {
+    id:            "6684_story_3_sent_1",
+    story_id:      "6684_story_3",
+    sentence_id:   1,
+    category:      "motor",
+    text:          `Il s'arrêta devant un stand où une femme aux cheveux retenus par un bouton en perle vendait un vase fait main posé sur un tapis usé.`,
+    n_lsn_words:   12,
+    motor_mean:    0.8265,
+    oral_mean:     -0.3147,
+    internal_mean: -0.1706,
+    audvis_mean:   -0.1582,
+  },
+  {
+    id:            "6684_story_3_sent_2",
+    story_id:      "6684_story_3",
+    sentence_id:   2,
+    category:      "motor",
+    text:          `La surface de ses créations était douce au contact - elle travaillait avec des matériaux fragiles comme la craie, la poudre et le bambou, qu'elle renforçait grâce à un liant secret et un procédé thermique unique.`,
+    n_lsn_words:   14,
+    motor_mean:    0.7381,
+    oral_mean:     -0.0573,
+    internal_mean: 0.0064,
+    audvis_mean:   -0.4595,
+  },
+  {
+    id:            "6684_story_3_sent_3",
+    story_id:      "6684_story_3",
+    sentence_id:   3,
+    category:      "motor",
+    text:          `Physiquement attiré par son art et sa passion, Jean lui acheta un petit pistolet à eau décoratif en forme de sabre, qu'elle enveloppa dans du papier textile.`,
+    n_lsn_words:   12,
+    motor_mean:    1.0139,
+    oral_mean:     0.0065,
+    internal_mean: 0.1624,
+    audvis_mean:   0.1286,
+  },
+  {
+    id:            "6684_story_3_sent_4",
+    story_id:      "6684_story_3",
+    sentence_id:   4,
+    category:      "motor",
+    text:          `Plus tard, ils se retrouvèrent au bord d'un lac pour nager.`,
+    n_lsn_words:   3,
+    motor_mean:    0.8088,
+    oral_mean:     -0.079,
+    internal_mean: 0.2843,
+    audvis_mean:   -0.3168,
+  },
+  {
+    id:            "6684_story_3_sent_5",
+    story_id:      "6684_story_3",
+    sentence_id:   5,
+    category:      "motor",
+    text:          `Jean plongea, appréciant la fraîcheur contre sa peau, pendant que la jeune femme posait une serviette sur une chaise en bois, ses bottes de cuir abandonnées à côté.`,
+    n_lsn_words:   11,
+    motor_mean:    1.0198,
+    oral_mean:     0.0339,
+    internal_mean: 0.4116,
+    audvis_mean:   -0.0477,
+  },
+  {
+    id:            "6684_story_3_sent_6",
+    story_id:      "6684_story_3",
+    sentence_id:   6,
+    category:      "motor",
+    text:          `Ils rirent en se poussant dans l'eau, leurs cheveux trempés formant des mèches folles.`,
+    n_lsn_words:   7,
+    motor_mean:    0.8924,
+    oral_mean:     -0.0553,
+    internal_mean: -0.0564,
+    audvis_mean:   0.1243,
+  },
+  {
+    id:            "6684_story_3_sent_7",
+    story_id:      "6684_story_3",
+    sentence_id:   7,
+    category:      "motor",
+    text:          `De retour chez Jean, ils partagèrent un bain chaud, utilisant une brosse flexible pour enlever le sable de leurs coudes, genoux et poignets.`,
+    n_lsn_words:   11,
+    motor_mean:    1.4509,
+    oral_mean:     -0.2299,
+    internal_mean: 0.2443,
+    audvis_mean:   -0.3406,
+  },
+  {
+    id:            "6684_story_3_sent_8",
+    story_id:      "6684_story_3",
+    sentence_id:   8,
+    category:      "motor",
+    text:          `Ce fut un moment de tendresse touchant, leurs doigts entrelacés, la chaleur s'infiltrant jusqu'à leur ossature.`,
+    n_lsn_words:   7,
+    motor_mean:    1.274,
+    oral_mean:     -0.2812,
+    internal_mean: 0.4528,
+    audvis_mean:   -0.7628,
+  },
+  {
+    id:            "6684_story_3_sent_9",
+    story_id:      "6684_story_3",
+    sentence_id:   9,
+    category:      "motor",
+    text:          `Quand elle lui donna un baiser timide en touchant son cou de sa main, il sut qu'une belle romance venait de commencer.`,
+    n_lsn_words:   9,
+    motor_mean:    0.655,
+    oral_mean:     0.0616,
+    internal_mean: 0.4612,
+    audvis_mean:   -0.1267,
+  },
+  {
+    id:            "6684_story_14_sent_128",
+    story_id:      "6684_story_14",
+    sentence_id:   128,
+    category:      "motor",
+    text:          `Laure était une nageuse passionnée qui rêvait de participer à un triathlon.`,
+    n_lsn_words:   4,
+    motor_mean:    1.0312,
+    oral_mean:     0.1001,
+    internal_mean: 0.972,
+    audvis_mean:   -0.0056,
+  },
+  {
+    id:            "6684_story_14_sent_129",
+    story_id:      "6684_story_14",
+    sentence_id:   129,
+    category:      "motor",
+    text:          `Malheureusement, une blessure au genou l'avait affaiblie et elle se sentait fatiguée chaque fois qu'elle tentait de courir.`,
+    n_lsn_words:   8,
+    motor_mean:    0.3697,
+    oral_mean:     -0.0863,
+    internal_mean: 0.608,
+    audvis_mean:   -0.3076,
+  },
+  {
+    id:            "6684_story_14_sent_130",
+    story_id:      "6684_story_14",
+    sentence_id:   130,
+    category:      "motor",
+    text:          `Son médecin lui avait conseillé de diversifier son entraînement avec des activités aquatiques comme la natation et des exercices de coordination.`,
+    n_lsn_words:   9,
+    motor_mean:    1.1738,
+    oral_mean:     -0.0386,
+    internal_mean: 1.2873,
+    audvis_mean:   0.2911,
+  },
+  {
+    id:            "6684_story_14_sent_131",
+    story_id:      "6684_story_14",
+    sentence_id:   131,
+    category:      "motor",
+    text:          `Un jour, en explorant les rues de sa ville à pied, elle découvrit un centre sportif qui proposait des cours de danse, de judo et même d'alpinisme sur mur artificiel.`,
+    n_lsn_words:   14,
+    motor_mean:    0.7382,
+    oral_mean:     -0.25,
+    internal_mean: 0.1432,
+    audvis_mean:   0.0777,
+  },
+  {
+    id:            "6684_story_14_sent_132",
+    story_id:      "6684_story_14",
+    sentence_id:   132,
+    category:      "motor",
+    text:          `Thomas, un grimpeur expérimenté, portait un jean et des bottes de montagne, et il l'observait depuis le plancher du gymnase.`,
+    n_lsn_words:   8,
+    motor_mean:    1.2271,
+    oral_mean:     -0.2532,
+    internal_mean: 0.1551,
+    audvis_mean:   0.1764,
+  },
+  {
+    id:            "6684_story_14_sent_133",
+    story_id:      "6684_story_14",
+    sentence_id:   133,
+    category:      "motor",
+    text:          `Thomas s'approcha d'elle avec un sourire et lui proposa de l'aider à retrouver sa force musculaire.`,
+    n_lsn_words:   3,
+    motor_mean:    1.1806,
+    oral_mean:     -0.1143,
+    internal_mean: 1.5333,
+    audvis_mean:   -0.191,
+  },
+  {
+    id:            "6684_story_14_sent_134",
+    story_id:      "6684_story_14",
+    sentence_id:   134,
+    category:      "motor",
+    text:          `Ensemble, ils commencèrent par marcher sur le sentier qui menait à la montagne, puis graduellement elle put grimper les escaliers sans douleur.`,
+    n_lsn_words:   8,
+    motor_mean:    1.2516,
+    oral_mean:     -0.5512,
+    internal_mean: 0.6297,
+    audvis_mean:   -0.2847,
+  },
+  {
+    id:            "6684_story_14_sent_135",
+    story_id:      "6684_story_14",
+    sentence_id:   135,
+    category:      "motor",
+    text:          `Après plusieurs semaines d'entraînement, incluant des séances de boxe, du tennis et même du golf pour améliorer son positionnement, Laure se sentait flexible et en pleine forme.`,
+    n_lsn_words:   13,
+    motor_mean:    0.8788,
+    oral_mean:     -0.1215,
+    internal_mean: 0.3367,
+    audvis_mean:   0.0892,
+  },
+  {
+    id:            "6684_story_14_sent_136",
+    story_id:      "6684_story_14",
+    sentence_id:   136,
+    category:      "motor",
+    text:          `Le jour du marathon aquatique, elle réussit à nager, marcher et courir sans problème, remportant la première place dans sa catégorie.`,
+    n_lsn_words:   11,
+    motor_mean:    0.5121,
+    oral_mean:     -0.2306,
+    internal_mean: 0.305,
+    audvis_mean:   -0.0168,
+  },
+  {
+    id:            "6684_story_14_sent_137",
+    story_id:      "6684_story_14",
+    sentence_id:   137,
+    category:      "motor",
+    text:          `Thomas était assis dans les gradins, applaudissant sa victoire, et ce voyage sportif avait non seulement guéri sa jambe mais aussi fait naître un bel amour entre eux.`,
+    n_lsn_words:   12,
+    motor_mean:    0.3478,
+    oral_mean:     -0.1966,
+    internal_mean: 0.2582,
+    audvis_mean:   -0.2867,
+  },
+  {
+    id:            "6684_story_13_sent_153",
+    story_id:      "6684_story_13",
+    sentence_id:   153,
+    category:      "motor",
+    text:          `Jean était un travailleur passionné de sport, mais il se sentait affaibli et fatigué après des mois de travail intensif.`,
+    n_lsn_words:   9,
+    motor_mean:    0.4256,
+    oral_mean:     0.1285,
+    internal_mean: 0.7209,
+    audvis_mean:   0.0727,
+  },
+  {
+    id:            "6684_story_13_sent_154",
+    story_id:      "6684_story_13",
+    sentence_id:   154,
+    category:      "motor",
+    text:          `Son médecin lui conseilla de partir en voyage pour explorer de nouveaux horizons.`,
+    n_lsn_words:   7,
+    motor_mean:    0.1745,
+    oral_mean:     0.0659,
+    internal_mean: 0.0069,
+    audvis_mean:   0.4511,
+  },
+  {
+    id:            "6684_story_13_sent_155",
+    story_id:      "6684_story_13",
+    sentence_id:   155,
+    category:      "motor",
+    text:          `Il décida de suivre un programme de remise en forme dans les montagnes des Alpes.`,
+    n_lsn_words:   6,
+    motor_mean:    -0.0764,
+    oral_mean:     -0.4812,
+    internal_mean: -0.152,
+    audvis_mean:   -0.1253,
+  },
+  {
+    id:            "6684_story_13_sent_156",
+    story_id:      "6684_story_13",
+    sentence_id:   156,
+    category:      "motor",
+    text:          `Chaque matin, il enfilait son jean et ses bottes pour marcher sur les sentiers rocheux.`,
+    n_lsn_words:   5,
+    motor_mean:    1.1231,
+    oral_mean:     -0.5732,
+    internal_mean: -0.3677,
+    audvis_mean:   -0.3864,
+  },
+  {
+    id:            "6684_story_13_sent_157",
+    story_id:      "6684_story_13",
+    sentence_id:   157,
+    category:      "motor",
+    text:          `L'air froid de la montagne lui donnait une nouvelle force.`,
+    n_lsn_words:   5,
+    motor_mean:    1.3784,
+    oral_mean:     0.1553,
+    internal_mean: 1.3352,
+    audvis_mean:   0.1981,
+  },
+  {
+    id:            "6684_story_13_sent_158",
+    story_id:      "6684_story_13",
+    sentence_id:   158,
+    category:      "motor",
+    text:          `Il commença par de simples exercices de coordination, puis progressa vers l'escalier naturel des rochers.`,
+    n_lsn_words:   6,
+    motor_mean:    1.1746,
+    oral_mean:     -0.0437,
+    internal_mean: 0.7958,
+    audvis_mean:   0.1619,
+  },
+  {
+    id:            "6684_story_13_sent_159",
+    story_id:      "6684_story_13",
+    sentence_id:   159,
+    category:      "motor",
+    text:          `Malgré une petite entorse au genou le troisième jour, il continua à avancer avec détermination.`,
+    n_lsn_words:   7,
+    motor_mean:    0.416,
+    oral_mean:     -0.5844,
+    internal_mean: 0.1512,
+    audvis_mean:   -0.3736,
+  },
+  {
+    id:            "6684_story_13_sent_160",
+    story_id:      "6684_story_13",
+    sentence_id:   160,
+    category:      "motor",
+    text:          `Au fil des semaines, Jean découvrit sa passion pour l'alpinisme et le surf sur les lacs aquatiques de la région.`,
+    n_lsn_words:   8,
+    motor_mean:    1.0048,
+    oral_mean:     -0.0523,
+    internal_mean: 0.5061,
+    audvis_mean:   -0.0051,
+  },
+  {
+    id:            "6684_story_13_sent_161",
+    story_id:      "6684_story_13",
+    sentence_id:   161,
+    category:      "motor",
+    text:          `Il apprit à grimper, à nager avec plus de rythme, et même à pratiquer le ballet aquatique dans les cuves naturelles.`,
+    n_lsn_words:   10,
+    motor_mean:    1.0824,
+    oral_mean:     -0.0066,
+    internal_mean: 0.7385,
+    audvis_mean:   0.0986,
+  },
+  {
+    id:            "6684_story_13_sent_162",
+    story_id:      "6684_story_13",
+    sentence_id:   162,
+    category:      "motor",
+    text:          `Son muscle de la cuisse et de la jambe se renforçaient chaque jour.`,
+    n_lsn_words:   5,
+    motor_mean:    1.539,
+    oral_mean:     -0.4126,
+    internal_mean: 0.5268,
+    audvis_mean:   -0.5812,
+  },
+  {
+    id:            "6684_story_13_sent_163",
+    story_id:      "6684_story_13",
+    sentence_id:   163,
+    category:      "motor",
+    text:          `Il rencontra d'autres passionnés de natation, de tennis et de golf qui l'encouragèrent dans sa transformation.`,
+    n_lsn_words:   7,
+    motor_mean:    0.7139,
+    oral_mean:     -0.2603,
+    internal_mean: 0.5586,
+    audvis_mean:   0.0325,
+  },
+  {
+    id:            "6684_story_13_sent_164",
+    story_id:      "6684_story_13",
+    sentence_id:   164,
+    category:      "motor",
+    text:          `Quand il rentra chez lui après deux mois, Jean était devenu un grimpeur accompli et un nageur expérimenté.`,
+    n_lsn_words:   7,
+    motor_mean:    0.7125,
+    oral_mean:     -0.0855,
+    internal_mean: 0.5001,
+    audvis_mean:   -0.419,
+  },
+  {
+    id:            "6684_story_13_sent_165",
+    story_id:      "6684_story_13",
+    sentence_id:   165,
+    category:      "motor",
+    text:          `Il avait retrouvé sa joie de vivre et décida d'ouvrir une école de sport de montagne pour partager sa passion avec d'autres personnes fatiguées par la routine urbaine.`,
+    n_lsn_words:   12,
+    motor_mean:    0.4029,
+    oral_mean:     0.0461,
+    internal_mean: 0.3837,
+    audvis_mean:   0.391,
+  },
+  {
+    id:            "6684_story_13_sent_166",
+    story_id:      "6684_story_13",
+    sentence_id:   166,
+    category:      "motor",
+    text:          `Son voyage avait non seulement transformé son corps, mais aussi sa vie entière.`,
+    n_lsn_words:   8,
+    motor_mean:    0.265,
+    oral_mean:     0.2896,
+    internal_mean: 0.4613,
+    audvis_mean:   -0.1652,
+  },
+];
+const N_SENTENCES = 10;
+
+let participantSentences = [];
+let currentSentIdx       = 0;
+let sentenceResponses    = [];
+
+// ── Select sentences from UNSEEN selected stories ──
+function selectSentences(seenStoryIds) {
+  const seenSet = new Set(seenStoryIds);
+
+  // Get sentences from stories participant did NOT see
+  const unseenSents = ALL_SENTENCES.filter(
+    s => !seenSet.has(s.story_id)
+  );
+
+  // Stratified: ~2-3 per category
+  const byCat = {};
+  DIMS.forEach(d => byCat[d] = []);
+  unseenSents.forEach(s => {
+    if (byCat[s.category]) byCat[s.category].push(s);
   });
 
-  showScreen("translation");
+  let selected = [];
+  const perCat = Math.floor(N_SENTENCES / DIMS.length); // 2-3 each
+  DIMS.forEach(dim => {
+    const pool = shuffle(byCat[dim]);
+    selected.push(...pool.slice(0, perCat));
+  });
+
+  // Fill remaining slots randomly
+  while (selected.length < N_SENTENCES) {
+    const remaining = shuffle(unseenSents.filter(
+      s => !selected.find(sel => sel.id === s.id)
+    ));
+    if (!remaining.length) break;
+    selected.push(remaining[0]);
+  }
+
+  return shuffle(selected.slice(0, N_SENTENCES));
 }
 
-function collectTranslations() {
-  translationResults = [];
-  document.querySelectorAll(".translation-item").forEach(item => {
-    const idx   = item.dataset.idx;
-    const conf  = document.querySelector(`input[name="conf-${idx}"]:checked`);
-    translationResults.push({
-      french:     item.dataset.french,
-      dimension:  item.dataset.dimension,
-      translation: document.getElementById(`trans-${idx}`).value.trim(),
-      confidence: conf ? parseInt(conf.value) : null,
+// ── Build sentence Likerts ────────────────
+function buildSentLikerts() {
+  DIMS.forEach(dim => {
+    const container = document.getElementById(`sent-likert-${dim}`);
+    container.innerHTML = "";
+    for (let v = 1; v <= 5; v++) {
+      const lbl = document.createElement("label");
+      lbl.innerHTML = `
+        <input type="radio" name="sent-rating-${dim}" value="${v}">
+        <div class="likert-btn">${v}</div>
+      `;
+      container.appendChild(lbl);
+    }
+  });
+}
+
+// ── Start sentence rating ─────────────────
+function startSentenceRating() {
+  const seenIds = participantStories.map(s => s.id);
+  participantSentences = selectSentences(seenIds);
+  sentenceResponses    = participantSentences.map(s => ({
+    sentence_id:   s.id,
+    story_id:      s.story_id,
+    category:      s.category,
+    text:          s.text,
+    lsn_motor:     s.motor_mean,
+    lsn_oral:      s.oral_mean,
+    lsn_internal:  s.internal_mean,
+    lsn_audvis:    s.audvis_mean,
+    motor:    null, oral: null, internal: null, audvis: null,
+  }));
+  currentSentIdx = 0;
+  buildSentLikerts();
+  showScreen("sentences");
+  renderSentence();
+}
+
+// ── Render sentence ───────────────────────
+function renderSentence() {
+  const sent = participantSentences[currentSentIdx];
+  const n    = participantSentences.length;
+  const pct  = Math.round((currentSentIdx / n) * 100);
+
+  document.getElementById("sent-progress-fill").style.width  = pct + "%";
+  document.getElementById("sent-progress-label").textContent =
+    `Phrase ${currentSentIdx + 1} sur ${n}`;
+  document.getElementById("sentence-display").textContent = sent.text;
+
+  const saved = sentenceResponses[currentSentIdx];
+  DIMS.forEach(dim => {
+    document.querySelectorAll(`input[name="sent-rating-${dim}"]`).forEach(r => {
+      r.checked = saved[dim] !== null && parseInt(r.value) === saved[dim];
     });
   });
+
+  document.getElementById("sent-btn-prev").disabled = currentSentIdx === 0;
+  document.getElementById("sent-btn-next").textContent =
+    currentSentIdx === n - 1 ? "Terminer ✓" : "Suivant →";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function skipTranslation() { translationResults = []; submitAll(); }
+function saveSentRatings() {
+  DIMS.forEach(dim => {
+    const checked = document.querySelector(`input[name="sent-rating-${dim}"]:checked`);
+    sentenceResponses[currentSentIdx][dim] = checked ? parseInt(checked.value) : null;
+  });
+}
+
+function nextSentence() {
+  saveSentRatings();
+  const missing = DIMS.filter(d => sentenceResponses[currentSentIdx][d] === null);
+  if (missing.length > 0) {
+    alert("Merci de noter toutes les dimensions avant de continuer.");
+    return;
+  }
+  if (currentSentIdx < participantSentences.length - 1) {
+    currentSentIdx++;
+    renderSentence();
+  } else {
+    submitAll();
+  }
+}
+
+function prevSentence() {
+  saveSentRatings();
+  if (currentSentIdx > 0) { currentSentIdx--; renderSentence(); }
+}
 
 function submitAll() {
   collectTranslations();
@@ -1063,9 +3269,8 @@ function submitAll() {
     timestamp:        new Date().toISOString(),
     demographics,
     story_responses:  responses,
-    translation_check: translationResults,
+    sentence_responses: sentenceResponses,
   };
-
   // ── POST to Formspree ─────────────────────
 
   fetch("https://formspree.io/f/mqerlkrz", {
