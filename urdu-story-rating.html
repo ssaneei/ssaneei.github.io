@@ -519,7 +519,7 @@
   const codeBad = document.getElementById('codeBad');
   const ratingFieldset = document.getElementById('ratingFieldset');
   let assignedDocUrl = null;
-
+ 
   function checkCode(){
     const val = codeInput.value.trim();
     codeOk.classList.remove('ok');
@@ -537,14 +537,14 @@
     }
   }
   codeInput.addEventListener('input', checkCode);
-
+ 
   // Restore a previously entered code for this session, if any
   const savedCode = sessionStorage.getItem('participantCode');
   if (savedCode) {
     codeInput.value = savedCode;
     checkCode();
   }
-
+ 
   // Pick a story: use ?story=07 in the URL if given, otherwise pick one at random.
   // Random pick is stored in sessionStorage so a page refresh doesn't swap the story mid-response.
   const urlParams = new URLSearchParams(window.location.search);
@@ -560,39 +560,64 @@
       sessionStorage.setItem('chosenStoryId', chosenStory.id);
     }
   }
-
+ 
   const STORY_NAME = chosenStory.name;
   document.getElementById('storyAudio').src = chosenStory.audio;
   document.getElementById('storyName').textContent = STORY_NAME;
   document.getElementById('docNoteStoryName').textContent = STORY_NAME;
-
+ 
   // Reveal (and require) the notes field only when "Yes" is picked
   const weirdYes = document.getElementById('weirdYes');
   const weirdNo = document.getElementById('weirdNo');
   const weirdDetails = document.getElementById('weirdDetails');
   const weirdNotes = weirdDetails.querySelector('textarea[name="weird_notes"]');
-
+ 
   function setWeirdDetailsVisible(visible){
     weirdDetails.classList.toggle('show', visible);
     weirdNotes.required = visible;
   }
   weirdYes.addEventListener('change', () => setWeirdDetailsVisible(true));
   weirdNo.addEventListener('change', () => setWeirdDetailsVisible(false));
-
-  // Submit handling — replace with your real endpoint (fetch/POST) as needed
+ 
+  // Submit handling — posts to Formspree
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdenjwal"; 
+ 
   const form = document.getElementById('ratingForm');
   const status = document.getElementById('status');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+ 
     const data = Object.fromEntries(new FormData(form).entries());
     data.story_id = chosenStory.id;
     data.story_name = chosenStory.name;
     data.participant_code = codeInput.value.trim();
     data.assigned_doc = assignedDocUrl;
-    console.log('Story rating submitted:', data);
-    // TODO: send `data` to your backend/logging endpoint here.
-    status.style.display = 'inline';
-    form.querySelector('.submit').disabled = true;
+ 
+    const submitBtn = form.querySelector('.submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+ 
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+ 
+      if (response.ok) {
+        status.textContent = 'Thanks — your rating was recorded.';
+        status.style.color = 'var(--accent)';
+        status.style.display = 'inline';
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong sending your rating — please try again.';
+      status.style.color = 'var(--flag)';
+      status.style.display = 'inline';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit rating';
+    }
   });
 </script>
 </body>
