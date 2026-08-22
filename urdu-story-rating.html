@@ -499,7 +499,7 @@
  
   <div class="complete-card" id="completeCard">
     <h2>All done — thank you!</h2>
-    <p>You've rated all 20 stories. Your responses have been recorded.</p>
+    <p>You've rated all 20 stories and your responses have been submitted.</p>
   </div>
 </div>
  
@@ -524,6 +524,7 @@
     audio.currentTime = 0;
     audio.play();
   });
+ 
 
   // ---- Story list: fill in your real 20 stories here ----
   const STORIES = [
@@ -652,11 +653,15 @@
   weirdYes.addEventListener('change', () => setWeirdDetailsVisible(true));
   weirdNo.addEventListener('change', () => setWeirdDetailsVisible(false));
  
-  // Submit handling — posts to Formspree, then advances to the next story
+  // Submit handling — responses are collected locally as the participant goes,
+  // and only sent to Formspree ONCE, after the final (20th) story.
   const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdenjwal"; // <-- replace with your real endpoint
  
   const form = document.getElementById('ratingForm');
   const status = document.getElementById('status');
+ 
+  let allResponses = JSON.parse(sessionStorage.getItem('allResponses') || '[]');
+ 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
  
@@ -664,38 +669,53 @@
     data.story_id = chosenStory.id;
     data.story_name = chosenStory.name;
     data.story_position = `${currentIndex + 1} of ${STORIES.length}`;
-    data.participant_code = codeInput.value.trim();
-    data.assigned_doc = assignedDocUrl;
+ 
+    allResponses.push(data);
+    sessionStorage.setItem('allResponses', JSON.stringify(allResponses));
  
     const submitBtn = form.querySelector('.submit');
+    const isLastStory = (currentIndex + 1) >= STORIES.length;
+ 
+    if (!isLastStory) {
+      // Just move to the next story — nothing sent yet
+      currentIndex += 1;
+      sessionStorage.setItem('currentStoryIndex', String(currentIndex));
+      loadStory(currentIndex);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+ 
+    // Final story — send everything collected so far in one submission
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting…';
+    submitBtn.textContent = 'Submitting all ratings…';
  
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+          participant_code: codeInput.value.trim(),
+          assigned_doc: assignedDocUrl,
+          responses: allResponses
+        })
       });
  
       if (!response.ok) throw new Error('Submission failed');
  
+      sessionStorage.removeItem('allResponses');
       currentIndex += 1;
       sessionStorage.setItem('currentStoryIndex', String(currentIndex));
- 
-      if (currentIndex >= STORIES.length) {
-        document.getElementById('progressFill').style.width = '100%';
-        showComplete();
-      } else {
-        loadStory(currentIndex);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
+      document.getElementById('progressFill').style.width = '100%';
+      showComplete();
     } catch (err) {
-      status.textContent = 'Something went wrong sending your rating — please try again.';
+      // Roll back so the last response isn't double-added if they retry
+      allResponses.pop();
+      sessionStorage.setItem('allResponses', JSON.stringify(allResponses));
+      status.textContent = 'Something went wrong sending your ratings — please try again.';
       status.style.color = 'var(--flag)';
       status.style.display = 'inline';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit & next story';
+      submitBtn.textContent = 'Submit final rating';
     }
   });
  
