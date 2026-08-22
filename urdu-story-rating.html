@@ -60,7 +60,64 @@
     max-width:52ch;
   }
 
-  .waveform{width:100%;height:34px;margin-top:24px;display:block;}
+  .story-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:16px;
+    padding:7px 14px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border-radius:999px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+  }
+  .story-badge .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  /* Participant code gate */
+  .code-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:20px;
+  }
+  .code-card label{
+    display:block;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    margin-bottom:4px;
+  }
+  .code-card .step-sub{margin:2px 0 14px 0;}
+  .code-input-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  #participantCode{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:11px 14px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:16px;
+    letter-spacing:.05em;
+    width:140px;
+    color:var(--ink);
+  }
+  #participantCode:focus{outline:2px solid var(--accent); outline-offset:1px;}
+  .code-status{
+    font-size:13px;
+    font-weight:600;
+    display:none;
+  }
+  .code-status.ok{display:inline;color:var(--accent);}
+  .code-status.bad{display:inline;color:var(--flag);}
   .waveform rect{fill:var(--accent);opacity:.28;}
 
   /* Player card */
@@ -214,6 +271,50 @@
   }
   .timestamp-row span{font-size:13px;color:var(--ink-soft);}
 
+  /* Yes/No toggle */
+  .yesno{
+    display:flex;
+    gap:10px;
+    margin-left:26px;
+  }
+  .yesno input{
+    position:absolute;
+    opacity:0;
+    width:0;height:0;
+  }
+  .yesno-btn{
+    padding:9px 20px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    background:#FAFAF9;
+    transition:background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .yesno input:checked + .yesno-btn{
+    background:var(--flag);
+    border-color:var(--flag);
+    color:#fff;
+  }
+
+  /* Doc-comment note, revealed only when "Yes" is picked */
+  .docnote{
+    display:none;
+    margin:18px 0 0 26px;
+    padding:14px 16px;
+    border:1px solid var(--flag);
+    border-radius:10px;
+    background:var(--flag-soft);
+  }
+  .docnote.show{display:flex;}
+  .docnote{align-items:center; gap:10px;}
+  .docnote svg{flex-shrink:0; width:18px; height:18px; color:var(--flag);}
+  .docnote p{margin:0; font-size:14px; line-height:1.5; color:var(--ink);}
+  .docnote a{color:var(--flag); font-weight:600; text-decoration:underline;}
+
   /* Submit */
   .submit-row{
     margin-top:32px;
@@ -259,6 +360,7 @@
     <div class="eyebrow">Listening Study</div>
     <h1>Rate the story you just heard</h1>
     <p>Listen to the full clip before answering. You can replay it as many times as you like — there's no penalty for relistening.</p>
+    <div class="story-badge" id="storyBadge"><span class="dot"></span><span id="storyName">Story name</span></div>
     <svg class="waveform" viewBox="0 0 600 34" preserveAspectRatio="none" aria-hidden="true">
       <!-- decorative waveform, heights vary to suggest audio -->
       <g id="wf"></g>
@@ -270,11 +372,23 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
       Replay
     </button>
-    <audio id="storyAudio" controls src="YOUR_STORY_AUDIO_URL.mp3"></audio>
+    <audio id="storyAudio" controls></audio>
   </div>
-  <p class="replay-note">Replace <code>YOUR_STORY_AUDIO_URL.mp3</code> in the source with the actual story file. Swap the file per participant/session as needed.</p>
+  <p class="replay-note">Audio is chosen automatically per participant (or forced via <code>?story=07</code> in the URL). Fill in the real file paths and Google Doc links in the <code>STORIES</code> list in the script.</p>
+
+  <div class="code-card">
+    <label for="participantCode">Enter your participant code</label>
+    <p class="step-sub">This was given to you at the start of the session. It determines which doc you'll comment on.</p>
+    <div class="code-input-row">
+      <input type="text" id="participantCode" inputmode="numeric" maxlength="4" placeholder="e.g. 1592" autocomplete="off">
+      <span class="code-status ok" id="codeOk">✓ Code accepted</span>
+      <span class="code-status bad" id="codeBad">Code not recognized — check and try again</span>
+    </div>
+  </div>
 
   <form id="ratingForm">
+  <fieldset id="ratingFieldset" style="border:none;padding:0;margin:0;" disabled>
+
     <section class="step">
       <div class="step-head">
         <span class="step-num">01</span>
@@ -289,6 +403,8 @@
         <label><input type="radio" name="audio_natural" value="5"><span class="bar">5</span></label>
       </div>
       <div class="scale-labels"><span>Very unnatural</span><span>Very natural</span></div>
+      <p class="step-sub" style="margin-top:16px;">If it felt unnatural, what was it about? <em>(optional)</em></p>
+      <textarea name="audio_natural_notes" style="min-height:72px;" placeholder="e.g. The voice had a robotic clip at the end of sentences."></textarea>
     </section>
 
     <section class="step">
@@ -305,6 +421,8 @@
         <label><input type="radio" name="story_flow" value="5"><span class="bar">5</span></label>
       </div>
       <div class="scale-labels"><span>Very unnatural</span><span>Very natural</span></div>
+      <p class="step-sub" style="margin-top:16px;">If it felt unnatural, what was it about? <em>(optional)</em></p>
+      <textarea name="story_flow_notes" style="min-height:72px;" placeholder="e.g. The story jumped from the forest scene straight to the ending with no transition."></textarea>
     </section>
 
     <section class="step flag">
@@ -312,11 +430,25 @@
         <span class="step-num">03</span>
         <span class="step-title">Did anything feel off or weird?</span>
       </div>
-      <p class="step-sub">A strange word, a jump in the plot, a glitch in the audio — describe it, and note roughly where it happened if you can.</p>
-      <textarea name="weird_notes" placeholder="e.g. Around the middle, the narrator's tone suddenly changed and a character's name switched without explanation."></textarea>
-      <div class="timestamp-row">
-        <span>Approx. timestamp (optional)</span>
-        <input type="text" name="weird_timestamp" placeholder="e.g. 1:24">
+      <p class="step-sub">A strange word, a jump in the plot, a glitch in the audio — anything that broke the illusion.</p>
+
+      <div class="yesno" role="radiogroup" aria-label="Was anything weird">
+        <label><input type="radio" name="was_weird" value="no" id="weirdNo"><span class="yesno-btn">No, it was fine</span></label>
+        <label><input type="radio" name="was_weird" value="yes" id="weirdYes"><span class="yesno-btn">Yes, something was off</span></label>
+      </div>
+
+      <div id="weirdDetails" class="correction-block">
+        <p class="step-sub" style="margin:14px 0 12px 0;">Describe what felt wrong, and note roughly where it happened.</p>
+        <textarea name="weird_notes" placeholder="e.g. Around the middle, the narrator's tone suddenly changed and a character's name switched without explanation."></textarea>
+        <div class="timestamp-row">
+          <span>Approx. timestamp (optional)</span>
+          <input type="text" name="weird_timestamp" placeholder="e.g. 1:24">
+        </div>
+
+        <div class="docnote show" id="docNote">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          <p>Please also open the shared Google Doc, find the section for <strong id="docNoteStoryName">this story</strong>, and leave a comment directly on the line that felt weird. <a id="docLink" href="#" target="_blank" rel="noopener">Open the doc →</a></p>
+        </div>
       </div>
     </section>
 
@@ -325,6 +457,7 @@
       <span class="submit-status" id="status">Thanks — your rating was recorded.</span>
     </div>
 
+  </fieldset>
   </form>
 </div>
 
@@ -350,12 +483,112 @@
     audio.play();
   });
 
+  // ---- Story list: fill in your real 20 stories here ----
+  const STORIES = [
+    { id: "01", name: "Story 01 — The Lighthouse Keeper", audio: "audio/story_1.mp3" },
+    { id: "02", name: "Story 02 — ",                       audio: "audio/story_2.mp3" },
+    { id: "03", name: "Story 03 — ",                       audio: "audio/story_3.mp3" },
+    { id: "04", name: "Story 04 — ",                       audio: "audio/story_4.mp3" },
+    { id: "05", name: "Story 05 — ",                       audio: "audio/story_5.mp3" },
+    { id: "06", name: "Story 06 — ",                       audio: "audio/story_6.mp3" },
+    { id: "07", name: "Story 07 — ",                       audio: "audio/story_7.mp3" },
+    { id: "08", name: "Story 08 — ",                       audio: "audio/story_8.mp3" },
+    { id: "09", name: "Story 09 — ",                       audio: "audio/story_9.mp3" },
+    { id: "10", name: "Story 10 — ",                       audio: "audio/story_10.mp3" },
+    { id: "11", name: "Story 11 — ",                       audio: "audio/story_11.mp3" },
+    { id: "12", name: "Story 12 — ",                       audio: "audio/story_12.mp3" },
+    { id: "13", name: "Story 13 — ",                       audio: "audio/story_13.mp3" },
+    { id: "14", name: "Story 14 — ",                       audio: "audio/story_14.mp3" },
+    { id: "15", name: "Story 15 — ",                       audio: "audio/story_15.mp3" },
+    { id: "16", name: "Story 16 — ",                       audio: "audio/story_16.mp3" },
+    { id: "17", name: "Story 17 — ",                       audio: "audio/story_17.mp3" },
+    { id: "18", name: "Story 18 — ",                       audio: "audio/story_18.mp3" },
+    { id: "19", name: "Story 19 — ",                       audio: "audio/story_19.mp3" },
+    { id: "20", name: "Story 20 — ",                       audio: "audio/story_20.mp3" },
+  ];
+
+  // Three Google Docs, each unlocked by a specific participant code.
+  const CODE_TO_DOC = {
+    "1592": "https://docs.google.com/document/d/1wCkN04kPefE0tb5KWBXV7kaVVvVJIMkecyyQUu4yyMw/edit?usp=sharing",
+    "1673": "https://docs.google.com/document/d/1IRl6kl78nIaCzP3DU1QeseV2dUtSxPwSarJ5iYmvTGc/edit?usp=sharing",
+    "1455": "https://docs.google.com/document/d/1iT7QtavxmG6Fzvpsvs0REXSVp0T3gZN5__CrxAl6as8/edit?usp=sharing",
+  };
+
+  const codeInput = document.getElementById('participantCode');
+  const codeOk = document.getElementById('codeOk');
+  const codeBad = document.getElementById('codeBad');
+  const ratingFieldset = document.getElementById('ratingFieldset');
+  let assignedDocUrl = null;
+
+  function checkCode(){
+    const val = codeInput.value.trim();
+    codeOk.classList.remove('ok');
+    codeBad.classList.remove('bad');
+    if (CODE_TO_DOC[val]) {
+      assignedDocUrl = CODE_TO_DOC[val];
+      document.getElementById('docLink').href = assignedDocUrl;
+      codeOk.classList.add('ok');
+      ratingFieldset.disabled = false;
+      sessionStorage.setItem('participantCode', val);
+    } else {
+      assignedDocUrl = null;
+      ratingFieldset.disabled = true;
+      if (val.length > 0) codeBad.classList.add('bad');
+    }
+  }
+  codeInput.addEventListener('input', checkCode);
+
+  // Restore a previously entered code for this session, if any
+  const savedCode = sessionStorage.getItem('participantCode');
+  if (savedCode) {
+    codeInput.value = savedCode;
+    checkCode();
+  }
+
+  // Pick a story: use ?story=07 in the URL if given, otherwise pick one at random.
+  // Random pick is stored in sessionStorage so a page refresh doesn't swap the story mid-response.
+  const urlParams = new URLSearchParams(window.location.search);
+  const forcedId = urlParams.get('story');
+  let chosenStory;
+  if (forcedId) {
+    chosenStory = STORIES.find(s => s.id === forcedId.padStart(2, '0')) || STORIES[0];
+  } else {
+    const savedId = sessionStorage.getItem('chosenStoryId');
+    chosenStory = STORIES.find(s => s.id === savedId);
+    if (!chosenStory) {
+      chosenStory = STORIES[Math.floor(Math.random() * STORIES.length)];
+      sessionStorage.setItem('chosenStoryId', chosenStory.id);
+    }
+  }
+
+  const STORY_NAME = chosenStory.name;
+  document.getElementById('storyAudio').src = chosenStory.audio;
+  document.getElementById('storyName').textContent = STORY_NAME;
+  document.getElementById('docNoteStoryName').textContent = STORY_NAME;
+
+  // Reveal (and require) the notes field only when "Yes" is picked
+  const weirdYes = document.getElementById('weirdYes');
+  const weirdNo = document.getElementById('weirdNo');
+  const weirdDetails = document.getElementById('weirdDetails');
+  const weirdNotes = weirdDetails.querySelector('textarea[name="weird_notes"]');
+
+  function setWeirdDetailsVisible(visible){
+    weirdDetails.classList.toggle('show', visible);
+    weirdNotes.required = visible;
+  }
+  weirdYes.addEventListener('change', () => setWeirdDetailsVisible(true));
+  weirdNo.addEventListener('change', () => setWeirdDetailsVisible(false));
+
   // Submit handling — replace with your real endpoint (fetch/POST) as needed
   const form = document.getElementById('ratingForm');
   const status = document.getElementById('status');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
+    data.story_id = chosenStory.id;
+    data.story_name = chosenStory.name;
+    data.participant_code = codeInput.value.trim();
+    data.assigned_doc = assignedDocUrl;
     console.log('Story rating submitted:', data);
     // TODO: send `data` to your backend/logging endpoint here.
     status.style.display = 'inline';
