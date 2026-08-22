@@ -32,7 +32,7 @@
     margin:0 auto;
     padding:56px 20px 100px;
   }
-
+ 
   /* Header + waveform signature */
   header{margin-bottom:40px;}
   .eyebrow{
@@ -59,7 +59,7 @@
     margin:0;
     max-width:52ch;
   }
-
+ 
   .story-badge{
     display:inline-flex;
     align-items:center;
@@ -78,7 +78,43 @@
     border-radius:50%;
     background:var(--accent);
   }
-
+  .progress-track{
+    width:100%;
+    height:5px;
+    background:var(--accent-soft);
+    border-radius:999px;
+    margin-top:14px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--accent);
+    border-radius:999px;
+    transition:width .25s ease;
+    width:0%;
+  }
+ 
+  /* Completion screen */
+  .complete-card{
+    display:none;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:48px 32px;
+    text-align:center;
+  }
+  .complete-card.show{display:block;}
+  .complete-card h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:24px;
+    margin:0 0 10px;
+  }
+  .complete-card p{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0;
+  }
+ 
   /* Participant code gate */
   .code-card{
     background:var(--paper);
@@ -119,7 +155,7 @@
   .code-status.ok{display:inline;color:var(--accent);}
   .code-status.bad{display:inline;color:var(--flag);}
   .waveform rect{fill:var(--accent);opacity:.28;}
-
+ 
   /* Player card */
   .player{
     background:var(--paper);
@@ -155,7 +191,7 @@
     color:var(--ink-soft);
     margin-top:10px;
   }
-
+ 
   /* Sections */
   section.step{
     background:var(--paper);
@@ -187,7 +223,7 @@
     margin:2px 0 18px 26px;
     line-height:1.5;
   }
-
+ 
   /* Scale (waveform-bar rating) */
   .scale{
     display:flex;
@@ -236,7 +272,7 @@
     font-size:11.5px;
     color:var(--ink-soft);
   }
-
+ 
   /* Flag / weird moment step */
   .step.flag .step-num{color:var(--flag);}
   textarea{
@@ -254,7 +290,7 @@
   }
   textarea:focus{outline:2px solid var(--flag); outline-offset:1px; background:#fff;}
   textarea::placeholder{color:#9AA0A6;}
-
+ 
   .timestamp-row{
     display:flex;
     gap:10px;
@@ -270,7 +306,7 @@
     font-family:'Inter',sans-serif;
   }
   .timestamp-row span{font-size:13px;color:var(--ink-soft);}
-
+ 
   /* Yes/No toggle */
   .yesno{
     display:flex;
@@ -299,7 +335,7 @@
     border-color:var(--flag);
     color:#fff;
   }
-
+ 
   /* Doc-comment note, revealed only when "Yes" is picked */
   .docnote{
     display:none;
@@ -314,7 +350,7 @@
   .docnote svg{flex-shrink:0; width:18px; height:18px; color:var(--flag);}
   .docnote p{margin:0; font-size:14px; line-height:1.5; color:var(--ink);}
   .docnote a{color:var(--flag); font-weight:600; text-decoration:underline;}
-
+ 
   /* Submit */
   .submit-row{
     margin-top:32px;
@@ -341,13 +377,13 @@
     font-weight:500;
     display:none;
   }
-
+ 
   @media (max-width:480px){
     .scale{gap:5px;}
     .bar{font-size:11px;}
     .step-sub, textarea, .timestamp-row, .scale{margin-left:0;}
   }
-
+ 
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;}
   }
@@ -355,18 +391,19 @@
 </head>
 <body>
 <div class="wrap">
-
+ 
   <header>
     <div class="eyebrow">Listening Study</div>
     <h1>Rate the story you just heard</h1>
     <p>Listen to the full clip before answering. You can replay it as many times as you like — there's no penalty for relistening.</p>
     <div class="story-badge" id="storyBadge"><span class="dot"></span><span id="storyName">Story name</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <svg class="waveform" viewBox="0 0 600 34" preserveAspectRatio="none" aria-hidden="true">
       <!-- decorative waveform, heights vary to suggest audio -->
       <g id="wf"></g>
     </svg>
   </header>
-
+ 
   <div class="player">
     <button class="replay-btn" id="replayBtn" type="button">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
@@ -375,20 +412,20 @@
     <audio id="storyAudio" controls></audio>
   </div>
   <p class="replay-note">Audio is chosen automatically per participant (or forced via <code>?story=07</code> in the URL). Fill in the real file paths and Google Doc links in the <code>STORIES</code> list in the script.</p>
-
+ 
   <div class="code-card">
     <label for="participantCode">Enter your participant code</label>
     <p class="step-sub">This was given to you at the start of the session. It determines which doc you'll comment on.</p>
     <div class="code-input-row">
-      <input type="text" id="participantCode" inputmode="numeric" maxlength="4" placeholder="e.g. 1111" autocomplete="off">
+      <input type="text" id="participantCode" inputmode="numeric" maxlength="4" placeholder="e.g. 1592" autocomplete="off">
       <span class="code-status ok" id="codeOk">✓ Code accepted</span>
       <span class="code-status bad" id="codeBad">Code not recognized — check and try again</span>
     </div>
   </div>
-
+ 
   <form id="ratingForm">
   <fieldset id="ratingFieldset" style="border:none;padding:0;margin:0;" disabled>
-
+ 
     <section class="step">
       <div class="step-head">
         <span class="step-num">01</span>
@@ -406,7 +443,7 @@
       <p class="step-sub" style="margin-top:16px;">If it felt unnatural, what was it about? <em>(optional)</em></p>
       <textarea name="audio_natural_notes" style="min-height:72px;" placeholder="e.g. The voice had a robotic clip at the end of sentences."></textarea>
     </section>
-
+ 
     <section class="step">
       <div class="step-head">
         <span class="step-num">02</span>
@@ -424,19 +461,19 @@
       <p class="step-sub" style="margin-top:16px;">If it felt unnatural, what was it about? <em>(optional)</em></p>
       <textarea name="story_flow_notes" style="min-height:72px;" placeholder="e.g. The story jumped from the forest scene straight to the ending with no transition."></textarea>
     </section>
-
+ 
     <section class="step flag">
       <div class="step-head">
         <span class="step-num">03</span>
         <span class="step-title">Did anything feel off or weird?</span>
       </div>
       <p class="step-sub">A strange word, a jump in the plot, a glitch in the audio — anything that broke the illusion.</p>
-
+ 
       <div class="yesno" role="radiogroup" aria-label="Was anything weird">
         <label><input type="radio" name="was_weird" value="no" id="weirdNo"><span class="yesno-btn">No, it was fine</span></label>
         <label><input type="radio" name="was_weird" value="yes" id="weirdYes"><span class="yesno-btn">Yes, something was off</span></label>
       </div>
-
+ 
       <div id="weirdDetails" class="correction-block">
         <p class="step-sub" style="margin:14px 0 12px 0;">Describe what felt wrong, and note roughly where it happened.</p>
         <textarea name="weird_notes" placeholder="e.g. Around the middle, the narrator's tone suddenly changed and a character's name switched without explanation."></textarea>
@@ -444,23 +481,28 @@
           <span>Approx. timestamp (optional)</span>
           <input type="text" name="weird_timestamp" placeholder="e.g. 1:24">
         </div>
-
+ 
         <div class="docnote show" id="docNote">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
           <p>Please also open the shared Google Doc, find the section for <strong id="docNoteStoryName">this story</strong>, and leave a comment directly on the line that felt weird. <a id="docLink" href="#" target="_blank" rel="noopener">Open the doc →</a></p>
         </div>
       </div>
     </section>
-
+ 
     <div class="submit-row">
       <button type="submit" class="submit">Submit rating</button>
       <span class="submit-status" id="status">Thanks — your rating was recorded.</span>
     </div>
-
+ 
   </fieldset>
   </form>
+ 
+  <div class="complete-card" id="completeCard">
+    <h2>All done — thank you!</h2>
+    <p>You've rated all 20 stories. Your responses have been recorded.</p>
+  </div>
 </div>
-
+ 
 <script>
   // Decorative waveform bars
   const wf = document.getElementById('wf');
@@ -475,7 +517,7 @@
     rect.setAttribute('rx', 2);
     wf.appendChild(rect);
   }
-
+ 
   // Replay button restarts the story from 0:00
   const audio = document.getElementById('storyAudio');
   document.getElementById('replayBtn').addEventListener('click', () => {
@@ -545,28 +587,59 @@
     checkCode();
   }
  
-  // Pick a story: use ?story=07 in the URL if given, otherwise pick one at random.
-  // Random pick is stored in sessionStorage so a page refresh doesn't swap the story mid-response.
+  // Pick this participant's story order: shuffled once per session, so everyone
+  // rates all 20 stories but not necessarily in the same order.
+  // Optional ?story=07 in the URL jumps straight to one story for testing.
   const urlParams = new URLSearchParams(window.location.search);
   const forcedId = urlParams.get('story');
-  let chosenStory;
-  if (forcedId) {
-    chosenStory = STORIES.find(s => s.id === forcedId.padStart(2, '0')) || STORIES[0];
-  } else {
-    const savedId = sessionStorage.getItem('chosenStoryId');
-    chosenStory = STORIES.find(s => s.id === savedId);
-    if (!chosenStory) {
-      chosenStory = STORIES[Math.floor(Math.random() * STORIES.length)];
-      sessionStorage.setItem('chosenStoryId', chosenStory.id);
+ 
+  function shuffle(arr){
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
+    return a;
   }
  
-  const STORY_NAME = chosenStory.name;
-  document.getElementById('storyAudio').src = chosenStory.audio;
-  document.getElementById('storyName').textContent = STORY_NAME;
-  document.getElementById('docNoteStoryName').textContent = STORY_NAME;
+  let storyOrder = JSON.parse(sessionStorage.getItem('storyOrder') || 'null');
+  if (!storyOrder) {
+    storyOrder = shuffle(STORIES.map(s => s.id));
+    sessionStorage.setItem('storyOrder', JSON.stringify(storyOrder));
+  }
  
-  // Reveal (and require) the notes field only when "Yes" is picked
+  let currentIndex = parseInt(sessionStorage.getItem('currentStoryIndex') || '0', 10);
+  if (forcedId) {
+    const forcedIdx = storyOrder.indexOf(forcedId.padStart(2, '0'));
+    if (forcedIdx !== -1) currentIndex = forcedIdx;
+  }
+ 
+  let chosenStory;
+ 
+  function loadStory(index){
+    chosenStory = STORIES.find(s => s.id === storyOrder[index]);
+    document.getElementById('storyAudio').src = chosenStory.audio;
+    document.getElementById('storyName').textContent = `${index + 1} of ${STORIES.length} — ${chosenStory.name}`;
+    document.getElementById('docNoteStoryName').textContent = chosenStory.name;
+    document.getElementById('progressFill').style.width = `${(index / STORIES.length) * 100}%`;
+ 
+    // Reset the form fields for the new story
+    form.reset();
+    setWeirdDetailsVisible(false);
+    const submitBtn = form.querySelector('.submit');
+    submitBtn.disabled = false;
+    submitBtn.textContent = (index === STORIES.length - 1) ? 'Submit final rating' : 'Submit & next story';
+    status.style.display = 'none';
+  }
+ 
+  function showComplete(){
+    document.querySelector('header').style.display = 'none';
+    document.querySelector('.player').style.display = 'none';
+    document.querySelector('.replay-note').style.display = 'none';
+    document.querySelector('.code-card').style.display = 'none';
+    document.getElementById('ratingForm').style.display = 'none';
+    document.getElementById('completeCard').classList.add('show');
+  }
   const weirdYes = document.getElementById('weirdYes');
   const weirdNo = document.getElementById('weirdNo');
   const weirdDetails = document.getElementById('weirdDetails');
@@ -579,8 +652,8 @@
   weirdYes.addEventListener('change', () => setWeirdDetailsVisible(true));
   weirdNo.addEventListener('change', () => setWeirdDetailsVisible(false));
  
-  // Submit handling — posts to Formspree
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xdenjwal"; 
+  // Submit handling — posts to Formspree, then advances to the next story
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xxxxxxxx"; // <-- replace with your real endpoint
  
   const form = document.getElementById('ratingForm');
   const status = document.getElementById('status');
@@ -590,6 +663,7 @@
     const data = Object.fromEntries(new FormData(form).entries());
     data.story_id = chosenStory.id;
     data.story_name = chosenStory.name;
+    data.story_position = `${currentIndex + 1} of ${STORIES.length}`;
     data.participant_code = codeInput.value.trim();
     data.assigned_doc = assignedDocUrl;
  
@@ -604,21 +678,33 @@
         body: JSON.stringify(data)
       });
  
-      if (response.ok) {
-        status.textContent = 'Thanks — your rating was recorded.';
-        status.style.color = 'var(--accent)';
-        status.style.display = 'inline';
+      if (!response.ok) throw new Error('Submission failed');
+ 
+      currentIndex += 1;
+      sessionStorage.setItem('currentStoryIndex', String(currentIndex));
+ 
+      if (currentIndex >= STORIES.length) {
+        document.getElementById('progressFill').style.width = '100%';
+        showComplete();
       } else {
-        throw new Error('Submission failed');
+        loadStory(currentIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (err) {
       status.textContent = 'Something went wrong sending your rating — please try again.';
       status.style.color = 'var(--flag)';
       status.style.display = 'inline';
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Submit rating';
+      submitBtn.textContent = 'Submit & next story';
     }
   });
+ 
+  // Load whichever story the participant is currently on
+  if (currentIndex >= STORIES.length) {
+    showComplete();
+  } else {
+    loadStory(currentIndex);
+  }
 </script>
 </body>
 </html>
