@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rate This Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF0F0;
+    --paper:#FFFFFF;
+    --ink:#1B1E23;
+    --ink-soft:#5B6169;
+    --line:#DDE1E2;
+    --accent:#1F6F63;
+    --accent-soft:#E4EFEC;
+    --flag:#C6742A;
+    --flag-soft:#FBEEE0;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:56px 20px 100px;
+  }
+
+  /* Header + waveform signature */
+  header{margin-bottom:40px;}
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:clamp(28px,5vw,36px);
+    font-weight:700;
+    line-height:1.15;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+  }
+  header p{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.55;
+    margin:0;
+    max-width:52ch;
+  }
+
+  .waveform{width:100%;height:34px;margin-top:24px;display:block;}
+  .waveform rect{fill:var(--accent);opacity:.28;}
+
+  /* Player card */
+  .player{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:36px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  audio{flex:1;height:36px;}
+  .replay-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border:none;
+    border-radius:999px;
+    padding:9px 16px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .replay-btn:hover{background:#d5e6e0;}
+  .replay-btn svg{width:15px;height:15px;}
+  .replay-note{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  /* Sections */
+  section.step{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 24px;
+    margin-bottom:20px;
+  }
+  .step-head{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:6px;
+  }
+  .step-num{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    color:var(--accent);
+    font-size:14px;
+  }
+  .step-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:17px;
+  }
+  .step-sub{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:2px 0 18px 26px;
+    line-height:1.5;
+  }
+
+  /* Scale (waveform-bar rating) */
+  .scale{
+    display:flex;
+    gap:8px;
+    margin-left:26px;
+  }
+  .scale label{
+    flex:1;
+    text-align:center;
+    cursor:pointer;
+  }
+  .scale input{
+    position:absolute;
+    opacity:0;
+    width:0;height:0;
+  }
+  .bar{
+    height:44px;
+    border-radius:8px;
+    background:var(--accent-soft);
+    border:1px solid transparent;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:6px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:13px;
+    color:var(--accent);
+    transition:transform .12s ease, background .12s ease;
+  }
+  .scale input:checked + .bar{
+    background:var(--accent);
+    color:#fff;
+    transform:translateY(-3px);
+  }
+  .scale label:nth-child(1) .bar{height:28px;}
+  .scale label:nth-child(2) .bar{height:34px;}
+  .scale label:nth-child(3) .bar{height:40px;}
+  .scale label:nth-child(4) .bar{height:46px;}
+  .scale label:nth-child(5) .bar{height:52px;}
+  .scale-labels{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 26px 0;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+
+  /* Flag / weird moment step */
+  .step.flag .step-num{color:var(--flag);}
+  textarea{
+    width:calc(100% - 26px);
+    margin-left:26px;
+    min-height:96px;
+    resize:vertical;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 14px;
+    font-family:'Inter',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    background:#FAFAF9;
+  }
+  textarea:focus{outline:2px solid var(--flag); outline-offset:1px; background:#fff;}
+  textarea::placeholder{color:#9AA0A6;}
+
+  .timestamp-row{
+    display:flex;
+    gap:10px;
+    margin:12px 0 0 26px;
+    align-items:center;
+  }
+  .timestamp-row input[type=text]{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 10px;
+    font-size:13.5px;
+    width:120px;
+    font-family:'Inter',sans-serif;
+  }
+  .timestamp-row span{font-size:13px;color:var(--ink-soft);}
+
+  /* Submit */
+  .submit-row{
+    margin-top:32px;
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  button.submit{
+    background:var(--ink);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    padding:13px 28px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  button.submit:hover{background:#000;}
+  .submit-status{
+    font-size:13.5px;
+    color:var(--accent);
+    font-weight:500;
+    display:none;
+  }
+
+  @media (max-width:480px){
+    .scale{gap:5px;}
+    .bar{font-size:11px;}
+    .step-sub, textarea, .timestamp-row, .scale{margin-left:0;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">Listening Study</div>
+    <h1>Rate the story you just heard</h1>
+    <p>Listen to the full clip before answering. You can replay it as many times as you like — there's no penalty for relistening.</p>
+    <svg class="waveform" viewBox="0 0 600 34" preserveAspectRatio="none" aria-hidden="true">
+      <!-- decorative waveform, heights vary to suggest audio -->
+      <g id="wf"></g>
+    </svg>
+  </header>
+
+  <div class="player">
+    <button class="replay-btn" id="replayBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+      Replay
+    </button>
+    <audio id="storyAudio" controls src="YOUR_STORY_AUDIO_URL.mp3"></audio>
+  </div>
+  <p class="replay-note">Replace <code>YOUR_STORY_AUDIO_URL.mp3</code> in the source with the actual story file. Swap the file per participant/session as needed.</p>
+
+  <form id="ratingForm">
+
+    <section class="step">
+      <div class="step-head">
+        <span class="step-num">01</span>
+        <span class="step-title">How natural did the audio sound?</span>
+      </div>
+      <p class="step-sub">Think about voice, pacing, and delivery — not the story content itself.</p>
+      <div class="scale" role="radiogroup" aria-label="Audio naturalness rating">
+        <label><input type="radio" name="audio_natural" value="1" required><span class="bar">1</span></label>
+        <label><input type="radio" name="audio_natural" value="2"><span class="bar">2</span></label>
+        <label><input type="radio" name="audio_natural" value="3"><span class="bar">3</span></label>
+        <label><input type="radio" name="audio_natural" value="4"><span class="bar">4</span></label>
+        <label><input type="radio" name="audio_natural" value="5"><span class="bar">5</span></label>
+      </div>
+      <div class="scale-labels"><span>Very unnatural</span><span>Very natural</span></div>
+    </section>
+
+    <section class="step">
+      <div class="step-head">
+        <span class="step-num">02</span>
+        <span class="step-title">How natural was the story's flow?</span>
+      </div>
+      <p class="step-sub">Think about how the plot moved from one moment to the next — not the audio quality.</p>
+      <div class="scale" role="radiogroup" aria-label="Story flow naturalness rating">
+        <label><input type="radio" name="story_flow" value="1" required><span class="bar">1</span></label>
+        <label><input type="radio" name="story_flow" value="2"><span class="bar">2</span></label>
+        <label><input type="radio" name="story_flow" value="3"><span class="bar">3</span></label>
+        <label><input type="radio" name="story_flow" value="4"><span class="bar">4</span></label>
+        <label><input type="radio" name="story_flow" value="5"><span class="bar">5</span></label>
+      </div>
+      <div class="scale-labels"><span>Very unnatural</span><span>Very natural</span></div>
+    </section>
+
+    <section class="step flag">
+      <div class="step-head">
+        <span class="step-num">03</span>
+        <span class="step-title">Did anything feel off or weird?</span>
+      </div>
+      <p class="step-sub">A strange word, a jump in the plot, a glitch in the audio — describe it, and note roughly where it happened if you can.</p>
+      <textarea name="weird_notes" placeholder="e.g. Around the middle, the narrator's tone suddenly changed and a character's name switched without explanation."></textarea>
+      <div class="timestamp-row">
+        <span>Approx. timestamp (optional)</span>
+        <input type="text" name="weird_timestamp" placeholder="e.g. 1:24">
+      </div>
+    </section>
+
+    <div class="submit-row">
+      <button type="submit" class="submit">Submit rating</button>
+      <span class="submit-status" id="status">Thanks — your rating was recorded.</span>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // Decorative waveform bars
+  const wf = document.getElementById('wf');
+  const bars = 60;
+  for(let i=0;i<bars;i++){
+    const h = 4 + Math.abs(Math.sin(i*0.7))*26 + Math.random()*4;
+    const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', i*10);
+    rect.setAttribute('y', (34-h)/2);
+    rect.setAttribute('width', 5);
+    rect.setAttribute('height', h.toFixed(1));
+    rect.setAttribute('rx', 2);
+    wf.appendChild(rect);
+  }
+
+  // Replay button restarts the story from 0:00
+  const audio = document.getElementById('storyAudio');
+  document.getElementById('replayBtn').addEventListener('click', () => {
+    audio.currentTime = 0;
+    audio.play();
+  });
+
+  // Submit handling — replace with your real endpoint (fetch/POST) as needed
+  const form = document.getElementById('ratingForm');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    console.log('Story rating submitted:', data);
+    // TODO: send `data` to your backend/logging endpoint here.
+    status.style.display = 'inline';
+    form.querySelector('.submit').disabled = true;
+  });
+</script>
+</body>
+</html>
