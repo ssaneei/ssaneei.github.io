@@ -14,7 +14,7 @@ summary: If you're here, you can see the rest of the results of my poster.
   from your actual source. Before you commit this:
 
     3. Fix the asset paths below — I guessed
-       /assets/photos/poster-inception-loop/ following your site's
+       /assets/photos/poster-inception-loop_results/ following your site's
        /assets/photos/ convention, but you'll need to actually
        upload the images there (or wherever you keep poster assets)
        and adjust the paths to match.
@@ -40,10 +40,10 @@ Semantically tuned electrodes show significant, selective responses to best vs. 
 
 The direction isn't always activation. PAT_3780 shows equally strong, significant selectivity expressed as suppression instead — the electrode still discriminates best from worst words, just in reverse.
 
-![PAT_6684 — best vs worst per electrode](/assets/photos/poster-inception-loop/6684_all_violins.png)
+![PAT_6684 — best vs worst per electrode](/assets/photos/poster-inception-loop_results/6684_all_violins.png)
 *PAT_6684 — all three approaches confirm best > worst at the target electrode, worst electrodes show null effects.*
 
-![PAT_3780 — best vs worst per electrode](/assets/photos/poster-inception-loop/3780_all_violins.png)
+![PAT_3780 — best vs worst per electrode](/assets/photos/poster-inception-loop_results/3780_all_violins.png)
 *PAT_3780 — LANC 2 replicates the expected direction; LANC 1 shows a significant reversed effect.*
 
 ## Q2 / H2 — Anatomical distribution of semantically tuned electrodes {#h2}
@@ -52,7 +52,7 @@ The direction isn't always activation. PAT_3780 shows equally strong, significan
 
 Despite broad, distributed general semantic activity across the brain, tuned electrodes converge on a consistent site — close to the classic semantic hub (ATL + pMTG, left hemisphere) — across all three patients and all three approaches.
 
-![Combined significance map, all patients](/assets/photos/poster-inception-loop/combined_significance_map.png)
+![Combined significance map, all patients](/assets/photos/poster-inception-loop_results/combined_significance_map.png)
 * semantically tuned electrodes across all patients — color = approach, shape = patient, shaded region = classic semantic hub.*
 
 ## PAT_6684 {#pat-6684}
@@ -60,30 +60,30 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 <details>
 <summary><strong>LANC 1</strong></summary>
 
-![PAT_6684 LANC 1 violin](/assets/photos/poster-inception-loop/6684_lanc_1_poster_violin.png)
-![PAT_6684 LANC 1 time course](/assets/photos/poster-inception-loop/6684_lanc_1_timecourses.png)
+![PAT_6684 LANC 1 violin](/assets/photos/poster-inception-loop_results/6684_lanc_1_poster_violin.png)
+![PAT_6684 LANC 1 time course](/assets/photos/poster-inception-loop_results/6684_lanc_1_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6684_lanc_1_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6684_lanc_1_violin.html)
 
 </details>
 
 <details>
 <summary><strong>LANC 2</strong></summary>
 
-![PAT_6684 LANC 2 violin](/assets/photos/poster-inception-loop/6684_lanc_2_poster_violin.png)
-![PAT_6684 LANC 2 time course](/assets/photos/poster-inception-loop/6684_lanc_2_timecourses.png)
+![PAT_6684 LANC 2 violin](/assets/photos/poster-inception-loop_results/6684_lanc_2_poster_violin.png)
+![PAT_6684 LANC 2 time course](/assets/photos/poster-inception-loop_results/6684_lanc_2_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6684_lanc_2_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6684_lanc_2_violin.html)
 
 </details>
 
 <details>
 <summary><strong>NEURAL</strong></summary>
 
-![PAT_6684 NEURAL violin](/assets/photos/poster-inception-loop/6684_neural_poster_violin.png)
-![PAT_6684 NEURAL time course](/assets/photos/poster-inception-loop/6684_neural_timecourses.png)
+![PAT_6684 NEURAL violin](/assets/photos/poster-inception-loop_results/6684_neural_poster_violin.png)
+![PAT_6684 NEURAL time course](/assets/photos/poster-inception-loop_results/6684_neural_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6684_neural_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6684_neural_violin.html)
 
 </details>
 
@@ -92,30 +92,30 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 <details>
 <summary><strong>LANC 1</strong></summary>
 
-![PAT_3780 LANC 1 violin](/assets/photos/poster-inception-loop/3780_lanc_1_poster_violin.png)
-![PAT_3780 LANC 1 time course](/assets/photos/poster-inception-loop/3780_lanc_1_timecourses.png)
+![PAT_3780 LANC 1 violin](/assets/photos/poster-inception-loop_results/3780_lanc_1_poster_violin.png)
+![PAT_3780 LANC 1 time course](/assets/photos/poster-inception-loop_results/3780_lanc_1_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/3780_lanc_1_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/3780_lanc_1_violin.html)
 
 </details>
 
 <details>
 <summary><strong>LANC 2</strong></summary>
 
-![PAT_3780 LANC 2 violin](/assets/photos/poster-inception-loop/3780_lanc_2_poster_violin.png)
-![PAT_3780 LANC 2 time course](/assets/photos/poster-inception-loop/3780_lanc_2_timecourses.png)
+![PAT_3780 LANC 2 violin](/assets/photos/poster-inception-loop_results/3780_lanc_2_poster_violin.png)
+![PAT_3780 LANC 2 time course](/assets/photos/poster-inception-loop_results/3780_lanc_2_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/3780_lanc_2_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/3780_lanc_2_violin.html)
 
 </details>
 
 <details>
 <summary><strong>NEURAL</strong></summary>
 
-![PAT_3780 NEURAL violin](/assets/photos/poster-inception-loop/3780_neural_poster_violin.png)
-![PAT_3780 NEURAL time course](/assets/photos/poster-inception-loop/3780_neural_timecourses.png)
+![PAT_3780 NEURAL violin](/assets/photos/poster-inception-loop_results/3780_neural_poster_violin.png)
+![PAT_3780 NEURAL time course](/assets/photos/poster-inception-loop_results/3780_neural_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/3780_neural_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/3780_neural_violin.html)
 
 </details>
 
@@ -124,30 +124,30 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 <details>
 <summary><strong>LANC 1</strong></summary>
 
-![PAT_6619 LANC 1 violin](/assets/photos/poster-inception-loop/6619_lanc_1_poster_violin.png)
-![PAT_6619 LANC 1 time course](/assets/photos/poster-inception-loop/6619_lanc_1_timecourses.png)
+![PAT_6619 LANC 1 violin](/assets/photos/poster-inception-loop_results/6619_lanc_1_poster_violin.png)
+![PAT_6619 LANC 1 time course](/assets/photos/poster-inception-loop_results/6619_lanc_1_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6619_lanc_1_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6619_lanc_1_violin.html)
 
 </details>
 
 <details>
 <summary><strong>LANC 2</strong></summary>
 
-![PAT_6619 LANC 2 violin](/assets/photos/poster-inception-loop/6619_lanc_2_poster_violin.png)
-![PAT_6619 LANC 2 time course](/assets/photos/poster-inception-loop/6619_lanc_2_timecourses.png)
+![PAT_6619 LANC 2 violin](/assets/photos/poster-inception-loop_results/6619_lanc_2_poster_violin.png)
+![PAT_6619 LANC 2 time course](/assets/photos/poster-inception-loop_results/6619_lanc_2_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6619_lanc_2_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6619_lanc_2_violin.html)
 
 </details>
 
 <details>
 <summary><strong>NEURAL</strong></summary>
 
-![PAT_6619 NEURAL violin](/assets/photos/poster-inception-loop/6619_neural_poster_violin.png)
-![PAT_6619 NEURAL time course](/assets/photos/poster-inception-loop/6619_neural_timecourses.png)
+![PAT_6619 NEURAL violin](/assets/photos/poster-inception-loop_results/6619_neural_poster_violin.png)
+![PAT_6619 NEURAL time course](/assets/photos/poster-inception-loop_results/6619_neural_timecourses.png)
 
-[Open interactive violin plot →](/assets/photos/poster-inception-loop/6619_neural_violin.html)
+[Open interactive violin plot →](/assets/photos/poster-inception-loop_results/6619_neural_violin.html)
 
 </details>
 
