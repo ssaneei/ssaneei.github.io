@@ -1,9 +1,7 @@
 ---
----
 layout: page
 title:  "🧠 The Rest of the Poster Results"
-summary: >
-  If you're here, you can see the rest of the results of my poster.
+summary: If you're here, you can see the rest of the results of my poster.
 ---
 
 <!--
