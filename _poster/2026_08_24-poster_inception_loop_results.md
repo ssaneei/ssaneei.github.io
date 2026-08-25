@@ -46,6 +46,9 @@ The direction isn't always activation. PAT_3780 shows equally strong, significan
 ![PAT_3780 — best vs worst per electrode](/assets/photos/poster_inception_loop_results/3780_all_violins.png)
 *PAT_3780 — LANC 2 replicates the expected direction; LANC 1 shows a significant reversed effect.*
 
+![PAT_6619 — best vs worst per electrode](/assets/photos/poster_inception_loop_results/6619_all_violins.png)
+*PAT_6619*
+
 ## Q2 / H2 — Anatomical distribution of semantically tuned electrodes {#h2}
 
 **Key idea**
@@ -57,7 +60,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 ## PAT_6684 {#pat-6684}
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 1</strong></summary>
 
 ![PAT_6684 LANC 1 violin](/assets/photos/poster_inception_loop_results/6684_lanc_1_poster_violin.png)
@@ -67,7 +70,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 2</strong></summary>
 
 ![PAT_6684 LANC 2 violin](/assets/photos/poster_inception_loop_results/6684_lanc_2_poster_violin.png)
@@ -77,7 +80,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>NEURAL</strong></summary>
 
 ![PAT_6684 NEURAL violin](/assets/photos/poster_inception_loop_results/6684_neural_poster_violin.png)
@@ -89,7 +92,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 ## PAT_3780 {#pat-3780}
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 1</strong></summary>
 
 ![PAT_3780 LANC 1 violin](/assets/photos/poster_inception_loop_results/3780_lanc_1_poster_violin.png)
@@ -99,7 +102,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 2</strong></summary>
 
 ![PAT_3780 LANC 2 violin](/assets/photos/poster_inception_loop_results/3780_lanc_2_poster_violin.png)
@@ -109,7 +112,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>NEURAL</strong></summary>
 
 ![PAT_3780 NEURAL violin](/assets/photos/poster_inception_loop_results/3780_neural_poster_violin.png)
@@ -121,7 +124,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 ## PAT_6619 {#pat-6619}
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 1</strong></summary>
 
 ![PAT_6619 LANC 1 violin](/assets/photos/poster_inception_loop_results/6619_lanc_1_poster_violin.png)
@@ -131,7 +134,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>LANC 2</strong></summary>
 
 ![PAT_6619 LANC 2 violin](/assets/photos/poster_inception_loop_results/6619_lanc_2_poster_violin.png)
@@ -141,7 +144,7 @@ Despite broad, distributed general semantic activity across the brain, tuned ele
 
 </details>
 
-<details>
+<details markdown="1">
 <summary><strong>NEURAL</strong></summary>
 
 ![PAT_6619 NEURAL violin](/assets/photos/poster_inception_loop_results/6619_neural_poster_violin.png)
