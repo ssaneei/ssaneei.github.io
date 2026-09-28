@@ -10,7 +10,7 @@ summary: SNL poster 2026: More on the figures + stories.
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Roboto+Slab:wght@400;700&display=swap">
 
 <style>
-  /* :root {
+  :root {
     --bg: #fff;
     --surface: #f8f8f8;
     --border: #c8c8c8;
@@ -43,7 +43,7 @@ summary: SNL poster 2026: More on the figures + stories.
       --table-header-bg: #333;
       color-scheme: dark;
     }
-  } */
+  }
   :root[data-theme="dark"] {
     --bg: #1a1a1a;
     --surface: #242424;
