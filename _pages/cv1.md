@@ -1,12 +1,11 @@
 ---
-layout: page
-title: "CV"
 permalink: /cv/
+title: "CV"
 ---
 <div class="cv" markdown="0">
 
   <div class="cv-header">
-    <p class="cv-sub">PhD Student / NeuroAI · Geneva, Switzerland</p>
+    <p class="cv-sub">PhD Student / Neuroscience · Geneva, Switzerland</p>
     <p class="cv-sub">sarahsaneei at unige dot ch</p>
   </div>
   <div class="cv-actions">
