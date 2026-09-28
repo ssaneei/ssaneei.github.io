@@ -6,8 +6,8 @@ minimal_mistakes_skin: default
 title: Sarah Saneei
 name: Sarah Saneei
 description: "Research on how the brain processes language: sEEG, sensorimotor language and language models."
-url: https://ssaeei.github.io
-repository: ssaeei/ssaeei.github.io
+url: https://ssaneei.github.io
+repository: ssaneei/ssaneei.github.io
 locale: en-US
 
 # ── Sidebar profile (shown on every page) ─────────────
@@ -22,7 +22,7 @@ author:
       url: "https://github.com/ssaneei"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/sarah-saneei/"   # ← your LinkedIn link
+      url: "https://www.linkedin.com/in/sarah-saneei/"   
     # - label: "Google Scholar"
     #   icon: "fas fa-fw fa-graduation-cap"
     #   url: "https://scholar.google.com/citations?user=YOUR-ID"
