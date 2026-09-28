@@ -1,0 +1,59 @@
+<!-- Intro + brain-rhythm trace. Edit the three text lines below to your own words. -->
+<section class="intro-block">
+  <p class="eyebrow">Lexical Semantics · Brains &amp; language models · sEEG</p>
+  <h1>Notes on artificial and biological processing</h1>
+  <p class="lede">Written while I read, so expect questions more than answers.</p>
+
+  <div class="rhythm" aria-hidden="true">
+    <canvas id="rhythm-canvas"></canvas>
+    <div class="bands">
+      <span><b>δ</b>1–4 Hz</span>
+      <span><b>θ</b>4–8 Hz</span>
+      <span><b>α</b>8–13 Hz</span>
+      <span><b>β</b>13–30 Hz</span>
+      <span><b>γ</b>30+ Hz</span>
+    </div>
+  </div>
+</section>
+
+<h2 class="section-title">Latest writing</h2>
+
+<script>
+(function () {
+  var c = document.getElementById('rhythm-canvas');
+  if (!c) return;
+  var ctx = c.getContext('2d');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bands = [2, 6, 10, 20, 40]; // one segment per frequency band, slow to fast
+  var t = 0;
+
+  function size() {
+    var r = window.devicePixelRatio || 1;
+    c.width = c.clientWidth * r;
+    c.height = c.clientHeight * r;
+    ctx.setTransform(r, 0, 0, r, 0, 0);
+  }
+
+  function draw() {
+    var w = c.clientWidth, h = c.clientHeight, mid = h / 2, seg = w / bands.length;
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--signal').trim() || '#2a7c78';
+    ctx.lineWidth = 1.6;
+    ctx.lineJoin = 'round';
+    ctx.beginPath();
+    for (var x = 0; x <= w; x++) {
+      var i = Math.min(bands.length - 1, Math.floor(x / seg));
+      var f = bands[i], amp = h * 0.36 * (1 - i * 0.14);
+      var s = x / seg, local = (x - i * seg) / seg;
+      var env = Math.pow(Math.sin(Math.PI * local), 0.5);
+      var y = mid - env * amp * (Math.sin(2 * Math.PI * f * s * 0.35 - t * f * 0.08) + 0.25 * Math.sin(2 * Math.PI * f * s * 0.9 + t));
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    if (!still) { t += 0.03; requestAnimationFrame(draw); }
+  }
+
+  size(); draw();
+  window.addEventListener('resize', function () { size(); if (still) draw(); });
+})();
+</script>

@@ -1,9 +1,29 @@
-theme: minima      # remove or comment this out
-remote_theme: ngzhio/jekyll-theme-hamilton
-skin: sunrise        # this is where “sunrise” belongs
+# theme: minima      # remove or comment this out
+# remote_theme: ngzhio/jekyll-theme-hamilton
+# skin: sunrise        # this is where “sunrise” belongs
 
+# author: Sarah Saneei
+# avatar: /assets/photos/pic.png
+
+# collections:
+#   poster:
+#     output: true
+#     permalink: /poster/:path/
+
+# excerpt_separator: "<!--more-->"
+
+title: Sarah Saneei
 author: Sarah Saneei
-avatar: /assets/photos/pic.png
+avatar: /assets/photos/pic.png        # keep your real path here
+
+remote_theme: ngzhio/jekyll-theme-hamilton
+skin: sarahsa                    # the new custom skin (was: sunrise)
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
 
 collections:
   poster:

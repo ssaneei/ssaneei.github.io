@@ -1,0 +1,41 @@
+// "sarahs" skin for Hamilton.
+// Colors point at CSS variables defined in custom-styles.scss,
+// so the site follows the reader's light/dark system setting.
+
+$text-color:            var(--ink);
+$text-color-light:      var(--muted);
+$background-color:      var(--paper);
+$code-background-color: var(--code-bg);
+
+$border-color:          var(--line-strong);
+$border-color-light:    var(--line);
+$border-color-dark:     var(--accent);
+
+$link-base-color:       var(--accent);
+$link-visited-color:    var(--accent);
+
+$table-text-color:      var(--ink);
+$table-zebra-color:     var(--surface);
+$table-header-bg-color: var(--accent-soft);
+$table-header-border:   var(--line-strong);
+$table-border-color:    var(--line);
+
+$pre-shadow:            none;
+$dropdown-shadow:       0 10px 30px rgba(20, 12, 30, .18);
+
+$subscribe-color:       var(--signal);
+
+// Syntax highlighting (Rouge), also theme-aware
+.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w { color: var(--ink); background-color: var(--code-bg); }
+.highlight .err { color: var(--accent); background-color: transparent; font-weight: bold; }
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs { color: var(--muted); font-style: italic; }
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv, .highlight .kd, .highlight .nt { color: var(--accent); }
+.highlight .kc, .highlight .no, .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx { color: var(--hl-number); }
+.highlight .kt, .highlight .nc, .highlight .nn, .highlight .nf, .highlight .cp { color: var(--signal); }
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1, .highlight .si, .highlight .sr, .highlight .se, .highlight .ss { color: var(--hl-string); }
+.highlight .na { color: var(--signal); }
+.highlight .o, .highlight .ow, .highlight .p, .highlight .pi { color: var(--ink); }
+.highlight .gi { color: var(--signal); }
+.highlight .gd { color: var(--accent); }

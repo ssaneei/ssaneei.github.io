@@ -1,1 +1,11 @@
 // Placeholder to allow overriding predefined variables.
+// New typefaces (loaded in _includes/custom-head.html)
+$base-font-family:       "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+$headline-font-family:   "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+$reading-font-family:    "Source Serif 4", Georgia, "Times New Roman", serif;
+$code-font-family:       "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+$handwriting-font-family: "Dancing Script", "Brush Script MT", cursive;
+
+$base-line-height: 1.6;
+$content-width:    1180px;
+
