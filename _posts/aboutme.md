@@ -27,11 +27,11 @@ features and as models to compare with the brain.
 
 - **2026:** Poster at NCCR Evolving Language Summer School -- Crans Montana: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
 
-- **2026:** Poster at SNL 2026: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
+- **2025:** Poster at SNL 2026: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
 
-- **2026:** Poster at SNL 2026: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
+- **2024:** Poster at SNL 2026: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
 
-- **2026:** Poster at SNL 2026: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
+- **2023:** Poster at SNL 2023: *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening* ([details](/poster/))
 
 
 If you want to read more about my journey, click here.
@@ -45,8 +45,7 @@ Being accepted as the 7 rank in the entrance exam (out of a million participants
 
 Seeking for a position for doctorate in my discipline I applied and got accepted in many universities across Europe and Canada, but I chose Geneva :) and to fill the remaining time till my PhD begins, I worked as an intern at Campus Biotech in the field of ontology with the aim of building a provenance tracker for neuroimaging, for about 6 months, the opportunity that I can never forget about.
 
-I started my Phd position in the University of Geneva in CLCL lab since November 2021. :) 
-As of my second bachelor, I get to know about neuroscience and the BCI, and working in Machine Learning, I found that I have an interest in studying brain functioning so I began a part time research assistant position in NDLab in Computational Neuroscience of Unige in September 2022.
+I started my Phd position in the University of Geneva in CLCL lab since November 2021. During this position, I was investigating compound verbs with an interest on Persian (my native langauge). I also was the TA of a web developement course from the informatique faculty. But as it showed my internship had made its influence on me and I found myself more and more reading/listening about the brain. As of my second bachelor, I got to know about neuroscience to the point that my first bachelor's dissertation was on conciousness, and working in Machine Learning, I found that I have an interest in studying brain functioning so I began a part time research assistant position within NDLab in Computational Neuroscience of Unige in September 2022.
 
 Going on with the life journey, after having an amazing idea with my professor, Timothée Proix, I decided to change my PhD to Neuroscience. So as of Feb 2023, I am a PhD student in NoCE lab with my main supervisor, Valentina Borghesani and also NDLab with my co-supervisor Timothée Proix.
 
