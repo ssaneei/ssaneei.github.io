@@ -8,8 +8,7 @@ Hey! I'm Sarah :)
 I am a PhD student, working for boht **NoCELab** and **NDLab** at University of Geneva, working on how the brain represents the meaning of language as we listen to it. I use intracranial recordings (sEEG) and encoding models to study how sensorimotor features of words and sentences (motor, oral, internal and auditory-visual) are encoded in the cortex during naturalistic story listening.
 
 I am also interested in large language models, both as tools for building linguistic
-features and as models to compare with the brain. If you want to read more about my journey, [click here] (/_pages/about_me.md).
-<!-- <a href="_posts/aboutme_more.md">click here</a>. -->
+features and as models to compare with the brain. If you want to read more about my journey, <a href="_posts/aboutme_more.md">click here</a>. 
 
 ## Research interests
 
