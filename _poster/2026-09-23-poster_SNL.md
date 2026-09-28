@@ -341,7 +341,7 @@ summary: >
 
   <header id="overview">
     <div class="eyebrow">Poster — SNL 6</div>
-    <h1>Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening</h1>
+    <h2>Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening</h2>
     <p>sEEG encoding model · Sandbox · 3 patients · Word- and sentence-level LSN composites · Broadband high-gamma activity</p>
   </header>
 
