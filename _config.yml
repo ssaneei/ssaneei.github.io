@@ -1,3 +1,70 @@
+
+# ── Site ───────────────────────────────────────────────
+remote_theme: mmistakes/minimal-mistakes@4.28.1
+minimal_mistakes_skin: default
+
+title: Sarah Saneei
+name: Sarah Saneei
+description: "Research on how the brain processes language: sEEG, sensorimotor language and language models."
+url: https://ssaeei.github.io
+repository: ssaeei/ssaeei.github.io
+locale: en-US
+
+# ── Sidebar profile (shown on every page) ─────────────
+author:
+  name: Sarah Saneei
+  avatar: /assets/photos/pic.png          
+  bio: "PhD student at University of Geneva"        
+  location: Geneva, Switzerland       
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ssaneei"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/sarah-saneei/"   # ← your LinkedIn link
+    # - label: "Google Scholar"
+    #   icon: "fas fa-fw fa-graduation-cap"
+    #   url: "https://scholar.google.com/citations?user=YOUR-ID"
+    # - label: "Email"
+    #   icon: "fas fa-fw fa-envelope"
+    #   url: "mailto:you@example.com"
+
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ssaneei"
+
+# ── Build ──────────────────────────────────────────────
+markdown: kramdown
+permalink: /:categories/:title/
+include: [_pages]
+exclude: [Gemfile, Gemfile.lock, README.md, LICENSE]
+excerpt_separator: "<!--more-->"
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# ── Collections ────────────────────────────────────────
+collections:
+  poster:
+    output: true
+    permalink: /poster/:path/
+
+# ── Defaults: every page gets the profile sidebar ─────
+defaults:
+  - scope: { path: "", type: pages }
+    values: { layout: single, author_profile: true }
+  - scope: { path: "", type: posts }
+    values: { layout: single, author_profile: true, read_time: true, share: false }
+  - scope: { path: "", type: poster }
+    values: { layout: single, author_profile: true, share: false }
+
 # theme: minima      # remove or comment this out
 # remote_theme: ngzhio/jekyll-theme-hamilton
 # skin: sunrise        # this is where “sunrise” belongs
@@ -11,23 +78,23 @@
 #     permalink: /poster/:path/
 
 # excerpt_separator: "<!--more-->"
+#___
+# title: Sarah Saneei
+# author: Sarah Saneei
+# avatar: /assets/photos/pic.png        # keep your real path here
 
-title: Sarah Saneei
-author: Sarah Saneei
-avatar: /assets/photos/pic.png        # keep your real path here
+# remote_theme: ngzhio/jekyll-theme-hamilton
+# skin: sarahs                    # the new custom skin (was: sunrise)
 
-remote_theme: ngzhio/jekyll-theme-hamilton
-skin: sarahs                    # the new custom skin (was: sunrise)
+# plugins:
+#   - jekyll-remote-theme
+#   - jekyll-seo-tag
+#   - jekyll-feed
+#   - jekyll-sitemap
 
-plugins:
-  - jekyll-remote-theme
-  - jekyll-seo-tag
-  - jekyll-feed
-  - jekyll-sitemap
+# collections:
+#   poster:
+#     output: true
+#     permalink: /poster/:path/
 
-collections:
-  poster:
-    output: true
-    permalink: /poster/:path/
-
-excerpt_separator: "<!--more-->"
+# excerpt_separator: "<!--more-->"

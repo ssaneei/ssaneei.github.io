@@ -1,12 +1,11 @@
-- title: Poster
-  url: /poster/
-- title: Quotes
-  url: /quotes/
-- title: Blog
-  sublinks:
-    - title: Summaries
-      url: /summaries/
-    - title: Photography
-      url: /photography/
-- title: CV
-  url: /cv/
+main:
+  - title: "Research"
+    url: /research/
+  - title: "Publications"
+    url: /publications/
+  - title: "Posters"
+    url: /poster/
+  - title: "CV"
+    url: /cv/
+  - title: "Photos"
+    url: /photos/
