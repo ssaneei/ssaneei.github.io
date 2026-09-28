@@ -6,22 +6,21 @@ title: "CV"
 <div class="cv">
 
   <!-- Header -->
-  <div class="cv-header">
+  <!-- <div class="cv-header">
     <div>
       <p class="cv-sub">PhD Student / NeuroAI • Geneva, Switzerland</p>
       <p class="cv-sub">
         <a >sarahsaneei at unige dot ch</a> ·
       </p>
     </div>
-  </div>
+  </div> -->
 
-  <div class="cv-actions">
+  <div>
     <!-- If you have a static PDF, put it in /assets/cv/ -->
     <a class="btn" href="{{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}" download>⬇︎ Download PDF</a>
     <a class="btn" href="#" onclick="window.print();return false;">🖨 Print</a>
   </div>
 
-  
 
   <!-- Education -->
   <section class="section">
