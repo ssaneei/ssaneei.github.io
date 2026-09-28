@@ -17,7 +17,7 @@ author: Sarah Saneei
 avatar: /assets/photos/pic.png        # keep your real path here
 
 remote_theme: ngzhio/jekyll-theme-hamilton
-skin: sarahsa                    # the new custom skin (was: sunrise)
+skin: sarahs                    # the new custom skin (was: sunrise)
 
 plugins:
   - jekyll-remote-theme
