@@ -1,7 +1,7 @@
 ---
 layout: page
-title:  "🧠 The Rest of the Poster Results"
-summary: If you're here, you can see the rest of the results of my poster.
+title:  "Project1: 🧠 The Rest of the Poster Results"
+summary: LNDS poster 2026: More on the results.
 ---
 
 <!--

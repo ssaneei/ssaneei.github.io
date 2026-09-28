@@ -1,8 +1,8 @@
 ---
 layout: page
-title: "Examples of Day2 Stories"
+title: "Project1: Examples of Day2 Stories"
 summary: >
-  Some examples of the stories played on Day2 of the experiment.
+  NCCR poster 2025: Some examples of the stories played on Day2 of the experiment.
 description: "Landing page for the poster QR about data collection — summary."
 hero_image: /assets/photos/short_stories.jpeg
 hero_alt: "Stories_Example"

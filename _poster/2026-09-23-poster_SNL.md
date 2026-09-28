@@ -1,16 +1,15 @@
 ---
 layout: page
-title: "Sensorimotor Language Encoding"
-summary: >
-  More on SNL poster 2026.
+title: "Project2: Sensorimotor Language Encoding"
+summary: SNL poster 2026: More on the figures + stories.
 #hero_image: /assets/photos/short_stories.jpeg
 #hero_alt: "Stories_Example"
 ---
 
 
-<title>Sensorimotor Language Encoding</title>
+<!-- <title>Sensorimotor Language Encoding</title> -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Roboto+Slab:wght@400;700&display=swap">
-
+<!-- 
 <style>
   :root {
     --bg: #fff;
@@ -28,8 +27,7 @@ summary: >
     --table-header-bg: #e8e8e8;
     color-scheme: light;
   }
-
-  @media (prefers-color-scheme: dark) {
+   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #1a1a1a;
       --surface: #242424;
@@ -47,7 +45,6 @@ summary: >
       color-scheme: dark;
     }
   }
-
   :root[data-theme="dark"] {
     --bg: #1a1a1a;
     --surface: #242424;
@@ -64,9 +61,7 @@ summary: >
     --table-header-bg: #333;
     color-scheme: dark;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
@@ -76,10 +71,8 @@ summary: >
     padding-inline: 16px;
     padding-block: 0;
   }
-
   a { color: var(--accent); }
   a:visited { color: var(--accent-visited); }
-
   code {
     font-family: Inconsolata, 'Courier New', monospace;
     font-size: 0.88em;
@@ -88,7 +81,6 @@ summary: >
     border-radius: 3px;
     border: 1px solid var(--border-light);
   }
-
   /* Nav — Hamilton-style site header */
   nav {
     position: sticky;
@@ -115,7 +107,6 @@ summary: >
   }
   nav a:first-child { padding-left: 0; }
   nav a:hover { color: var(--accent); }
-
   /* Layout */
   .page {
     max-width: 800px;
@@ -125,7 +116,6 @@ summary: >
     flex-direction: column;
     gap: 56px;
   }
-
   /* Header */
   header { display: flex; flex-direction: column; gap: 10px; }
   .eyebrow {
@@ -148,10 +138,8 @@ summary: >
     padding-top: 10px;
     margin-top: 4px;
   }
-
   /* Section */
   section { display: flex; flex-direction: column; gap: 24px; }
-
   .section-header {
     border-bottom: 2px solid var(--border);
     padding-bottom: 8px;
@@ -169,7 +157,6 @@ summary: >
     font-size: 13px;
     color: var(--text-muted);
   }
-
   /* Figure placeholder */
   .figure-slot {
     background: var(--figure-bg);
@@ -197,7 +184,6 @@ summary: >
     font-size: 13px;
     color: var(--label);
   }
-
   /* Grid of figure slots */
   .fig-grid {
     display: grid;
@@ -209,7 +195,6 @@ summary: >
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 16px;
   }
-
   /* Category chips — Hamilton uses minimal styling */
   .dim-row {
     display: flex;
@@ -232,7 +217,6 @@ summary: >
   .dim-chip.internal{ background: #f0f8f0; border-color: #3a8050; color: #1a5030; }
   .dim-chip.audvis  { background: #f5f0ff; border-color: #6040b0; color: #3a2070; }
   .dim-chip.neutral { background: var(--surface); border-color: var(--border); color: var(--text-muted); }
-
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .dim-chip.motor    { background: #2a1510; border-color: #cc5540; color: #f0a090; }
     :root:not([data-theme="light"]) .dim-chip.oral     { background: #0e1830; border-color: #3060c0; color: #80a8f0; }
@@ -243,9 +227,7 @@ summary: >
   :root[data-theme="dark"] .dim-chip.oral     { background: #0e1830; border-color: #3060c0; color: #80a8f0; }
   :root[data-theme="dark"] .dim-chip.internal { background: #0e2015; border-color: #3a8050; color: #80c898; }
   :root[data-theme="dark"] .dim-chip.audvis   { background: #1a1030; border-color: #6040b0; color: #b098e0; }
-
   .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
-
   /* Story group block */
   .story-group {
     border: 1px solid var(--border);
@@ -264,7 +246,6 @@ summary: >
     color: var(--text);
   }
   .story-group-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-
   /* Analysis steps */
   .analysis-list { display: flex; flex-direction: column; gap: 16px; }
   .analysis-item { display: flex; gap: 14px; align-items: flex-start; }
@@ -292,7 +273,6 @@ summary: >
     font-size: 14px;
     color: var(--text-muted);
   }
-
   /* Feature table */
   .feature-table {
     width: 100%;
@@ -320,14 +300,12 @@ summary: >
   }
   .feature-table tr:nth-child(even) td { background: var(--table-zebra); }
   .table-wrap { overflow-x: auto; }
-
   p { font-size: 16px; color: var(--text-muted); }
-
   @media (max-width: 600px) {
     body { font-size: 16px; }
     .dim-chip { font-size: 12px; }
   }
-</style>
+</style> -->
 
 <nav>
   <a href="#overview">Overview</a>
@@ -341,8 +319,8 @@ summary: >
 
   <header id="overview">
     <div class="eyebrow">Poster — SNL 6</div>
-    <h2>Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening</h2>
-    <p>sEEG encoding model · Sandbox · 3 patients · Word- and sentence-level LSN composites · Broadband high-gamma activity</p>
+    <h1>Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening</h1>
+    <p>sEEG encoding model · Sandbox · 3 patients · Word- and sentence-level LSN composites · Broadband High-frequency Activity (BHA)</p>
   </header>
 
   <!-- STIMULI COMPOSITION -->
