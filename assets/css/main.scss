@@ -286,3 +286,102 @@ body { background: $paper; }
     td:first-child { font-weight: 600; color: var(--ink); }
   }
 }
+
+/* ============================================================
+   CV page (_pages/cv.md): everything sits inside <div class="cv">
+   ============================================================ */
+ 
+.cv {
+  font-family: $lato;
+  font-size: .95em;
+ 
+  a { text-decoration-color: $line-strong; text-underline-offset: 3px; }
+ 
+  .cv-header { margin-bottom: 1em; }
+  .cv-sub { margin: 0 0 .2em; color: $muted; font-size: .95em; }
+ 
+  .cv-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6em;
+    margin-bottom: 1.5em;
+ 
+    .btn {
+      background: $surface;
+      color: $accent;
+      border: 1px solid $line-strong;
+      border-radius: 999px;
+      padding: .45em 1.1em;
+      font-size: .8em;
+      font-weight: 700;
+      text-decoration: none;
+      &:hover { border-color: $accent; background: $accent-soft; }
+    }
+  }
+ 
+  .section { margin-bottom: 2.5em; }
+  .section h2 { margin-top: 0; }
+ 
+  // One entry: title + place on the left, dates on the right, details below
+  .item {
+    padding: .9em 0;
+    border-bottom: 1px solid $line;
+    &:last-child { border-bottom: 0; }
+  }
+  .item.grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 1.5em;
+    align-items: baseline;
+ 
+    > .bullets, > .tag-row { grid-column: 1 / -1; }
+  }
+ 
+  .role  { font-weight: 700; color: $ink; line-height: 1.35; }
+  .where { color: $muted; font-size: .9em; margin-top: .15em; }
+  .when  {
+    font-family: $mono;
+    font-size: .75em;
+    color: $muted;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+ 
+  .bullets {
+    margin: .5em 0 0;
+    padding-left: 1.1em;
+    font-family: $source-serif;
+    font-size: .95em;
+    li { margin-bottom: .3em; }
+    li::marker { color: $signal; }
+    .abstract {
+      list-style: none;
+      margin-left: -1.1em;
+      color: $muted;
+      font-size: .9em;
+      line-height: 1.6;
+    }
+  }
+ 
+  .tag-row { display: flex; flex-wrap: wrap; gap: .35em; margin-top: .6em; }
+  .tag {
+    font-family: $mono;
+    font-size: .68em;
+    padding: .2em .65em;
+    border-radius: 999px;
+    background: $accent-soft;
+    color: $accent;
+  }
+ 
+  @media (max-width: 600px) {
+    .item.grid { grid-template-columns: 1fr; }
+    .when { margin-top: .3em; }
+  }
+}
+ 
+/* Printing the CV: hide the menu, sidebar and buttons */
+@media print {
+  .masthead, .sidebar, .page__footer, .cv-actions, .page__title { display: none !important; }
+  .page { width: 100% !important; padding: 0 !important; }
+  body { background: #fff; }
+}
