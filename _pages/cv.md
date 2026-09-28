@@ -4,30 +4,6 @@ title: "CV"
 ---
 
 <div class="cv">
-
-  <!-- Header -->
-  <div class="cv-header">
-    <!-- Optional avatar; remove if you don't want it -->
-    <img class="avatar" src="{{ site.avatar | default: '/assets/profile/me-800.jpg' | relative_url }}" alt="{{ site.author | default: 'Profile' }}">
-    <div>
-      <h1 class="cv-title">{{ site.author | default: "Your Name" }}</h1>
-      <p class="cv-sub">PhD Student / NeuroAI • Geneva, Switzerland</p>
-      <p class="cv-sub">
-        <a >sarahsaneei at unige dot ch</a> ·
-        <a href="https://github.com/ssaneei">github/ssaneei</a> ·
-        <a href="https://www.linkedin.com/in/sarah-saneei/">linkedin/sarah-saneei</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="cv-actions">
-    <!-- If you have a static PDF, put it in /assets/cv/ -->
-    <a class="btn" href="{{ '/assets/cv/YourName-CV.pdf' | relative_url }}" download>⬇︎ Download PDF</a>
-    <a class="btn" href="#" onclick="window.print();return false;">🖨 Print</a>
-  </div>
-
-  
-
   <!-- Education -->
   <section class="section">
     <h2>Education</h2>
