@@ -4,6 +4,39 @@ title: "CV"
 layout: single
 author_profile: true
 ---
+
+<style>
+  :root{
+    --accent:#111827;
+    --muted:#6b7280;
+    --bd:#e5e7eb;
+  }
+  .cv{max-width:900px;margin:0 auto;padding:0 .5rem 2rem}
+  .cv-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+  .cv-header .avatar{width:88px;height:88px;border-radius:50%;object-fit:cover;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  .cv-title{margin:0}
+  .cv-sub{color:var(--muted);margin:.2rem 0 0}
+  .cv-actions{margin:.5rem 0 1rem;display:flex;gap:.6rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.5rem .8rem;border:1px solid var(--bd);border-radius:.6rem;text-decoration:none}
+  .grid{display:grid;grid-template-columns: 1fr auto;gap:.3rem .8rem}
+  .section{margin:1.1rem 0 0}
+  .section h2{font-size:1.05rem;margin:.2rem 0 .6rem;color:var(--accent);letter-spacing:.2px}
+  .item{padding:.7rem .9rem;border:1px solid var(--bd);border-radius:.8rem;margin:.45rem 0;background:#fff}
+  .role{font-weight:600}
+  .where{color:var(--muted)}
+  .when{white-space:nowrap;color:var(--muted)}
+  .bullets{grid-column:1 / -1;margin:.15rem 0 0;padding-left:1rem}
+  .tag-row{grid-column:1 / -1;margin-top:.35rem;display:flex;flex-wrap:wrap;gap:.35rem}
+  .tag{font-size:.78rem;padding:.15rem .45rem;border-radius:999px;background:#f3f4f6;border:1px solid var(--bd)}
+  /* print */
+  @media print{
+    .cv-actions{display:none}
+    .item{break-inside:avoid}
+    @page{size:auto;margin:12mm}
+    a[href^="http"]:after{content:" (" attr(href) ")"; color:#555; font-weight:400}
+  }
+</style>
+
 <div class="cv" markdown="0">
 
   <div class="cv-header">
