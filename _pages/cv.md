@@ -1,7 +1,8 @@
 ---
 permalink: /cv/
 title: "CV"
-layout: page
+layout: single
+author_profile: true
 ---
 <div class="cv" markdown="0">
 

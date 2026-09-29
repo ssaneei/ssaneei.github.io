@@ -114,7 +114,14 @@ body { background: $paper; }
   letter-spacing: -.02em;
   line-height: 1.15;
 }
-.page__content {
+
+/* Justified body text, with hyphenation so lines don't get big gaps */
+.page__content p,
+.page__content li,
+.cv .bullets li {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
   font-family: $source-serif;
   font-size: 1.05em;
   line-height: 1.7;

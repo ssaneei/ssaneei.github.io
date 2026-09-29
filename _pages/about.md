@@ -7,7 +7,7 @@ layout: page
 Hey! I'm Sarah :) 
 
 
-I am a PhD student, being a member of  <a href="https://noce-lab.github.io"> **NoCELab** </a> within the University of Geneva and <a href="https://ndlab.ch">**NDLab** </a> ETH Zurich, working on how the brain represents the meaning of language as we listen to it. I use intracranial recordings (sEEG) and encoding models to study how sensorimotor features of words and sentences (motor, oral, internal and auditory-visual) are encoded in the cortex during naturalistic story listening.
+I am studying my PhD in Neuroscience at University of Geneva, being a member of  <a href="https://noce-lab.github.io"> **NoCELab** </a> within the University of Geneva and <a href="https://ndlab.ch">**NDLab** </a> ETH Zurich, working on how the brain represents the meaning of language as we listen to it. I use intracranial recordings (sEEG) and encoding models to study how sensorimotor features of words and sentences (motor, oral, internal and auditory-visual) are encoded in the cortex during naturalistic story listening.
 
 I am also interested in large language models, both as tools for building linguistic
 features and as models to compare with the brain. If you want to read more about my journey, [Click here to know more about my journey]({{ '/more-about-me/' | relative_url }})
