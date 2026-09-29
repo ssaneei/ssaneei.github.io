@@ -1,6 +1,7 @@
 ---
 permalink: /research/
 title: "Research"
+layout: page
 ---
 
 <!-- DRAFT: check and rewrite in your own words. -->

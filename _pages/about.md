@@ -1,6 +1,7 @@
 ---
 permalink: /
 title: "About me"
+layout: page
 ---
 
 Hey! I'm Sarah :) 

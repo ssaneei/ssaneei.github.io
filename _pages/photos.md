@@ -1,6 +1,7 @@
 ---
 permalink: /photos/
 title: "Photos"
+layout: page
 ---
 
 <html lang="en">

@@ -1,3 +1,9 @@
+---
+permalink: /
+title: "More about me"
+layout: page
+---
+
 I became a fan of Linguistics since my English teacher talked about etymology, when I was 9 years old. As working with Computer and solving mathematic -specially algebraic- problems were interesting to me, I filled my spare time -as a teenager- learning some more about them. After finishing school, I decided to choose a major which has a conflation of them and Computer Science was the best choice of mine. Studying Automata, Neural Networks, Artificial Intelligence, Numeral Analysis and courses in Algebra amused me and I was into courses such as Digital Design, Algorithm (ref book CLRS), Computer Architecture and Software Engineering. 
 
 During the last year of my bachelor, I was studying French Language in Tehran University Institute and I felt that I seek more of French language and its literature, so after finishing my B.Sc. in Computer Science - with heart full of joy about it- I followed my second passion: language. 
