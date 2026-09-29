@@ -2,7 +2,6 @@
 permalink: /cv/
 title: "CV"
 layout: page
-author_profile: true
 ---
 
 PhD student in Neuroscience · Geneva, Switzerland · sarah [ dot ] saneei at [u | n | i | g | e] dot ch
