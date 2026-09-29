@@ -1,7 +1,9 @@
 ---
 layout: page
 title:  "Project1: 🧠 The Rest of the Poster Results"
-summary: LNDS poster 2026: More on the results.
+summary: >
+    LNDS poster 2026: More on the results.
+
 ---
 
 

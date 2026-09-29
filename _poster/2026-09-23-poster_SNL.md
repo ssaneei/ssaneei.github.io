@@ -1,7 +1,8 @@
 ---
 layout: page
 title: "Project2: Sensorimotor Language Encoding"
-summary: SNL poster 2026: More on the figures + stories.
+summary: >
+  SNL poster 2026: More on the figures + stories.
 #hero_image: /xx/xx/short_stories.jpeg
 #hero_alt: "Stories_Example"
 ---
