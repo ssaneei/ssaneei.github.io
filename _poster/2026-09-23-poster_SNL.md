@@ -5,376 +5,84 @@ subtitle: "SNL poster 2026: more on the figures and stories."
 #hero_alt: "Stories_Example"
 ---
 
-<!-- Styles for everything inside <div class="poster"> live in assets/css/main.scss -->
-<div class="poster" markdown="0">
+**TL;DR** Using sEEG recorded while patients listen to naturalistic stories, we ask how
+sensorimotor features of language (motor, oral, internal and auditory-visual) are encoded
+in cortex. Stories were built and validated so that each one emphasises a single dimension,
+and word-locked broadband high-frequency activity (BHA) is modelled with epoched ridge
+regression on word- and sentence-level LSN composites.
 
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#composition">Composition</a>
-    <a href="#design">Story Design</a>
-    <a href="#validation">Validation</a>
-    <a href="#analysis">Analysis</a>
-  </nav>
+[Overview](#overview) · [Stimuli design](#composition) · [Story design](#design) · [Validation](#validation) · [Planned analysis](#analysis)
 
-  <header id="overview">
-    <div class="eyebrow">Poster — SNL 6</div>
-    <h1>Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening</h1>
-    <p>sEEG encoding model · Sandbox · 3 patients · Word- and sentence-level LSN composites · Broadband High-frequency Activity (BHA)</p>
-  </header>
+## Overview {#overview}
 
-  <!-- STIMULI COMPOSITION -->
-  <section id="composition">
-    <div class="section-header">
-      <h2>Stimuli Design</h2>
-      <span class="section-tag">Final Composition</span>
-    </div>
+**Poster, SNL 2026.** *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening*
 
-    <p>
-      Stories were selected from a larger corpus and assigned to one of four sensorimotor categories based on LSN composite scores, plus a neutral baseline condition.
-    </p>
+sEEG encoding model · Sandbox · 3 patients · Word- and sentence-level LSN composites · Broadband high-frequency activity (BHA)
 
-    <div class="dim-row">
-      <span class="dim-chip motor"><span class="dot"></span>Motor</span>
-      <span class="dim-chip oral"><span class="dot"></span>Oral</span>
-      <span class="dim-chip internal"><span class="dot"></span>Internal</span>
-      <span class="dim-chip audvis"><span class="dot"></span>Auditory-Visual</span>
-      <span class="dim-chip neutral"><span class="dot"></span>Neutral</span>
-    </div>
+## Stimuli design {#composition}
 
-    <div class="fig-grid-2">
-      <div class="figure-slot">
-        <svg class="fig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-        </svg>
-        <div class="fig-label">Story composition overview</div>
-        <div class="fig-desc">Distribution of stories across categories and patients</div>
-      </div>
-      <div class="figure-slot">
-        <svg class="fig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="9"/><path d="M12 3v9l5 3"/>
-        </svg>
-        <div class="fig-label">LSN composite distributions</div>
-        <div class="fig-desc">Per-category score distributions across all valid words</div>
-      </div>
-    </div>
-  </section>
+Stories were selected from a larger corpus and assigned to one of four sensorimotor
+categories based on LSN composite scores, plus a neutral baseline condition.
 
-  <!-- STORY DESIGN -->
-  <section id="design">
-    <div class="section-header">
-      <h2>Story Design</h2>
-      <span class="section-tag">4 stories per category + 4 neutral</span>
-    </div>
+**Categories:** Motor · Oral · Internal · Auditory-Visual · Neutral
 
-    <p>
-      Each sensorimotor category contains 4 matched stories. Below are example figures for each dimension and the neutral baseline.
-    </p>
+<!-- Add figures by uncommenting and pointing to your image files, e.g.:
+![Story composition overview: distribution of stories across categories and patients](/assets/posters/snl/composition.png)
+![LSN composite distributions per category, across all valid words](/assets/posters/snl/lsn-distributions.png)
+-->
 
-    <!-- Motor -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip motor"><span class="dot"></span>Motor</span>
-        <h3>Top motor stories</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Motor</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Motor</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+## Story design {#design}
 
-    <!-- Oral -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip oral"><span class="dot"></span>Oral</span>
-        <h3>Top oral stories</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Oral</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Oral</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+Each sensorimotor category contains 4 matched stories, plus 4 neutral stories.
+Below are example figures for each dimension and for the neutral baseline.
 
-    <!-- Internal -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip internal"><span class="dot"></span>Internal</span>
-        <h3>Top internal stories</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Internal</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Internal</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+### Motor
 
-    <!-- Auditory-Visual -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip audvis"><span class="dot"></span>Auditory-Visual</span>
-        <h3>Top auditory-visual stories</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Auditory-Visual</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Auditory-Visual</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ![Top motor stories](/assets/posters/snl/design-motor.png) -->
 
-    <!-- Neutral -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip neutral"><span class="dot"></span>Neutral</span>
-        <h3>Neutral baseline stories</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Neutral</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Neutral</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+### Oral
 
-  </section>
+<!-- ![Top oral stories](/assets/posters/snl/design-oral.png) -->
 
-  <!-- VALIDATION -->
-  <section id="validation">
-    <div class="section-header">
-      <h2>Stimuli Validation</h2>
-      <span class="section-tag">Behavioral ratings</span>
-    </div>
+### Internal
 
-    <p>
-      Stories and sentences were rated by external participants on all four sensorimotor dimensions to validate that LSN-based category assignments matched human perception.
-    </p>
+<!-- ![Top internal stories](/assets/posters/snl/design-internal.png) -->
 
-    <!-- Motor -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip motor"><span class="dot"></span>Motor</span>
-        <h3>Validation — Motor</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Motor validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Motor validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+### Auditory-Visual
 
-    <!-- Oral -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip oral"><span class="dot"></span>Oral</span>
-        <h3>Validation — Oral</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Oral validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Oral validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ![Top auditory-visual stories](/assets/posters/snl/design-audvis.png) -->
 
-    <!-- Internal -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip internal"><span class="dot"></span>Internal</span>
-        <h3>Validation — Internal</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Internal validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Internal validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+### Neutral
 
-    <!-- Auditory-Visual -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip audvis"><span class="dot"></span>Auditory-Visual</span>
-        <h3>Validation — Auditory-Visual</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Audvis validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Audvis validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ![Neutral baseline stories](/assets/posters/snl/design-neutral.png) -->
 
-    <!-- Neutral -->
-    <div class="story-group">
-      <div class="story-group-header">
-        <span class="dim-chip neutral"><span class="dot"></span>Neutral</span>
-        <h3>Validation — Neutral baseline</h3>
-      </div>
-      <div class="story-group-body">
-        <div class="fig-grid">
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Neutral validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-          <div class="figure-slot">
-            <div class="fig-label">Figure — Neutral validation</div>
-            <div class="fig-desc">Add plot here</div>
-          </div>
-        </div>
-      </div>
-    </div>
+## Validation {#validation}
 
-  </section>
+Stories and sentences were rated by external participants on all four sensorimotor
+dimensions, to check that the LSN-based category assignments match human perception.
 
-  <!-- PLANNED ANALYSIS -->
-  <section id="analysis">
-    <div class="section-header">
-      <h2>Planned Analysis</h2>
-      <span class="section-tag">Encoding model</span>
-    </div>
+<!-- One figure per dimension, e.g.:
+![Validation: motor](/assets/posters/snl/validation-motor.png)
+![Validation: oral](/assets/posters/snl/validation-oral.png)
+![Validation: internal](/assets/posters/snl/validation-internal.png)
+![Validation: auditory-visual](/assets/posters/snl/validation-audvis.png)
+![Validation: neutral baseline](/assets/posters/snl/validation-neutral.png)
+-->
 
-    <div class="analysis-list">
-      <div class="analysis-item">
-        <div class="analysis-num">1</div>
-        <div>
-          <h4>BHA Epoch Extraction</h4>
-          <p>Word-locked broadband high-gamma (70–150 Hz, z-scored) extracted from sEEG FIF files using <code>onset_fif</code> timestamps. Window: −200 ms to +1000 ms per word onset.</p>
-        </div>
-      </div>
-      <div class="analysis-item">
-        <div class="analysis-num">2</div>
-        <div>
-          <h4>Feature Matrix</h4>
-          <p>Per valid word (identical status, content word, LSN available): 4 LSN composites (motor, oral, internal, auditory-visual) + control regressors (surprisal, semantic distance, concreteness, valence). Valid words: ~355–500 per patient.</p>
-        </div>
-      </div>
-      <div class="analysis-item">
-        <div class="analysis-num">3</div>
-        <div>
-          <h4>Epoched Ridge Regression</h4>
-          <p>Per electrode × timepoint: BHA ~ LSN composites, cross-validated lambda selection (5-fold). Outputs: beta coefficients (n_electrodes × n_timepoints × 4) and cross-validated R².</p>
-        </div>
-      </div>
-      <div class="analysis-item">
-        <div class="analysis-num">4</div>
-        <div>
-          <h4>Statistical Thresholding</h4>
-          <p>FDR correction (Benjamini-Hochberg, α = 0.05) across electrode × timepoint cells. Permutation-based p-values planned for publication.</p>
-        </div>
-      </div>
-      <div class="analysis-item">
-        <div class="analysis-num">5</div>
-        <div>
-          <h4>Visualization</h4>
-          <p>R² heatmap (electrodes × time), temporal beta profiles per dimension, peak R² projected onto MNI brain (native + MNI coordinates from BIDS electrodes.tsv).</p>
-        </div>
-      </div>
-    </div>
+## Planned analysis {#analysis}
 
-    <div class="table-wrap">
-      <table class="feature-table">
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Word-level</th>
-            <th>Sentence-level</th>
-            <th>Story-level</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>LSN composites</td>
-            <td>Motor / Oral / Internal / Audvis</td>
-            <td>Mean over content words</td>
-            <td>Mean over sentences</td>
-          </tr>
-          <tr>
-            <td>Surprisal</td>
-            <td>CamemBERT or trigram?</td>
-            <td>Mean or sentence LM prob?</td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>Semantic distance</td>
-            <td>Cosine to context (FastText / CamemBERT, w=1/3/5)</td>
-            <td>CamemBERT CLS cosine</td>
-            <td>Story embedding cosine</td>
-          </tr>
-          <tr>
-            <td>Concreteness</td>
-            <td>Brysbaert EN (~40k) / Bonin FR (~2k)</td>
-            <td>Mean over content words</td>
-            <td>Mean over sentences</td>
-          </tr>
-          <tr>
-            <td>Valence</td>
-            <td>FANCat FR (1033 words)</td>
-            <td>Mean or CamemBERT CLS?</td>
-            <td>Mean or story embedding?</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+1. **BHA epoch extraction.** Word-locked broadband high-gamma (70–150 Hz, z-scored) extracted from sEEG FIF files using `onset_fif` timestamps. Window: −200 ms to +1000 ms around each word onset.
+2. **Feature matrix.** Per valid word (identical status, content word, LSN available): 4 LSN composites (motor, oral, internal, auditory-visual) plus control regressors (surprisal, semantic distance, concreteness, valence). About 355–500 valid words per patient.
+3. **Epoched ridge regression.** Per electrode × timepoint: BHA ~ LSN composites, with cross-validated lambda selection (5-fold). Outputs: beta coefficients (n_electrodes × n_timepoints × 4) and cross-validated R².
+4. **Statistical thresholding.** FDR correction (Benjamini-Hochberg, α = 0.05) across electrode × timepoint cells. Permutation-based p-values planned for publication.
+5. **Visualization.** R² heatmap (electrodes × time), temporal beta profiles per dimension, and peak R² projected onto the MNI brain (native and MNI coordinates from BIDS `electrodes.tsv`).
 
-  </section>
+### Features at each level
 
-</div>
+| Feature | Word-level | Sentence-level | Story-level |
+|---|---|---|---|
+| **LSN composites** | Motor / Oral / Internal / Audvis | Mean over content words | Mean over sentences |
+| **Surprisal** | CamemBERT or trigram? | Mean or sentence LM prob? | — |
+| **Semantic distance** | Cosine to context (FastText / CamemBERT, w = 1/3/5) | CamemBERT CLS cosine | Story embedding cosine |
+| **Concreteness** | Brysbaert EN (~40k) / Bonin FR (~2k) | Mean over content words | Mean over sentences |
+| **Valence** | FANCat FR (1033 words) | Mean or CamemBERT CLS? | Mean or story embedding? |
