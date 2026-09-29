@@ -11,8 +11,8 @@ author_profile: true
 slots:
   - "2026-09-23-poster_SNL.md"
   - "2026-08-24-poster_inception_loop_results.md"
-  - "2025-09-15-poster_Stories.md"
-  - "2025-09-15-poster_BQ.md"
+#   - "2025-09-15-poster_Stories.md"
+#   - "2025-09-15-poster_BQ.md"
 ---
 Posters and talks, with extra figures and material that did not fit on the printed version.
 
