@@ -8,7 +8,7 @@ summary: SNL poster 2026: More on the figures + stories.
 
 <title>Sensorimotor Language Encoding</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&family=Roboto+Slab:wght@400;700&display=swap">
-
+<!-- 
 <style>
   :root {
     --bg: #fff;
@@ -304,7 +304,7 @@ summary: SNL poster 2026: More on the figures + stories.
     body { font-size: 16px; }
     .dim-chip { font-size: 12px; }
   }
-</style>
+</style> -->
 
 <nav>
   <a href="#overview">Overview</a>

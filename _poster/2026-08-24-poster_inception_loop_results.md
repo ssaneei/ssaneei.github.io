@@ -4,6 +4,7 @@ title:  "Project1: 🧠 The Rest of the Poster Results"
 summary: LNDS poster 2026: More on the results.
 ---
 
+
 **TL;DR** Using GPT-2 contextual embeddings and inception-loop sEEG, we identify electrodes tuned to specific semantic dimensions on day 1, then test that tuning by embedding optimized words into custom day 2 stories. Selectivity replicates across patients — but not always the direction. Tuned electrodes converge near the classic semantic hub (ATL + pMTG), despite broad, distributed general activity elsewhere.
 
 [The gist](#gist) · [Q1 / H1 — selectivity](#h1) · [Q2 / H2 — location](#h2) · [PAT_6684](#pat-6684) · [PAT_3780](#pat-3780) · [PAT_6619](#pat-6619) · [Wrap-up](#wrap-up)
