@@ -7,7 +7,22 @@ layout: page
 
 ## Conference abstracts and posters
 
-- **Saneei, S.**, [co-authors]. (2026). *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening.* Poster presented at the Society for the Neurobiology of Language (SNL) Annual Meeting. [[poster page](/poster/)]
+- **Saneei, S., [co-authors]. (2026). *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening.* Poster presented at the Society for the Neurobiology of Language (SNL) Annual Meeting. [[poster page](/poster/)]
+
+- **Saneei, S., Borghesani, V., Proix, T. (2026). *From LLM-derived semantic dimensions to optimized stories: probing the neural basis of word meaning* Poster presented at Lemanic Neuroscience Doctoral School Annual Retreat. ([details](/poster/))
+
+- **Saneei, S., Borghesani, V., Proix, T. (2026). *From LLM-derived semantic dimensions to optimized stories: probing the neural basis of word meaning* Poster presented at NCCR Evolving Language Annual Summer School. ([details](/poster/))
+
+- **Saneei, S., Borghesani, V., Proix, T. (2025). *Bridging Human and Silicon Meaning: LLM-based Semantic Mapping in the Brain* Poster presented at NCCR Evolving Language Site Visit. ([details](/poster/))
+
+- **Saneei, S., Borghesani, V., Proix, T. (2024). *Investigating lexico-semantic representations in artificial and biological neural networks: an optimization loop* Poster presented at Lemanic Neuroscience Doctoral School Annual Retreat. ([details](/poster/))
+
+- **Saneei, S., Borghesani, V., Proix, T. (2023). *Investigating Lexico-semantic Representations in Artificial and Biological Neural Networks: an Optimization Loop*  Poster presented at the NCCR Evolving Language Annual Summer School. [[poster page](/poster/)]
+
+- **Saneei, S., Shojaei, R., Borghesani, V. (2023). *Syntactic-Semantic Analysis of the Emergence of Novel English-Persian Bilingual Complex Predicates.* Poster presented at the Society for the Neurobiology of Language (SNL) Annual Meeting. [[poster page](/poster/)]
+
+
+
 
 ## Journal articles
 
