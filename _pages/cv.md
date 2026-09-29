@@ -5,7 +5,7 @@ layout: single
 author_profile: true
 ---
 
-PhD student in Neuroscience · Geneva, Switzerland · sarahsaneei at unige dot ch
+PhD student in Neuroscience · Geneva, Switzerland · sarah [ dot ] saneei at [u | n | i | g | e] dot ch
 
 <!-- Put your PDF at assets/cv/SarahSaneei-CV.pdf -->
 [Download CV (PDF)]({{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}){: .btn .btn--primary}
