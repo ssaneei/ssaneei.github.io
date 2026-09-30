@@ -7,7 +7,7 @@ layout: page
 
 ## Conference abstracts and posters
 
-- Saneei, S., [co-authors]. (2026). *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening.* Poster presented at the Society for the Neurobiology of Language (SNL) Annual Meeting. [[poster page](/poster/)]
+- Saneei S., Mégevand P., Spinelli L., Borghesani V., Michaud N., Proix, T. (2026). *Cortical Encoding of Sensorimotor Language Features During Naturalistic Story Listening.* Poster presented at the Society for the Neurobiology of Language (SNL) Annual Meeting. [[poster page](/poster/)]
 
 - Saneei, S., Borghesani, V., Proix, T. (2026). *From LLM-derived semantic dimensions to optimized stories: probing the neural basis of word meaning* Poster presented at Lemanic Neuroscience Doctoral School Annual Retreat. ([details](/poster/))
 

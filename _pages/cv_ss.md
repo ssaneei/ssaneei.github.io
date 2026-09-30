@@ -1,12 +1,12 @@
 ---
-permalink: /cv/
+permalink: /cv_ss/
 title: "CV"
 layout: page
 ---
 
 PhD student in Neuroscience · Geneva, Switzerland · sarah [ dot ] saneei at [u | n | i | g | e] dot ch
 
-<!-- Put your PDF at assets/cv/SarahSaneei-CV.pdf -->
+<!-- Not htere yet: Put your PDF at assets/cv/SarahSaneei-CV.pdf -->
 [Download CV (PDF)]({{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}){: .btn .btn--primary}
 
 ## Education
