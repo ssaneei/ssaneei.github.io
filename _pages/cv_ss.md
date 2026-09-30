@@ -4,7 +4,8 @@ title: "CV"
 layout: page
 ---
 
-PhD student in Neuroscience · Geneva, Switzerland · sarah [ dot ] saneei at [u | n | i | g | e] dot ch
+PhD student in Neuroscience · Geneva, Switzerland
+sarah [ dot ] saneei at [u n i g ] dot ch
 
 <!-- Not htere yet: Put your PDF at assets/cv/SarahSaneei-CV.pdf -->
 [Download CV (PDF)]({{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}){: .btn .btn--primary}
