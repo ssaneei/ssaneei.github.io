@@ -99,8 +99,11 @@ A method to generate clinical reports from planar thyroid scintigraphy images, t
 
 ## Skills
 
-Python · C# · SQL Server · MySQL · ASP.NET · PyTorch · TensorFlow · Java (Android) · PHP · WPF · HTML/CSS/JS · Praat · Protégé · Photoshop · LaTeX · Eclipse
+Python · C# · SQL Server · MySQL · ASP.NET · PyTorch · TensorFlow · Java (Android) · PHP · WPF · HTML/CSS/JS · Praat · Protégé · Photoshop · LaTeX · Eclipse 
 
 ## Personal interests
 
-Yoga · Photography · Semiotics · Anthropology · Long walks · Event planning · Psychology · Languages · Cooking · Problem solving · Decorating · Application testing
+Semiotics · Languages · Writing systems · AI Ethics · Epistemology 
+Psychology · Anthropology · Problem solving 
+Event planning · Decorating · Application testing
+Photography · Yoga  · Long walks · Cooking
