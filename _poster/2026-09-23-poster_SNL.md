@@ -119,9 +119,8 @@ One day, while he was testing a lever for an automatic picking mechanism, he met
 Stories and sentences were rated by external participants on all four sensorimotor
 dimensions, to check that the LSN-based category assignments match human perception.
 
-One figure per dimension:
-![Validation](/assets/photos/poster_SNL/validation_1.png)
 ![Validation](/assets/photos/poster_SNL/validation_2.png)
+![Validation](/assets/photos/poster_SNL/validation_1.png)
 
 
 ## Planned analysis {#analysis}
