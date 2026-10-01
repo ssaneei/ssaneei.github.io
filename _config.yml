@@ -37,6 +37,8 @@ footer:
 
 # ── Build ──────────────────────────────────────────────
 markdown: kramdown
+kramdown:
+  parse_block_html: true
 permalink: /:categories/:title/
 include: [_pages]
 exclude: [Gemfile, Gemfile.lock, README.md, LICENSE]
