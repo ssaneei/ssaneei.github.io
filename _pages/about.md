@@ -7,10 +7,11 @@ layout: page
 Hey! I'm Sarah :) 
 
 
-I am studying my PhD in Neuroscience at University of Geneva, being a member of  <a href="https://noce-lab.github.io">**NoCELab**</a>, University of Geneva and <a href="https://ndlab.ch">**NDLab**</a>, ETH Zurich, working on how the brain represents the meaning of language as we listen to it. I use intracranial recordings (sEEG) from <a href="https://www.hug.ch"> Hôpitaux universitaires de Genève (HUG)</a> and encoding models to study how sensorimotor features of words and sentences (motor, oral, internal and auditory-visual) are encoded in the cortex during naturalistic story listening.
+I am studying my PhD in Neuroscience at University of Geneva, being a member of  <a href="https://noce-lab.github.io">**NoCELab**</a>, University of Geneva and <a href="https://ndlab.ch">**NDLab**</a>, ETH Zurich, working on how the brain represents the meaning of language as we listen to it. I use intracranial recordings (sEEG) from <a href="https://www.hug.ch"> Hôpitaux universitaires de Genève (HUG)</a> for my PhD studies.
+In project1, it's an inception-loop sEEG paradigm where day-1 ridge regression on GPT-2 embeddings identifies electrodes with maximal semantic tuning, then day-2 naturalistic stories embed words from the extremes of each electrode's embedding-response axis to probe semantic selectivity.
+For my second project, I focus on encoding models to study how sensorimotor features of words, sentences and stories (motor, oral, internal and auditory-visual) are encoded in the cortex during naturalistic story listening.
 
-I am also interested in large language models, both as tools for building linguistic
-features and as models to compare with the brain. If you want to read more about my journey, [Click here to know more about my journey]({{ '/more-about-me/' | relative_url }})
+I am also interested in large language models, both as tools for building linguistic features and as models to compare with the brain. If you want to read more about my journey, [Click here to know more about my journey]({{ '/more-about-me/' | relative_url }})
 <!-- <a href="_posts/aboutme_more.md">click here</a>.  -->
 
 ## Research interests
