@@ -28,8 +28,8 @@ categories based on LSN composite scores, plus a neutral baseline condition.
 **Categories:**  Oral  · Auditory-Visual · Internal · Motor · Neutral
 
 <!-- Add figures by uncommenting and pointing to your image files, e.g.:
-![Story composition overview: distribution of stories across categories and patients](/assets/poster_SNL/composition.png)
-![LSN composite distributions per category, across all valid words](/assets/poster_SNL/lsn-distributions.png)
+![Story composition overview: distribution of stories across categories and patients](/assets/photos/poster_SNL/composition.png)
+![LSN composite distributions per category, across all valid words](/assets/photos/poster_SNL/lsn-distributions.png)
 -->
 
 ## Stimuli design  (Stories) {#design}
@@ -40,7 +40,7 @@ Below are example figures for each dimension and for the neutral baseline.
 
 ### Oral
 
-![Top oral stories](/assets/poster_SNL/group_top_oral_story1.png)
+![Top oral stories](/assets/photos/poster_SNL/group_top_oral_story1.png)
 
 #### French: 
 <p> Par un matin de printemps, Marie découvrit dans son jardin que la floraison des tulipes et des lys avait transformé sa pelouse en paradis coloré. Passionnée de gastronomie, elle décida de préparer un repas spécial avec des herbes fraîches de son potager. Elle concocta une délicieuse soupe de chou parfumée, accompagnée de pain frais de la boulangerie, de beurre et de fromage local. L'odeur qui s'échappait de sa cuisine attirant les voisins, elle ajouta une sauce à l'huile d'olive, du poivre, et même du saumon fumé qu'elle avait acheté au marché. Un verre de vin rouge et du jus d'orange frais complétaient ce festin, créant une ambiance chaleureuse où chaque chose avait du sens.
@@ -55,7 +55,7 @@ In the afternoon, the villagers arrived to celebrate this unusual day. The baker
 
 ### Auditory-Visual
 
-![Top auditory-visual stories](/assets/poster_SNL/group_top_audvis_story4.png) 
+![Top auditory-visual stories](/assets/photos/poster_SNL/group_top_audvis_story4.png) 
 
 #### French:
 <p>Dans une petite ville pittoresque, un groupe d'amis passionnés de musique se réunissait chaque semaine pour partager leur amour du son et de la musique. Le groupe, composé de Julie au piano, Maxime à la clarinette et Léo, le bassiste, rêvait d'organiser un grand concert pour les habitants du village. Un jour, alors qu'ils discutaient de leur projet, un désaccord surgit sur le choix du thème musical. Julie voulait des morceaux classiques, tandis que Maxime suggérait des compositions modernes. Heureusement, Léo proposa de fusionner les deux styles pour créer une trame originale et musicale qui plairait à tout le public.
@@ -70,7 +70,7 @@ The day of the concert finally arrived, and the small hall was packed. The first
 
 ### Internal
 
-![Top internal stories](/assets/poster_SNL/group_top_internal_story1.png)
+![Top internal stories](/assets/photos/poster_SNL/group_top_internal_story1.png)
 
 #### French:
 <p>Dans un village en altitude, vivait Élise, tourmentée par une profonde souffrance. Sa grossesse avait été suivie d'une fracture complexe et d'une infection persistante qui l'avait laissée en état d'affaiblissement constant. Ses nuits étaient hantées par des cauchemars, remplis de terreur et de panique, alimentant une anxiété profonde. Elle se sentait contrainte, confuse, et parfois même prisonnière de cette agonie. Son envie de dormir sans fin, d'oublier tout ce douloureux passé, était une obsession. Mais un instinct puissant, une volonté  inébranlable, la poussait à ne pas tenter de fuir complètement.
@@ -88,7 +88,7 @@ One day, seeking to clear her mind, Élise met Théo. She was drawn to his passi
 
 ### Motor
 
-![Top motor stories](/assets/poster_SNL/group_top_motor_story4.png)
+![Top motor stories](/assets/photos/poster_SNL/group_top_motor_story4.png)
 
 #### French:
 <p>Dans une petite maison en brique au bord de la mer, vivait un artisan aux cheveux gris nommé Jean. Il passait ses journées à pousser les limites de son artisanat en créant des objets pratiques : un aimant pour retrouver les bijoux perdus, une brosse avec un système de lavage automatique, et même un pistolet à eau avec pression réglable pour arroser son jardin. Son atelier était rempli de meubles recouverts de velours. On y trouvait aussi un vieux tapis oriental et un établi couvert d'outils de précision. Il portait toujours ses bottes usées et un col en laine, et il notait chaque idée sur du papier froissé posé près d'un carnet de croquis. Ses mains expertes maniaient chaque outil avec précision, ses doigts habiles travaillant sur des surfaces de coton et autres matières. Dans son bain quotidien, il réfléchissait à ses créations, sentir l'eau chaude sur sa peau l'aidait à penser.
@@ -102,7 +102,7 @@ One day, while he was testing a lever for an automatic picking mechanism, he met
 
 ### Neutral
 
-![Neutral baseline stories](/assets/poster_SNL/group_neutral_baseline_story2.png)
+![Neutral baseline stories](/assets/photos/poster_SNL/group_neutral_baseline_story2.png)
 
 #### French
 <p>Un système informatique devait traiter une série d'opérations complexes réparties en plusieurs modules interdépendants. Chaque étape dépendait des résultats de la précédente, ce qui nécessitait une vérification rigoureuse à chaque transition. Les paramètres furent examinés un par un, et les erreurs potentielles soigneusement identifiées et consignées. Des corrections furent apportées au fur et à mesure, en suivant un protocole établi par l'équipe technique. Certaines anomalies nécessitèrent plusieurs cycles de validation avant d'être résolues. Une fois l'ensemble des modules validés, le processus fut lancé automatiquement selon le calendrier prévu. Les résultats obtenus correspondaient aux attentes initiales définies dans le cahier des charges. Un rapport de synthèse fut généré et transmis aux responsables concernés. Le système pouvait désormais fonctionner de manière autonome, sans intervention humaine régulière. Une période de surveillance fut néanmoins maintenue pour garantir la stabilité des opérations sur le long terme.</p>
@@ -120,8 +120,8 @@ Stories and sentences were rated by external participants on all four sensorimot
 dimensions, to check that the LSN-based category assignments match human perception.
 
 One figure per dimension:
-![Validation](/assets/poster_SNL/validation-1.png)
-![Validation](/assets/poster_SNL/validation-2.png)
+![Validation](/assets/photos/poster_SNL/validation-1.png)
+![Validation](/assets/photos/poster_SNL/validation-2.png)
 
 
 ## Planned analysis {#analysis}
