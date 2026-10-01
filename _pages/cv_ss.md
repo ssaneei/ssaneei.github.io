@@ -8,7 +8,7 @@ PhD student in Neuroscience · Geneva, Switzerland
 sarah [ dot ] saneei at [u n i g ] dot ch
 
 <!-- Not htere yet: Put your PDF at assets/cv/SarahSaneei-CV.pdf -->
-[Download CV (PDF)]({{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}){: .btn .btn--primary}
+<!-- [Download CV (PDF)]({{ '/assets/cv/SarahSaneei-CV.pdf' | relative_url }}){: .btn .btn--primary} -->
 
 ## Education
 
@@ -93,7 +93,7 @@ Pardazesh Sabz Company, Tehran, Iran
 A Windows program providing statistics on word and non-word stimuli in Persian: word frequency, orthographic and phonological length, orthographic and phonological neighbors, and transposed-letter neighbors. It also generates possible non-words that are orthographic neighbors of a target word. The tool uses two corpora (Zaya and WorldLex), is free, and is designed to be easy to use for non-Persian researchers.
 
 **Automatic Clinical Report Generation of Thyroid Scintigraphy using Natural Language Processing and Bayesian Convolutional Neural Network** · *2021*  
-*IEEE* · [Read the article](https://ieeexplore.ieee.org/document/9875728)
+*IEEE* · [Read the article](https://pure.rug.nl/ws/portalfiles/portal/1086351545/Automatic_Clinical_Report_Generation_of_Thyroid_Scintigraphy_using_Natural_Language_Processing_and_Bayesian_Convolutional_Neural_Network.pdf)
 
 A method to generate clinical reports from planar thyroid scintigraphy images, to save time for nuclear medicine physicians. The study included 268 adult cases referred for thyroid imaging, with reference reports written by a nuclear medicine physician with more than 15 years of experience.
 

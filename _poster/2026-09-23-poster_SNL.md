@@ -4,6 +4,7 @@ subtitle: "SNL poster 2026: more on the figures and stories."
 #hero_image: /xx/xx/short_stories.jpeg
 #hero_alt: "Stories_Example"
 ---
+[Download Poster (PDF)]({{ '/assets/cv/SarahSaneei_SNL2026.pdf' | relative_url }}){: .btn .btn--primary}
 
 **TL;DR** Using sEEG recorded while patients listen to naturalistic stories, we ask how
 sensorimotor features of language (motor, oral, internal and auditory-visual) are encoded
