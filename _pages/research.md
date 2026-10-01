@@ -6,8 +6,8 @@ layout: page
 
 <!-- DRAFT: check and rewrite in your own words. -->
 
-My research asks how the brain turns spoken language into meaning, and in particular how
-the bodily, sensorimotor side of meaning is represented while people listen to natural speech.
+<p>My research asks how the brain turns spoken language into meaning, and in particular how
+the bodily, sensorimotor side of meaning is represented while people listen to natural speech. I'm also interested in language evoltion w.r.t the modern life as well as ethics in AI. </p>
 
 ## Bridging Human and Silicon Meaning: LLM-based Semantic Targeting in the Brain
 *sEEG · encoding models · naturalistic story listening*
@@ -29,9 +29,17 @@ semantic distance, concreteness and valence. </p>
 **Output:** poster at SNL 2026 ([details](/poster/)).
 paper in preparation
 
-## Language models and the brain
 
-xxxx
+## Language change on social media
 
+*Code-switching · bilingual complex predicates · social media*
+
+<p>I am also interested in how technology and digital platforms shape language. Apps like Instagram, Twitter, etc
+bring in new words such as *like*, *post* and *unfollow*, and speakers of other languages
+build them into their grammar in new ways. One example is new verbs that mix English and
+the speaker's own language, like the Persian *belikeam* ("I like") and French *J'ai liké* ("I liked"). I study these forms to
+understand how languages blend in everyday communication and how they change under
+cultural and technological pressure. I have completed this work for Persian and Russian,
+and I am now extending it to French.</p>
 
 
