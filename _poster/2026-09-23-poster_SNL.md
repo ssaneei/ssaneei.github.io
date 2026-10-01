@@ -120,8 +120,8 @@ Stories and sentences were rated by external participants on all four sensorimot
 dimensions, to check that the LSN-based category assignments match human perception.
 
 One figure per dimension:
-![Validation](/assets/photos/poster_SNL/validation-1.png)
-![Validation](/assets/photos/poster_SNL/validation-2.png)
+![Validation](/assets/photos/poster_SNL/validation_1.png)
+![Validation](/assets/photos/poster_SNL/validation_2.png)
 
 
 ## Planned analysis {#analysis}
