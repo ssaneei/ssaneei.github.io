@@ -40,6 +40,6 @@ build them into their grammar in new ways. One example is new verbs that mix Eng
 the speaker's own language, like the Persian *belikeam* ("I like") and French *J'ai liké* ("I liked"). I study these forms to
 understand how languages blend in everyday communication and how they change under
 cultural and technological pressure. I have completed this work for Persian and Russian,
-and I am now extending it to French.</p>
+and I am now extending it to French with a master student Alexane Duerig .</p>
 
 
